@@ -1,0 +1,124 @@
+ext {
+    // Android sdk and version
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 29
+    androidCompileSdkVersion = 30
+    androidBuildToolsVersion = "30.0.2"
+    appVersionCode = 1
+    appVersionName = '1.0'
+
+    // Core dependencies
+    kotlinVersion = '1.4.0'
+    coreKtxVersion = '1.3.2'
+    appCompatVersion = '1.2.0'
+    materialVersion = '1.3.0'
+    constraintLayoutVersion = '2.0.4'
+
+    // Activity KTX for viewModels() dependencies
+    activityKtxVersion = '1.1.0'
+
+    // Navigation component dependencies
+    navFragmentKtxVersion = '2.3.0'
+    navUiKtxVersion = '2.3.0'
+
+    // LifeCycle dependencies
+    viewmodelKtxVersion = '2.2.0'
+    lifeCycleExtVersion = '2.2.0'
+    liveDataKtxVersion = '2.2.0'
+    lifeCycleRuntimeVersion = '2.2.0'
+    lifeCycleRuntimeKtxVersion = '2.2.0'
+
+    // Coroutines dependencies
+    coroutineCoreVersion = '1.3.9'
+    coroutineAndroidVersion = '1.3.9'
+    coroutinePlayServiceVersion = '1.1.1'
+
+    //Glide dependencies
+    glideVersion = '4.11.0'
+
+    // Dagger - Hilt dependencies
+    hiltAndroidVersion = '2.28-alpha'
+    hiltVersion = '1.0.0-alpha02'
+
+    // Timber logging dependencies
+    timberVersion = '4.7.1'
+
+    // Common dependencies
+    kotlinDependencies = [
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    ]
+
+    lifeCycleDependencies = [
+            viewModelKtx       : "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodelKtxVersion",
+            liveDataKtx        : "androidx.lifecycle:lifecycle-livedata-ktx:$liveDataKtxVersion",
+            lifeCycleExtension : "androidx.lifecycle:lifecycle-extensions:$lifeCycleExtVersion",
+            lifeCycleRuntime   : "androidx.lifecycle:lifecycle-runtime:$lifeCycleRuntimeVersion",
+            lifeCycleRuntimeKtx: "androidx.lifecycle:lifecycle-runtime-ktx:$lifeCycleRuntimeKtxVersion"
+    ]
+
+    hiltDependencies = [
+            hiltAndroid    : "com.google.dagger:hilt-android:$hiltAndroidVersion",
+            hiltAndroidKapt: "com.google.dagger:hilt-android-compiler:$hiltAndroidVersion",
+            hiltViewModel  : "androidx.hilt:hilt-lifecycle-viewmodel:$hiltVersion",
+            hiltKapt       : "androidx.hilt:hilt-compiler:$hiltVersion"
+    ]
+
+    coroutinesDependencies = [
+            coroutineCore   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineCoreVersion",
+            coroutineAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineAndroidVersion",
+    ]
+
+    glideDependencies = [
+            glide    : "com.github.bumptech.glide:glide:$glideVersion",
+            glideKapt: "com.github.bumptech.glide:compiler:$glideVersion"
+    ]
+
+    timberDependencies = [
+            timber: "com.jakewharton.timber:timber:$timberVersion"
+    ]
+
+    uiModuleDependencies = [
+            kotlin               : kotlinDependencies.kotlin,
+            coreKtx              : "androidx.core:core-ktx:$coreKtxVersion",
+            appCompat            : "androidx.appcompat:appcompat:$appCompatVersion",
+            material             : "com.google.android.material:material:$materialVersion",
+            constraint           : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+            navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:$navFragmentKtxVersion",
+            navigationUiKtx      : "androidx.navigation:navigation-ui-ktx:$navUiKtxVersion",
+            activityKtx          : "androidx.activity:activity-ktx:$activityKtxVersion",
+            // LifeCycle
+            lifeCycle            : [lifeCycleDependencies.viewModelKtx,
+                                    lifeCycleDependencies.liveDataKtx,
+                                    lifeCycleDependencies.lifeCycleExtension,
+                                    lifeCycleDependencies.lifeCycleRuntime,
+                                    lifeCycleDependencies.lifeCycleRuntimeKtx],
+            // Dagger-Hilt
+            daggerHilt           : [hiltDependencies.hiltAndroid,
+                                    hiltDependencies.hiltViewModel],
+            daggerHiltKapt       : [hiltDependencies.hiltAndroidKapt,
+                                    hiltDependencies.hiltKapt],
+            coroutines           : [coroutinesDependencies.coroutineCore,
+                                    coroutinesDependencies.coroutineAndroid],
+            glide                : glideDependencies.glide,
+            glideKapt            : glideDependencies.glideKapt,
+            timber               : timberDependencies.timber
+
+    ]
+
+    dataModuleDependencies = [
+            kotlin: kotlinDependencies.kotlin
+    ]
+
+    domainModuleDependencies = [
+            kotlin: kotlinDependencies.kotlin
+    ]
+
+    presentationModuleDependencies = [
+            kotlin: kotlinDependencies.kotlin
+    ]
+
+    remoteModuleDependencies = [
+            kotlin: kotlinDependencies.kotlin
+    ]
+
+}
