@@ -1,0 +1,3 @@
+include ':domain', ':data', ':remote', ':presentation', ':rick-and-morty-ui'
+
+rootProject.name = "Rick-and-Morty"
