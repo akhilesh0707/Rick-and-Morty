@@ -43,6 +43,11 @@ ext {
     // Timber logging dependencies
     timberVersion = '4.7.1'
 
+    // Network dependencies
+    okhttpVersion = '3.12.0'
+    retrofitVersion = '2.4.0'
+    gsonVersion = '2.8.5'
+
     // Common dependencies
     kotlinDependencies = [
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -75,6 +80,14 @@ ext {
 
     timberDependencies = [
             timber: "com.jakewharton.timber:timber:$timberVersion"
+    ]
+
+    networkDependencies = [
+            okhttp           : "com.squareup.okhttp3:okhttp:$okhttpVersion",
+            okhttpInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
+            retrofit         : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofitConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            gson             : "com.google.code.gson:gson:$gsonVersion"
     ]
 
     uiModuleDependencies = [
@@ -118,7 +131,12 @@ ext {
     ]
 
     remoteModuleDependencies = [
-            kotlin: kotlinDependencies.kotlin
+            kotlin : kotlinDependencies.kotlin,
+            network: [networkDependencies.okhttp,
+                      networkDependencies.okhttpInterceptor,
+                      networkDependencies.retrofit,
+                      networkDependencies.retrofitConverter,
+                      networkDependencies.gson],
     ]
 
 }

@@ -2,12 +2,9 @@ plugins {
     id 'kotlin'
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
 dependencies {
     implementation remoteModuleDependencies.kotlin
 
+    // Network (Retrofit, OkHttp, Interceptor, GSon)
+    implementation remoteModuleDependencies.network
 }
