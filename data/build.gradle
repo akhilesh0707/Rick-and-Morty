@@ -9,4 +9,5 @@ java {
 
 dependencies {
     implementation dataModuleDependencies.kotlin
+    implementation dataModuleDependencies.coroutine
 }

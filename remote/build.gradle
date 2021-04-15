@@ -1,10 +1,22 @@
 plugins {
     id 'kotlin'
+    id 'kotlin-kapt'
 }
 
 dependencies {
+
+    //Modules
+    implementation project(":data")
+
     implementation remoteModuleDependencies.kotlin
 
-    // Network (Retrofit, OkHttp, Interceptor, GSon)
+    // Network (Retrofit, OkHttp, Interceptor, Moshi)
     implementation remoteModuleDependencies.network
+    kapt remoteModuleDependencies.networkKapt
+
+    // Coroutines
+    implementation remoteModuleDependencies.coroutine
+
+    // JavaX
+    implementation remoteModuleDependencies.javax
 }
