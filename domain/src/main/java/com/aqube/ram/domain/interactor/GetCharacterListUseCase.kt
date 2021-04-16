@@ -5,11 +5,11 @@ import com.aqube.ram.domain.repository.CharacterRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-typealias GetCharacterBaseUseCase = BaseUseCase<Unit, Flow<CharacterList>>
+typealias GetCharacterListBaseUseCase = BaseUseCase<Unit, Flow<CharacterList>>
 
-class GetCharactersUseCase @Inject constructor(
+class GetCharacterListUseCase @Inject constructor(
     private val characterRepository: CharacterRepository
-) : GetCharacterBaseUseCase {
+) : GetCharacterListBaseUseCase {
 
     override suspend operator fun invoke(params: Unit) = characterRepository.getCharacters()
 }

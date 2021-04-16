@@ -18,6 +18,7 @@ class CharacterRemoteImp @Inject constructor(
 
     override suspend fun getCharacters(): Flow<CharacterListEntity> = flow {
         val characters = characterService.getCharacters()
+
         emit(characterListEntityMapper.mapFromModel(characters))
     }
 

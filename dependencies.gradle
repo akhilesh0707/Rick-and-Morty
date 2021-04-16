@@ -137,14 +137,19 @@ ext {
     ]
 
     presentationModuleDependencies = [
-            kotlin   : kotlinDependencies.kotlin,
-            javax    : javaDependencies.javax,
-            coroutine: coroutinesDependencies.coroutineCore,
-            lifeCycle: [lifeCycleDependencies.viewModelKtx,
-                        lifeCycleDependencies.liveDataKtx,
-                        lifeCycleDependencies.lifeCycleExtension,
-                        lifeCycleDependencies.lifeCycleRuntime,
-                        lifeCycleDependencies.lifeCycleRuntimeKtx],
+            kotlin        : kotlinDependencies.kotlin,
+            javax         : javaDependencies.javax,
+            // Dagger-Hilt
+            daggerHilt    : [hiltDependencies.hiltAndroid,
+                             hiltDependencies.hiltViewModel],
+            daggerHiltKapt: [hiltDependencies.hiltAndroidKapt,
+                             hiltDependencies.hiltKapt],
+            coroutine     : coroutinesDependencies.coroutineCore,
+            lifeCycle     : [lifeCycleDependencies.viewModelKtx,
+                             lifeCycleDependencies.liveDataKtx,
+                             lifeCycleDependencies.lifeCycleExtension,
+                             lifeCycleDependencies.lifeCycleRuntime,
+                             lifeCycleDependencies.lifeCycleRuntimeKtx],
     ]
 
     remoteModuleDependencies = [
@@ -156,7 +161,7 @@ ext {
                           networkDependencies.retrofitMoshi,
                           networkDependencies.moshi],
             networkKapt: networkDependencies.moshiCodeGen,
-            coroutine  : coroutinesDependencies.coroutineCore,
+            coroutine  : coroutinesDependencies.coroutineCore
     ]
 
 }

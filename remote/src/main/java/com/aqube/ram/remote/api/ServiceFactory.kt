@@ -16,8 +16,8 @@ object ServiceFactory {
     private fun createRetrofit(isDebug: Boolean, baseUrl: String): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
-            .addConverterFactory(MoshiConverterFactory.create())
             .client(createOkHttpClient(createLoggingInterceptor(isDebug)))
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }
 

@@ -1,21 +1,19 @@
 package com.aqube.ram.presentation.viewmodel
 
 import android.util.Log
-import com.aqube.ram.domain.interactor.GetCharacterBaseUseCase
+import androidx.hilt.lifecycle.ViewModelInject
+import com.aqube.ram.domain.interactor.GetCharacterListUseCase
 import com.aqube.ram.presentation.utils.ExceptionHandler
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
-import javax.inject.Inject
 
-internal class CharactersViewModel @Inject constructor(
-    private val getCharacterBaseUseCase: GetCharacterBaseUseCase,
+class CharacterListViewModel @ViewModelInject constructor(
+    private var getCharacterListUseCase: GetCharacterListUseCase
 ) : BaseViewModel() {
 
-    // region Members
-
     private var getCharactersJob: Job? = null
-
+    //
     override val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
         val message = ExceptionHandler.parse(exception)
         /*_favoriteViewState.value =
@@ -24,6 +22,7 @@ internal class CharactersViewModel @Inject constructor(
 
 
     init {
+        Log.d("ViewModel", "Viewmodel called")
         getCharacters()
     }
 
@@ -32,14 +31,16 @@ internal class CharactersViewModel @Inject constructor(
         getCharactersJob?.cancel()
     }
 
-    private fun getCharacters() {
+    fun getCharacters() {
         getCharactersJob = launchCoroutine {
             loadFavorites()
+
         }
     }
 
     private suspend fun loadFavorites() {
-        getCharacterBaseUseCase(Unit).collect {
+
+        getCharacterListUseCase(Unit).collect {
             Log.d("", it.toString())
         }
     }

@@ -15,12 +15,14 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     buildToolsVersion buildToolsVersion
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -34,6 +36,9 @@ dependencies {
     implementation presentationModuleDependencies.kotlin
     implementation presentationModuleDependencies.coroutine
 
+    // Dagger-Hilt
+    implementation presentationModuleDependencies.daggerHilt
+    kapt presentationModuleDependencies.daggerHiltKapt
     // JavaX
     implementation presentationModuleDependencies.javax
 
