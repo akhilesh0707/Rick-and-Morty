@@ -10,7 +10,6 @@ class InfoEntityMapper @Inject constructor() : EntityMapper<InfoModel, InfoEntit
             count = model.count,
             next = model.next,
             pages = model.pages,
-            prev = model.prev
         )
     }
 }

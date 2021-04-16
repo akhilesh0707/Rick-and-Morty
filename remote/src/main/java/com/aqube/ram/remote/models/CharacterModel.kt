@@ -8,7 +8,7 @@ data class CharacterModel(
     val gender: String,
     val id: Int,
     val image: String,
-    @Json(name = "location")
+    @field:Json(name = "location")
     val characterLocation: CharacterLocationModel,
     val name: String,
     val species: String,

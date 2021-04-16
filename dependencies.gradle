@@ -45,9 +45,9 @@ ext {
     timberVersion = '4.7.1'
 
     // Network dependencies
-    okhttpVersion = '3.12.0'
-    retrofitVersion = '2.4.0'
-    moshiVersion = '1.9.2'
+    retrofitVersion = '2.7.0'
+    moshiConverterVersion = '2.7.0'
+    loggingInterceptorVersion = '4.2.1'
 
     // Common dependencies
     kotlinDependencies = [
@@ -88,12 +88,9 @@ ext {
     ]
 
     networkDependencies = [
-            okhttp           : "com.squareup.okhttp3:okhttp:$okhttpVersion",
-            okhttpInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
-            retrofit         : "com.squareup.retrofit2:retrofit:$retrofitVersion",
-            retrofitMoshi    : "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
-            moshi            : "com.squareup.moshi:moshi:$moshiVersion",
-            moshiCodeGen     : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
+            retrofit          : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            moshiConverter    : "com.squareup.retrofit2:converter-moshi:$moshiConverterVersion",
+            loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion",
     ]
 
     uiModuleDependencies = [
@@ -155,12 +152,9 @@ ext {
     remoteModuleDependencies = [
             kotlin     : kotlinDependencies.kotlin,
             javax      : javaDependencies.javax,
-            network    : [networkDependencies.okhttp,
-                          networkDependencies.okhttpInterceptor,
-                          networkDependencies.retrofit,
-                          networkDependencies.retrofitMoshi,
-                          networkDependencies.moshi],
-            networkKapt: networkDependencies.moshiCodeGen,
+            network    : [networkDependencies.retrofit,
+                          networkDependencies.moshiConverter,
+                          networkDependencies.loggingInterceptor],
             coroutine  : coroutinesDependencies.coroutineCore
     ]
 

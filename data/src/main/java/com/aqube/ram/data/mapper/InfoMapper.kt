@@ -12,7 +12,6 @@ class InfoMapper @Inject constructor() : Mapper<InfoEntity, Info> {
             count = type.count,
             next = type.next,
             pages = type.pages,
-            prev = type.prev
         )
     }
 
@@ -21,7 +20,6 @@ class InfoMapper @Inject constructor() : Mapper<InfoEntity, Info> {
             count = type.count,
             next = type.next,
             pages = type.pages,
-            prev = type.prev
         )
     }
 }
