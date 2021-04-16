@@ -1,0 +1,6 @@
+<resources>
+    <!-- Error Strings -->
+    <string name="error_check_internet_connection">Check Internet Connection</string>
+    <string name="error_oops_error_occured">Oops!! An Error Occurred</string>
+
+</resources>

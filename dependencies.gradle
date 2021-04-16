@@ -131,13 +131,20 @@ ext {
     ]
 
     domainModuleDependencies = [
-            kotlin: kotlinDependencies.kotlin,
+            kotlin   : kotlinDependencies.kotlin,
             javax    : javaDependencies.javax,
             coroutine: coroutinesDependencies.coroutineCore,
     ]
 
     presentationModuleDependencies = [
-            kotlin: kotlinDependencies.kotlin
+            kotlin   : kotlinDependencies.kotlin,
+            javax    : javaDependencies.javax,
+            coroutine: coroutinesDependencies.coroutineCore,
+            lifeCycle: [lifeCycleDependencies.viewModelKtx,
+                        lifeCycleDependencies.liveDataKtx,
+                        lifeCycleDependencies.lifeCycleExtension,
+                        lifeCycleDependencies.lifeCycleRuntime,
+                        lifeCycleDependencies.lifeCycleRuntimeKtx],
     ]
 
     remoteModuleDependencies = [
