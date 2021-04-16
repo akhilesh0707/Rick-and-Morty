@@ -126,11 +126,14 @@ ext {
 
     dataModuleDependencies = [
             kotlin   : kotlinDependencies.kotlin,
+            javax    : javaDependencies.javax,
             coroutine: coroutinesDependencies.coroutineCore,
     ]
 
     domainModuleDependencies = [
-            kotlin: kotlinDependencies.kotlin
+            kotlin: kotlinDependencies.kotlin,
+            javax    : javaDependencies.javax,
+            coroutine: coroutinesDependencies.coroutineCore,
     ]
 
     presentationModuleDependencies = [
@@ -146,7 +149,7 @@ ext {
                           networkDependencies.retrofitMoshi,
                           networkDependencies.moshi],
             networkKapt: networkDependencies.moshiCodeGen,
-            coroutine: coroutinesDependencies.coroutineCore,
+            coroutine  : coroutinesDependencies.coroutineCore,
     ]
 
 }

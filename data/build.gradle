@@ -8,6 +8,12 @@ java {
 }
 
 dependencies {
+    //Modules
+    implementation project(":domain")
+
     implementation dataModuleDependencies.kotlin
     implementation dataModuleDependencies.coroutine
+
+    // JavaX
+    implementation dataModuleDependencies.javax
 }
