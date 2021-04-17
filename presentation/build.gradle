@@ -6,14 +6,15 @@ plugins {
 
 android {
     compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
+
     defaultConfig {
         minSdkVersion androidMinSdkVersion
         targetSdkVersion androidTargetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode appVersionCode
+        versionName appVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -23,12 +24,10 @@ android {
         }
     }
 
-    buildToolsVersion buildToolsVersion
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
 }
 
 dependencies {

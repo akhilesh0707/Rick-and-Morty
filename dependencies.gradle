@@ -49,6 +49,9 @@ ext {
     moshiConverterVersion = '2.7.0'
     loggingInterceptorVersion = '4.2.1'
 
+    // Room
+    roomVersion = '2.2.5'
+
     // Common dependencies
     kotlinDependencies = [
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -93,6 +96,13 @@ ext {
             loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion",
     ]
 
+    roomDependencies = [
+            roomRuntime     : "androidx.room:room-runtime:$roomVersion",
+            roomCompilerKapt: "androidx.room:room-compiler:$roomVersion",
+            roomKtx         : "androidx.room:room-ktx:$roomVersion"
+    ]
+
+    // Modules
     uiModuleDependencies = [
             kotlin               : kotlinDependencies.kotlin,
             coreKtx              : "androidx.core:core-ktx:$coreKtxVersion",
@@ -146,16 +156,23 @@ ext {
                              lifeCycleDependencies.liveDataKtx,
                              lifeCycleDependencies.lifeCycleExtension,
                              lifeCycleDependencies.lifeCycleRuntime,
-                             lifeCycleDependencies.lifeCycleRuntimeKtx],
+                             lifeCycleDependencies.lifeCycleRuntimeKtx]
     ]
 
     remoteModuleDependencies = [
-            kotlin     : kotlinDependencies.kotlin,
-            javax      : javaDependencies.javax,
-            network    : [networkDependencies.retrofit,
-                          networkDependencies.moshiConverter,
-                          networkDependencies.loggingInterceptor],
-            coroutine  : coroutinesDependencies.coroutineCore
+            kotlin   : kotlinDependencies.kotlin,
+            javax    : javaDependencies.javax,
+            network  : [networkDependencies.retrofit,
+                        networkDependencies.moshiConverter,
+                        networkDependencies.loggingInterceptor],
+            coroutine: coroutinesDependencies.coroutineCore
+    ]
+
+    cacheModuleDependencies = [
+            kotlin  : kotlinDependencies.kotlin,
+            javax   : javaDependencies.javax,
+            room    : [roomDependencies.roomRuntime, roomDependencies.roomKtx],
+            roomKapt: roomDependencies.roomCompilerKapt
     ]
 
 }
