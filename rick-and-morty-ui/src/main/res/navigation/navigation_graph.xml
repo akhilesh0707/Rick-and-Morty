@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/characterListFragment">
+
+    <fragment
+        android:id="@+id/characterListFragment"
+        android:name="com.aqube.ram.ui.characterlist.CharacterListFragment"
+        android:label="Character List" >
+        <action
+            android:id="@+id/action_characterListFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDetailFragment"
+        android:name="com.aqube.ram.ui.characterdetail.CharacterDetailFragment"
+        android:label="Character Detail" />
+
+</navigation>

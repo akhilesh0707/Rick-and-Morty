@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.aqube.ram.databinding.ActivityMainBinding
-import com.aqube.ram.extension.makeGone
-import com.aqube.ram.extension.makeVisible
 import com.aqube.ram.presentation.viewmodel.CharacterListViewModel
 import com.aqube.ram.presentation.viewmodel.CharacterState
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,12 +31,15 @@ class MainActivity : AppCompatActivity() {
     private fun updateView(characterState: CharacterState) {
         when (characterState) {
             is CharacterState.Success -> {
-                binding.progressBar.makeGone()
-                binding.textView.text = characterState.characters.toString()
+                //   binding.progressBar.makeGone()
+                //  binding.textView.text = characterState.characters.toString()
             }
-            is CharacterState.Error -> TODO()
-            CharacterState.Init -> TODO()
-            CharacterState.Loading -> binding.progressBar.makeVisible()
+            is CharacterState.Error -> {
+            }
+            CharacterState.Init -> {
+            }
+            CharacterState.Loading -> {
+            }
         }
     }
 }
