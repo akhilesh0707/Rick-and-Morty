@@ -15,21 +15,21 @@ import javax.inject.Inject
     entities = [CharacterCacheEntity::class, CharacterLocationCacheEntity::class],
     version = Migrations.DB_VERSION
 )
-abstract class RickMortyDatabase @Inject constructor() : RoomDatabase() {
+abstract class CharacterDatabase @Inject constructor() : RoomDatabase() {
 
     abstract fun cachedCharacterDao(): CharacterDao
 
     companion object {
         @Volatile
-        private var INSTANCE: RickMortyDatabase? = null
+        private var INSTANCE: CharacterDatabase? = null
 
-        fun getInstance(context: Context): RickMortyDatabase = INSTANCE ?: synchronized(this) {
+        fun getInstance(context: Context): CharacterDatabase = INSTANCE ?: synchronized(this) {
             INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
         }
 
         private fun buildDatabase(context: Context) = Room.databaseBuilder(
             context.applicationContext,
-            RickMortyDatabase::class.java,
+            CharacterDatabase::class.java,
             CacheConstants.DB_NAME
         ).build()
     }
