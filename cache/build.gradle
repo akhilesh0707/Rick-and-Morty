@@ -31,6 +31,9 @@ android {
 }
 
 dependencies {
+    //Modules
+    implementation project(":data")
+
     implementation cacheModuleDependencies.kotlin
     // JavaX
     implementation cacheModuleDependencies.javax
