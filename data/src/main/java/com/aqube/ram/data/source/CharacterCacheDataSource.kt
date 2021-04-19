@@ -2,41 +2,42 @@ package com.aqube.ram.data.source
 
 import com.aqube.ram.data.models.CharacterEntity
 import com.aqube.ram.data.models.CharacterListEntity
+import com.aqube.ram.data.repository.CharacterCache
 import com.aqube.ram.data.repository.CharacterDataSource
-import com.aqube.ram.data.repository.CharacterRemote
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class CharacterRemoteDataSource @Inject constructor(
-    private val characterRemote: CharacterRemote
+class CharacterCacheDataSource @Inject constructor(
+    private val characterCache: CharacterCache
 ) : CharacterDataSource {
 
     override suspend fun getCharacters(): Flow<CharacterListEntity> {
-        return characterRemote.getCharacters()
+        return characterCache.getCharacters()
     }
 
     override suspend fun getCharacter(characterId: Int): Flow<CharacterEntity> {
-        return characterRemote.getCharacter(characterId)
+        return characterCache.getCharacter(characterId)
     }
 
     override suspend fun saveCharacters(listCharacters: List<CharacterEntity>) {
-        throw UnsupportedOperationException("Save character is not supported for RemoteDataSource.")
+        val count = characterCache.saveCharacters(listCharacters)
+        characterCache.setLastCacheTime(System.currentTimeMillis())
+        return count
     }
 
     override suspend fun getBookMarkedCharacters(): Flow<CharacterListEntity> {
-        throw UnsupportedOperationException("Get bookmark characters is not supported for RemoteDataSource.")
+        return characterCache.getBookMarkedCharacters()
     }
 
     override suspend fun setCharacterBookmarked(characterId: Int) {
-        throw UnsupportedOperationException("Set bookmark character is not supported for RemoteDataSource.")
+        return characterCache.setCharacterBookmarked(characterId)
     }
 
     override suspend fun setCharacterUnBookMarked(characterId: Int) {
-        throw UnsupportedOperationException("Set UnBookmark characters is not supported for RemoteDataSource.")
+        return characterCache.setCharacterUnBookMarked(characterId)
     }
 
     override suspend fun isCached(): Flow<Boolean> {
-        throw UnsupportedOperationException("Cache is not supported for RemoteDataSource.")
+        return characterCache.isCached()
     }
-
 }

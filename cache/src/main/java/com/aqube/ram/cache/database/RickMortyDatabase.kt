@@ -5,14 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.aqube.ram.cache.dao.CharacterDao
-import com.aqube.ram.cache.models.CharacterCache
-import com.aqube.ram.cache.models.CharacterLocationCache
+import com.aqube.ram.cache.models.CharacterCacheEntity
+import com.aqube.ram.cache.models.CharacterLocationCacheEntity
 import com.aqube.ram.cache.utils.CacheConstants
 import com.aqube.ram.cache.utils.Migrations
 import javax.inject.Inject
 
 @Database(
-    entities = [CharacterCache::class, CharacterLocationCache::class],
+    entities = [CharacterCacheEntity::class, CharacterLocationCacheEntity::class],
     version = Migrations.DB_VERSION
 )
 abstract class RickMortyDatabase @Inject constructor() : RoomDatabase() {

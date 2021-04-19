@@ -18,7 +18,8 @@ class CharacterEntityMapper @Inject constructor(
             species = model.species,
             status = model.status,
             type = model.type,
-            url = model.url
+            url = model.url,
+            isBookMarked = false
         )
     }
 }

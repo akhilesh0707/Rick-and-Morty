@@ -5,13 +5,13 @@ import androidx.room.Entity
 import com.aqube.ram.cache.utils.CacheConstants
 
 @Entity(tableName = CacheConstants.CHARACTER_TABLE_NAME)
-data class CharacterCache(
+data class CharacterCacheEntity(
     val created: String,
     val gender: String,
     val id: Int,
     val image: String,
     @ColumnInfo(name = "character_location")
-    val characterLocation: CharacterLocationCache,
+    val characterLocation: CharacterLocationCacheEntity,
     val name: String,
     val species: String,
     val status: String,

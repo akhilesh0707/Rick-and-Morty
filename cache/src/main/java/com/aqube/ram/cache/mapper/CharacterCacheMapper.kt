@@ -1,13 +1,13 @@
 package com.aqube.ram.cache.mapper
 
-import com.aqube.ram.cache.models.CharacterCache
+import com.aqube.ram.cache.models.CharacterCacheEntity
 import com.aqube.ram.data.models.CharacterEntity
 import javax.inject.Inject
 
 class CharacterCacheMapper @Inject constructor(
     private val characterLocationCacheMapper: CharacterLocationCacheMapper
-) : CacheMapper<CharacterCache, CharacterEntity> {
-    override fun mapFromCached(type: CharacterCache): CharacterEntity {
+) : CacheMapper<CharacterCacheEntity, CharacterEntity> {
+    override fun mapFromCached(type: CharacterCacheEntity): CharacterEntity {
         return CharacterEntity(
             created = type.created,
             gender = type.gender,
@@ -23,8 +23,8 @@ class CharacterCacheMapper @Inject constructor(
         )
     }
 
-    override fun mapToCached(type: CharacterEntity): CharacterCache {
-        return CharacterCache(
+    override fun mapToCached(type: CharacterEntity): CharacterCacheEntity {
+        return CharacterCacheEntity(
             created = type.created,
             gender = type.gender,
             id = type.id,

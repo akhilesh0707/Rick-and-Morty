@@ -19,7 +19,8 @@ class CharacterMapper @Inject constructor(
             species = type.species,
             status = type.status,
             type = type.type,
-            url = type.url
+            url = type.url,
+            isBookMarked = type.isBookMarked
         )
     }
 
@@ -34,7 +35,8 @@ class CharacterMapper @Inject constructor(
             species = type.species,
             status = type.status,
             type = type.type,
-            url = type.url
+            url = type.url,
+            isBookMarked = type.isBookMarked
         )
     }
 }

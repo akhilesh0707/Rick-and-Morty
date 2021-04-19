@@ -1,4 +1,4 @@
-package com.aqube.ram.data.repository
+package com.aqube.ram.data
 
 import com.aqube.ram.data.mapper.CharacterListMapper
 import com.aqube.ram.data.mapper.CharacterMapper

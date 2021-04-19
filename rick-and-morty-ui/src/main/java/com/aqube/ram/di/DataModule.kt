@@ -1,6 +1,6 @@
 package com.aqube.ram.di
 
-import com.aqube.ram.data.repository.CharacterRepositoryImp
+import com.aqube.ram.data.CharacterRepositoryImp
 import com.aqube.ram.domain.repository.CharacterRepository
 import dagger.Module
 import dagger.Provides

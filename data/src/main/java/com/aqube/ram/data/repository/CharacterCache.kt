@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 interface CharacterCache {
     suspend fun getCharacters(): Flow<CharacterListEntity>
     suspend fun getCharacter(characterId: Int): Flow<CharacterEntity>
-
     suspend fun saveCharacters(listCharacters: List<CharacterEntity>)
     fun getBookMarkedCharacters(): Flow<CharacterListEntity>
     fun setCharacterBookmarked(characterId: Int)
