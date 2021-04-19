@@ -1,9 +1,7 @@
 package com.aqube.ram.data
 
-import com.aqube.ram.data.mapper.CharacterListMapper
 import com.aqube.ram.data.mapper.CharacterMapper
 import com.aqube.ram.data.source.CharacterDataSourceFactory
-import com.aqube.ram.domain.models.CharacterList
 import com.aqube.ram.domain.models.Character
 import com.aqube.ram.domain.repository.CharacterRepository
 import kotlinx.coroutines.flow.Flow
@@ -14,13 +12,14 @@ import javax.inject.Inject
 
 class CharacterRepositoryImp @Inject constructor(
     private val dataSourceFactory: CharacterDataSourceFactory,
-    private val characterListMapper: CharacterListMapper,
     private val characterMapper: CharacterMapper,
 ) : CharacterRepository {
 
-    override suspend fun getCharacters(): Flow<CharacterList> = flow {
-        dataSourceFactory.getRemoteDataSource().getCharacters().collect {
-            emit(characterListMapper.mapFromEntity(it))
+    override suspend fun getCharacters(): Flow<List<Character>> = flow {
+        dataSourceFactory.getRemoteDataSource().getCharacters().collect { listEntity ->
+            emit(
+                listEntity.map { character -> characterMapper.mapFromEntity(character) }
+            )
         }
     }
 

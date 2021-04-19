@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 
 import javax.inject.Inject
-import javax.inject.Singleton
 
 open class PreferencesHelper @Inject constructor(context: Context) {
 

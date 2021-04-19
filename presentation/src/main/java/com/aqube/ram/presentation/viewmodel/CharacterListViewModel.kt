@@ -1,6 +1,5 @@
 package com.aqube.ram.presentation.viewmodel
 
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import com.aqube.ram.domain.interactor.GetCharacterByIdUseCase

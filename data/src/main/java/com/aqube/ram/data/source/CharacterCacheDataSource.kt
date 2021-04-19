@@ -1,7 +1,6 @@
 package com.aqube.ram.data.source
 
 import com.aqube.ram.data.models.CharacterEntity
-import com.aqube.ram.data.models.CharacterListEntity
 import com.aqube.ram.data.repository.CharacterCache
 import com.aqube.ram.data.repository.CharacterDataSource
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +10,7 @@ class CharacterCacheDataSource @Inject constructor(
     private val characterCache: CharacterCache
 ) : CharacterDataSource {
 
-    override suspend fun getCharacters(): Flow<CharacterListEntity> {
+    override suspend fun getCharacters(): Flow<List<CharacterEntity>> {
         return characterCache.getCharacters()
     }
 
@@ -25,7 +24,7 @@ class CharacterCacheDataSource @Inject constructor(
         return count
     }
 
-    override suspend fun getBookMarkedCharacters(): Flow<CharacterListEntity> {
+    override suspend fun getBookMarkedCharacters(): Flow<List<CharacterEntity>> {
         return characterCache.getBookMarkedCharacters()
     }
 

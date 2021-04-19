@@ -2,6 +2,7 @@ package com.aqube.ram.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -44,8 +45,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateView(characterState: CharacterState) {
+
         when (characterState) {
             is CharacterState.Success -> {
+                Log.d("TAG=============>", characterState.characters.toString())
             }
             is CharacterState.Error -> {
             }
