@@ -18,7 +18,7 @@ class CharacterRemoteImp @Inject constructor(
         emit(characters.characters.map { characterEntityMapper.mapFromModel(it) })
     }
 
-    override suspend fun getCharacter(characterId: Int): Flow<CharacterEntity> = flow {
+    override suspend fun getCharacter(characterId: Long): Flow<CharacterEntity> = flow {
         val character = characterService.getCharacter(characterId)
         emit(characterEntityMapper.mapFromModel(character))
     }

@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface CharacterRemote {
     suspend fun getCharacters(): Flow<List<CharacterEntity>>
-    suspend fun getCharacter(characterId: Int): Flow<CharacterEntity>
+    suspend fun getCharacter(characterId: Long): Flow<CharacterEntity>
 }

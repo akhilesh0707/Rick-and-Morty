@@ -5,11 +5,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface CharacterCache {
     suspend fun getCharacters(): Flow<List<CharacterEntity>>
-    suspend fun getCharacter(characterId: Int): Flow<CharacterEntity>
-    suspend fun saveCharacters(listCharacters: List<CharacterEntity>)
+    suspend fun getCharacter(characterId: Long): Flow<CharacterEntity>
+    suspend fun saveCharacters(listCharacters: List<CharacterEntity>): Flow<Long>
     fun getBookMarkedCharacters(): Flow<List<CharacterEntity>>
-    fun setCharacterBookmarked(characterId: Int)
-    fun setCharacterUnBookMarked(characterId: Int)
+    fun setCharacterBookmarked(characterId: Long): Flow<Long>
+    fun setCharacterUnBookMarked(characterId: Long): Flow<Long>
     fun isCached(): Flow<Boolean>
     fun setLastCacheTime(lastCache: Long)
     fun isExpired(): Boolean

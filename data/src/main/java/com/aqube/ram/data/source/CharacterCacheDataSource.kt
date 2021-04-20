@@ -14,11 +14,11 @@ class CharacterCacheDataSource @Inject constructor(
         return characterCache.getCharacters()
     }
 
-    override suspend fun getCharacter(characterId: Int): Flow<CharacterEntity> {
+    override suspend fun getCharacter(characterId: Long): Flow<CharacterEntity> {
         return characterCache.getCharacter(characterId)
     }
 
-    override suspend fun saveCharacters(listCharacters: List<CharacterEntity>) {
+    override suspend fun saveCharacters(listCharacters: List<CharacterEntity>): Flow<Long> {
         val count = characterCache.saveCharacters(listCharacters)
         characterCache.setLastCacheTime(System.currentTimeMillis())
         return count
@@ -28,11 +28,11 @@ class CharacterCacheDataSource @Inject constructor(
         return characterCache.getBookMarkedCharacters()
     }
 
-    override suspend fun setCharacterBookmarked(characterId: Int) {
+    override suspend fun setCharacterBookmarked(characterId: Long): Flow<Long> {
         return characterCache.setCharacterBookmarked(characterId)
     }
 
-    override suspend fun setCharacterUnBookMarked(characterId: Int) {
+    override suspend fun setCharacterUnBookMarked(characterId: Long): Flow<Long> {
         return characterCache.setCharacterUnBookMarked(characterId)
     }
 

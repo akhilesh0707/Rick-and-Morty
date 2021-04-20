@@ -23,7 +23,7 @@ class CharacterRepositoryImp @Inject constructor(
         }
     }
 
-    override suspend fun getCharacter(characterId: Int): Flow<Character> = flow {
+    override suspend fun getCharacter(characterId: Long): Flow<Character> = flow {
         dataSourceFactory.getRemoteDataSource().getCharacter(characterId).collect {
             emit(characterMapper.mapFromEntity(it))
         }

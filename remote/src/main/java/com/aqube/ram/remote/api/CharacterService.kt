@@ -11,5 +11,5 @@ interface CharacterService {
     suspend fun getCharacters(): CharacterResponseModel
 
     @GET("character/")
-    suspend fun getCharacter(@Query("id") id: Int): CharacterModel
+    suspend fun getCharacter(@Query("id") id: Long): CharacterModel
 }

@@ -6,11 +6,11 @@ import kotlinx.coroutines.flow.Flow
 interface CharacterRepository {
     // Remote and cache
     suspend fun getCharacters(): Flow<List<Character>>
-    suspend fun getCharacter(characterId: Int): Flow<Character>
+    suspend fun getCharacter(characterId: Long): Flow<Character>
 
-   /* // Cache
-    suspend fun saveCharacters(listCharacters: List<CharacterList>)
-    suspend fun getBookMarkedCharacters(): Flow<CharacterList>
-    suspend fun setCharacterBookmarked(characterId: Int)
-    suspend fun setCharacterUnBookMarked(characterId: Int)*/
+    /*// Cache
+    suspend fun saveCharacters(listCharacters: List<Character>): Flow<Long>
+    suspend fun getBookMarkedCharacters(): Flow<Character>
+    suspend fun setCharacterBookmarked(characterId: Int): Flow<Long>
+    suspend fun setCharacterUnBookMarked(characterId: Int): Flow<Long>*/
 }

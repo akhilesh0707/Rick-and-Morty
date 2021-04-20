@@ -22,38 +22,63 @@ class CharacterCacheImp @Inject constructor(
         }
     }
 
-    override suspend fun getCharacter(characterId: Int): Flow<CharacterEntity> = flow {
+    override suspend fun getCharacter(characterId: Long): Flow<CharacterEntity> = flow {
         characterDao.getCharacter(characterId).collect { cacheCharacter ->
             emit(characterCacheMapper.mapFromCached(cacheCharacter))
         }
     }
 
-    override suspend fun saveCharacters(listCharacters: List<CharacterEntity>) {
-        TODO("Not yet implemented")
+    override suspend fun saveCharacters(listCharacters: List<CharacterEntity>) = flow {
+        val count = characterDao.addCharacter(
+            *listCharacters.map {
+                characterCacheMapper.mapToCached(it)
+            }.toTypedArray()
+        )
+        emit(count)
     }
 
-    override fun getBookMarkedCharacters(): Flow<List<CharacterEntity>> {
-        TODO("Not yet implemented")
+    override fun getBookMarkedCharacters(): Flow<List<CharacterEntity>> = flow {
+        characterDao.getBookMarkedCharacters().collect { cacheList ->
+            cacheList.map { cacheCharacter ->
+                characterCacheMapper.mapFromCached(cacheCharacter)
+            }.asFlow()
+        }
     }
 
-    override fun setCharacterBookmarked(characterId: Int) {
-        TODO("Not yet implemented")
+    override fun setCharacterBookmarked(characterId: Long): Flow<Long> = flow {
+        emit(characterDao.bookmarkCharacter(characterId))
     }
 
-    override fun setCharacterUnBookMarked(characterId: Int) {
-        TODO("Not yet implemented")
+    override fun setCharacterUnBookMarked(characterId: Long): Flow<Long> = flow {
+        emit(characterDao.unBookmarkCharacter(characterId))
     }
 
-    override fun isCached(): Flow<Boolean> {
-        TODO("Not yet implemented")
+    override fun isCached(): Flow<Boolean> = flow {
+        emit(characterDao.getCharacters().count() > 0)
     }
 
     override fun setLastCacheTime(lastCache: Long) {
-        TODO("Not yet implemented")
+        preferencesHelper.lastCacheTime = lastCache
     }
 
     override fun isExpired(): Boolean {
-        TODO("Not yet implemented")
+        val currentTime = System.currentTimeMillis()
+        val lastUpdateTime = this.getLastCacheUpdateTimeMillis()
+        return currentTime - lastUpdateTime > EXPIRATION_TIME
+    }
+
+    /**
+     * Get in millis, the last time the cache was accessed.
+     */
+    private fun getLastCacheUpdateTimeMillis(): Long {
+        return preferencesHelper.lastCacheTime
+    }
+
+    companion object {
+        /**
+         * Expiration time set to 5 minutes
+         */
+        const val EXPIRATION_TIME = (60 * 5 * 1000).toLong()
     }
 
 }
