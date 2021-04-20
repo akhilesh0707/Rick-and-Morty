@@ -9,9 +9,9 @@ interface CharacterDataSource {
     suspend fun getCharacter(characterId: Long): Flow<CharacterEntity>
 
     // Cache
-    suspend fun saveCharacters(listCharacters: List<CharacterEntity>): Flow<Long>
+    suspend fun saveCharacters(listCharacters: List<CharacterEntity>)
     suspend fun getBookMarkedCharacters(): Flow<List<CharacterEntity>>
-    suspend fun setCharacterBookmarked(characterId: Long): Flow<Long>
-    suspend fun setCharacterUnBookMarked(characterId: Long): Flow<Long>
-    suspend fun isCached(): Flow<Boolean>
+    suspend fun setCharacterBookmarked(characterId: Long): Flow<Int>
+    suspend fun setCharacterUnBookMarked(characterId: Long): Flow<Int>
+    fun isCached(): Boolean
 }

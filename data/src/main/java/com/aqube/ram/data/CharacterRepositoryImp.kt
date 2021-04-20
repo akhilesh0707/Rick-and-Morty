@@ -4,9 +4,7 @@ import com.aqube.ram.data.mapper.CharacterMapper
 import com.aqube.ram.data.source.CharacterDataSourceFactory
 import com.aqube.ram.domain.models.Character
 import com.aqube.ram.domain.repository.CharacterRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 
 import javax.inject.Inject
 
@@ -16,10 +14,15 @@ class CharacterRepositoryImp @Inject constructor(
 ) : CharacterRepository {
 
     override suspend fun getCharacters(): Flow<List<Character>> = flow {
-        dataSourceFactory.getRemoteDataSource().getCharacters().collect { listEntity ->
-            emit(
-                listEntity.map { character -> characterMapper.mapFromEntity(character) }
-            )
+        val isCached = dataSourceFactory.getCacheDataSource().isCached()
+        dataSourceFactory.getDataStore(isCached).getCharacters().collect { characterEntities ->
+            val characterList: List<Character> = characterEntities.map { characterEntity ->
+                characterMapper.mapFromEntity(characterEntity)
+            }
+            if (!isCached) {
+                saveCharacters(characterList)
+            }
+            characterList.asFlow()
         }
     }
 
@@ -27,5 +30,30 @@ class CharacterRepositoryImp @Inject constructor(
         dataSourceFactory.getRemoteDataSource().getCharacter(characterId).collect {
             emit(characterMapper.mapFromEntity(it))
         }
+    }
+
+    override suspend fun saveCharacters(listCharacters: List<Character>) {
+        dataSourceFactory.getCacheDataSource().saveCharacters(
+            listCharacters.map { character ->
+                characterMapper.mapToEntity(character)
+            }
+        )
+    }
+
+    override suspend fun getBookMarkedCharacters(): Flow<List<Character>> = flow {
+        dataSourceFactory.getCacheDataSource().getBookMarkedCharacters()
+            .collect { listCharacterEntity ->
+                listCharacterEntity.map { characterEntity ->
+                    characterMapper.mapFromEntity(characterEntity)
+                }.asFlow()
+            }
+    }
+
+    override suspend fun setCharacterBookmarked(characterId: Long): Flow<Int> {
+        return dataSourceFactory.getCacheDataSource().setCharacterBookmarked(characterId)
+    }
+
+    override suspend fun setCharacterUnBookMarked(characterId: Long): Flow<Int> {
+        return dataSourceFactory.getCacheDataSource().setCharacterUnBookMarked(characterId)
     }
 }

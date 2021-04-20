@@ -18,7 +18,7 @@ class CharacterRemoteDataSource @Inject constructor(
         return characterRemote.getCharacter(characterId)
     }
 
-    override suspend fun saveCharacters(listCharacters: List<CharacterEntity>): Flow<Long> {
+    override suspend fun saveCharacters(listCharacters: List<CharacterEntity>) {
         throw UnsupportedOperationException("Save character is not supported for RemoteDataSource.")
     }
 
@@ -26,15 +26,15 @@ class CharacterRemoteDataSource @Inject constructor(
         throw UnsupportedOperationException("Get bookmark characters is not supported for RemoteDataSource.")
     }
 
-    override suspend fun setCharacterBookmarked(characterId: Long): Flow<Long> {
+    override suspend fun setCharacterBookmarked(characterId: Long): Flow<Int> {
         throw UnsupportedOperationException("Set bookmark character is not supported for RemoteDataSource.")
     }
 
-    override suspend fun setCharacterUnBookMarked(characterId: Long): Flow<Long> {
+    override suspend fun setCharacterUnBookMarked(characterId: Long): Flow<Int> {
         throw UnsupportedOperationException("Set UnBookmark characters is not supported for RemoteDataSource.")
     }
 
-    override suspend fun isCached(): Flow<Boolean> {
+    override fun isCached(): Boolean {
         throw UnsupportedOperationException("Cache is not supported for RemoteDataSource.")
     }
 }

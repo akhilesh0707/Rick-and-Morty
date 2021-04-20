@@ -38,6 +38,6 @@ dependencies {
     // JavaX
     implementation cacheModuleDependencies.javax
     // Room
-    implementation cacheModuleDependencies.room
+    api cacheModuleDependencies.room
     kapt cacheModuleDependencies.roomKapt
 }

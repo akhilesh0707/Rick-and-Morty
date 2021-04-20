@@ -28,16 +28,15 @@ class CharacterCacheImp @Inject constructor(
         }
     }
 
-    override suspend fun saveCharacters(listCharacters: List<CharacterEntity>) = flow {
-        val count = characterDao.addCharacter(
+    override suspend fun saveCharacters(listCharacters: List<CharacterEntity>) {
+        characterDao.addCharacter(
             *listCharacters.map {
                 characterCacheMapper.mapToCached(it)
             }.toTypedArray()
         )
-        emit(count)
     }
 
-    override fun getBookMarkedCharacters(): Flow<List<CharacterEntity>> = flow {
+    override suspend fun getBookMarkedCharacters(): Flow<List<CharacterEntity>> = flow {
         characterDao.getBookMarkedCharacters().collect { cacheList ->
             cacheList.map { cacheCharacter ->
                 characterCacheMapper.mapFromCached(cacheCharacter)
@@ -45,23 +44,27 @@ class CharacterCacheImp @Inject constructor(
         }
     }
 
-    override fun setCharacterBookmarked(characterId: Long): Flow<Long> = flow {
+    override suspend fun setCharacterBookmarked(characterId: Long): Flow<Int> = flow {
         emit(characterDao.bookmarkCharacter(characterId))
     }
 
-    override fun setCharacterUnBookMarked(characterId: Long): Flow<Long> = flow {
+    override suspend fun setCharacterUnBookMarked(characterId: Long): Flow<Int> = flow {
         emit(characterDao.unBookmarkCharacter(characterId))
     }
 
-    override fun isCached(): Flow<Boolean> = flow {
-        emit(characterDao.getCharacters().count() > 0)
+    override fun isCached(): Boolean {
+        //TODO
+        characterDao.getCharacters().map {
+
+        }
+        return false
     }
 
-    override fun setLastCacheTime(lastCache: Long) {
+    override suspend fun setLastCacheTime(lastCache: Long) {
         preferencesHelper.lastCacheTime = lastCache
     }
 
-    override fun isExpired(): Boolean {
+    override suspend fun isExpired(): Boolean {
         val currentTime = System.currentTimeMillis()
         val lastUpdateTime = this.getLastCacheUpdateTimeMillis()
         return currentTime - lastUpdateTime > EXPIRATION_TIME

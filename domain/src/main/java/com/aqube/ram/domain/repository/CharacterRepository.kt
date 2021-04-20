@@ -8,9 +8,9 @@ interface CharacterRepository {
     suspend fun getCharacters(): Flow<List<Character>>
     suspend fun getCharacter(characterId: Long): Flow<Character>
 
-    /*// Cache
-    suspend fun saveCharacters(listCharacters: List<Character>): Flow<Long>
-    suspend fun getBookMarkedCharacters(): Flow<Character>
-    suspend fun setCharacterBookmarked(characterId: Int): Flow<Long>
-    suspend fun setCharacterUnBookMarked(characterId: Int): Flow<Long>*/
+    // Cache
+    suspend fun saveCharacters(listCharacters: List<Character>)
+    suspend fun getBookMarkedCharacters(): Flow<List<Character>>
+    suspend fun setCharacterBookmarked(characterId: Long): Flow<Int>
+    suspend fun setCharacterUnBookMarked(characterId: Long): Flow<Int>
 }

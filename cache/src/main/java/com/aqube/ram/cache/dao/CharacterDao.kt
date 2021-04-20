@@ -20,14 +20,14 @@ interface CharacterDao {
     fun getBookMarkedCharacters(): Flow<List<CharacterCacheEntity>>
 
     @Query("DELETE FROM characters")
-    fun clearCharacters(): Long
+    fun clearCharacters(): Int
 
     @Query("UPDATE characters SET is_bookmarked = 1 WHERE id = :id")
-    fun bookmarkCharacter(id: Long): Long
+    fun bookmarkCharacter(id: Long): Int
 
     @Query("UPDATE characters SET is_bookmarked = 0 WHERE id = :id")
-    fun unBookmarkCharacter(id: Long): Long
+    fun unBookmarkCharacter(id: Long): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addCharacter(vararg character: CharacterCacheEntity): Long
+    fun addCharacter(vararg character: CharacterCacheEntity)
 }

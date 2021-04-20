@@ -23,8 +23,8 @@ class RemoteModule {
 
     @Provides
     @Singleton
-    fun provideCharacterRemote(characterRepository: CharacterRemoteImp): CharacterRemote {
-        return characterRepository
+    fun provideCharacterRemote(characterRemote: CharacterRemoteImp): CharacterRemote {
+        return characterRemote
     }
 
 }
