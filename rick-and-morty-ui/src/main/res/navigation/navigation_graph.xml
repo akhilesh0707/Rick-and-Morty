@@ -7,14 +7,19 @@
     <fragment
         android:id="@+id/characterListFragment"
         android:name="com.aqube.ram.ui.characterlist.CharacterListFragment"
-        android:label="Character List" >
+        android:label="Character List">
         <action
             android:id="@+id/action_characterListFragment_to_characterDetailFragment"
-            app:destination="@id/characterDetailFragment" />
+            app:destination="@id/characterDetailFragment"
+            app:popUpTo="@+id/characterListFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
         android:name="com.aqube.ram.ui.characterdetail.CharacterDetailFragment"
-        android:label="Character Detail" />
+        android:label="Character Detail">
+        <argument
+            android:name="character_id"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>
