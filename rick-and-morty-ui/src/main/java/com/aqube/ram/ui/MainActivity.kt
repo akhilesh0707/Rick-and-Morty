@@ -20,6 +20,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+private const val TAG = "MainActivity"
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -48,9 +50,12 @@ class MainActivity : AppCompatActivity() {
 
         when (characterState) {
             is CharacterState.Success -> {
-                Log.d("TAG=============>", characterState.characters.toString())
+                Log.d(TAG, characterState.characters.toString())
+                showSnackBar(binding.rootView, characterState.characters.toString())
             }
             is CharacterState.Error -> {
+                Log.d(TAG, getString(characterState.message))
+                showSnackBar(binding.rootView, getString(characterState.message), true)
             }
             CharacterState.Init -> {
             }

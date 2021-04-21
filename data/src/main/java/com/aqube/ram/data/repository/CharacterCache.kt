@@ -10,7 +10,7 @@ interface CharacterCache {
     suspend fun getBookMarkedCharacters(): Flow<List<CharacterEntity>>
     suspend fun setCharacterBookmarked(characterId: Long): Flow<Int>
     suspend fun setCharacterUnBookMarked(characterId: Long): Flow<Int>
-    fun isCached(): Boolean
+    suspend fun isCached(): Boolean
     suspend fun setLastCacheTime(lastCache: Long)
     suspend fun isExpired(): Boolean
 }

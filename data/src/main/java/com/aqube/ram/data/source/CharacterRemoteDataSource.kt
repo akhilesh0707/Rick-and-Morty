@@ -34,7 +34,7 @@ class CharacterRemoteDataSource @Inject constructor(
         throw UnsupportedOperationException("Set UnBookmark characters is not supported for RemoteDataSource.")
     }
 
-    override fun isCached(): Boolean {
+    override suspend fun isCached(): Boolean {
         throw UnsupportedOperationException("Cache is not supported for RemoteDataSource.")
     }
 }

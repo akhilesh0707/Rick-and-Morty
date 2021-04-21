@@ -19,11 +19,16 @@ class CharacterRepositoryImp @Inject constructor(
             val characterList: List<Character> = characterEntities.map { characterEntity ->
                 characterMapper.mapFromEntity(characterEntity)
             }
-            if (!isCached) {
-                saveCharacters(characterList)
-            }
-            characterList.asFlow()
+            saveCharacters(characterList)
+            emit(characterList)
         }
+
+        /*dataSourceFactory.getRemoteDataSource().getCharacters().collect {
+            emit(
+                it.map {
+                    characterMapper.mapFromEntity(it)
+                })
+        }*/
     }
 
     override suspend fun getCharacter(characterId: Long): Flow<Character> = flow {
@@ -33,11 +38,10 @@ class CharacterRepositoryImp @Inject constructor(
     }
 
     override suspend fun saveCharacters(listCharacters: List<Character>) {
-        dataSourceFactory.getCacheDataSource().saveCharacters(
-            listCharacters.map { character ->
-                characterMapper.mapToEntity(character)
-            }
-        )
+        val characterEntities =listCharacters.map { character ->
+            characterMapper.mapToEntity(character)
+        }
+        dataSourceFactory.getCacheDataSource().saveCharacters(characterEntities)
     }
 
     override suspend fun getBookMarkedCharacters(): Flow<List<Character>> = flow {

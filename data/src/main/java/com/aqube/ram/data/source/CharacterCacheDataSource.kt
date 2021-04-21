@@ -19,7 +19,7 @@ class CharacterCacheDataSource @Inject constructor(
     }
 
     override suspend fun saveCharacters(listCharacters: List<CharacterEntity>){
-        val count = characterCache.saveCharacters(listCharacters)
+        characterCache.saveCharacters(listCharacters)
         characterCache.setLastCacheTime(System.currentTimeMillis())
     }
 
@@ -35,7 +35,7 @@ class CharacterCacheDataSource @Inject constructor(
         return characterCache.setCharacterUnBookMarked(characterId)
     }
 
-    override fun isCached(): Boolean {
+    override suspend fun isCached(): Boolean {
         return characterCache.isCached()
     }
 }
