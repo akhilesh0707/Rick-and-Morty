@@ -50,8 +50,8 @@ class MainActivity : AppCompatActivity() {
 
         when (characterState) {
             is CharacterState.Success -> {
-                Log.d(TAG, characterState.characters.toString())
-                showSnackBar(binding.rootView, characterState.characters.toString())
+                //Log.d(TAG, characterState.characters.toString())
+                //showSnackBar(binding.rootView, characterState.characters.toString())
             }
             is CharacterState.Error -> {
                 Log.d(TAG, getString(characterState.message))

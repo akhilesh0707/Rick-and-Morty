@@ -22,13 +22,6 @@ class CharacterRepositoryImp @Inject constructor(
             saveCharacters(characterList)
             emit(characterList)
         }
-
-        /*dataSourceFactory.getRemoteDataSource().getCharacters().collect {
-            emit(
-                it.map {
-                    characterMapper.mapFromEntity(it)
-                })
-        }*/
     }
 
     override suspend fun getCharacter(characterId: Long): Flow<Character> = flow {

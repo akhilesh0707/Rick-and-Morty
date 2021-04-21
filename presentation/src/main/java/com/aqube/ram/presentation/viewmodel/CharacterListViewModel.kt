@@ -42,6 +42,7 @@ class CharacterListViewModel @ViewModelInject constructor(
 
     private suspend fun loadFavorites() {
         getCharacterListUseCase(Unit).collect {
+            Log.d(TAG, it.toString())
             state = CharacterState.Success(it)
         }
     }

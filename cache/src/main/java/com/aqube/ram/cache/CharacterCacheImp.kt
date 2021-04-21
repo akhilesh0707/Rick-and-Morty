@@ -1,6 +1,5 @@
 package com.aqube.ram.cache
 
-import android.util.Log
 import com.aqube.ram.cache.dao.CharacterDao
 import com.aqube.ram.cache.mapper.CharacterCacheMapper
 import com.aqube.ram.cache.utils.PreferencesHelper
@@ -30,16 +29,11 @@ class CharacterCacheImp @Inject constructor(
     }
 
     override suspend fun saveCharacters(listCharacters: List<CharacterEntity>) {
-        try {
-            characterDao.addCharacter(
-                *listCharacters.map {
-                    characterCacheMapper.mapToCached(it)
-                }.toTypedArray()
-            )
-        } catch (e: Exception) {
-            Log.d("22222222222222222", e.message.toString())
-        }
-
+        characterDao.addCharacter(
+            *listCharacters.map {
+                characterCacheMapper.mapToCached(it)
+            }.toTypedArray()
+        )
     }
 
     override suspend fun getBookMarkedCharacters(): Flow<List<CharacterEntity>> = flow {
@@ -59,10 +53,8 @@ class CharacterCacheImp @Inject constructor(
     }
 
     override suspend fun isCached(): Boolean {
-        val isEmpty = characterDao.getCharacters().map {
-            return@map it.isNullOrEmpty()
-        }
-        return isEmpty.first()
+        val characterList = characterDao.getCharacters().first()
+        return characterList.isNotEmpty()
     }
 
     override suspend fun setLastCacheTime(lastCache: Long) {
