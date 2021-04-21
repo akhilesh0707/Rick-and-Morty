@@ -1,4 +1,4 @@
-package com.aqube.ram.ui.core
+package com.aqube.ram.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aqube.ram.databinding.ItemCharacterListBinding
 import com.aqube.ram.domain.models.Character
-import com.aqube.ram.ui.base.BaseAdapter
+import com.aqube.ram.base.BaseAdapter
 import com.bumptech.glide.RequestManager
 import javax.inject.Inject
 

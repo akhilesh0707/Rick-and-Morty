@@ -1,21 +1,23 @@
 package com.aqube.ram.ui.characterlist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aqube.ram.R
 import com.aqube.ram.databinding.FragmentCharacterListBinding
+import com.aqube.ram.extension.observe
 import com.aqube.ram.extension.showSnackBar
 import com.aqube.ram.presentation.viewmodel.CharacterListViewModel
 import com.aqube.ram.presentation.viewmodel.CharacterState
-import com.aqube.ram.ui.core.CharacterAdapter
+import com.aqube.ram.ui.adapters.CharacterAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
 
 private const val TAG = "CharacterListFragment"
 
@@ -40,11 +42,15 @@ class CharacterListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setObservers()
+        observe(viewModel.stateObservable, ::onViewStateChange)
+        viewModel.getCharacters()
         setupRecyclerView()
         characterAdapter.setItemClickListener { character ->
-            binding.root.findNavController()
-                .navigate(R.id.action_characterListFragment_to_characterDetailFragment)
+            findNavController().navigate(
+                CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
+                    character.id
+                )
+            )
         }
     }
 
@@ -53,19 +59,13 @@ class CharacterListFragment : Fragment() {
         layoutManager = LinearLayoutManager(requireContext())
     }
 
-    private fun setObservers() {
-        viewModel.stateObservable.observe(viewLifecycleOwner) { characterState ->
-            updateView(characterState)
-        }
-        viewModel.getCharacters()
-    }
-
-    private fun updateView(characterState: CharacterState) {
+    private fun onViewStateChange(characterState: CharacterState) {
         when (characterState) {
             is CharacterState.Success -> {
                 characterAdapter.list = characterState.characters
             }
             is CharacterState.Error -> {
+                Log.d(TAG, getString(characterState.message))
                 showSnackBar(binding.rootView, getString(characterState.message), true)
             }
             CharacterState.Init -> {
