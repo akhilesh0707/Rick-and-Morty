@@ -13,12 +13,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class RemoteModule {
+object RemoteModule {
 
     @Provides
     @Singleton
     fun provideBlogService(): CharacterService {
-        return ServiceFactory.create(BuildConfig.DEBUG, "https://rickandmortyapi.com/api/")
+        return ServiceFactory.create(BuildConfig.DEBUG, BuildConfig.BASE_URL)
     }
 
     @Provides

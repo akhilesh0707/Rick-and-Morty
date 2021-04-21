@@ -2,8 +2,6 @@ package com.aqube.ram.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,20 +10,15 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.aqube.ram.R
 import com.aqube.ram.databinding.ActivityMainBinding
 import com.aqube.ram.extension.showSnackBar
-import com.aqube.ram.presentation.viewmodel.CharacterListViewModel
-import com.aqube.ram.presentation.viewmodel.CharacterState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-private const val TAG = "MainActivity"
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: CharacterListViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     lateinit var navController: NavController
     private var backPressedOnce = false
@@ -35,33 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setObservers()
         initNavigationController()
-    }
-
-    private fun setObservers() {
-        viewModel.stateObservable.observe(this) { characterState ->
-            updateView(characterState)
-        }
-        viewModel.getCharacters()
-    }
-
-    private fun updateView(characterState: CharacterState) {
-
-        when (characterState) {
-            is CharacterState.Success -> {
-                //Log.d(TAG, characterState.characters.toString())
-                //showSnackBar(binding.rootView, characterState.characters.toString())
-            }
-            is CharacterState.Error -> {
-                Log.d(TAG, getString(characterState.message))
-                showSnackBar(binding.rootView, getString(characterState.message), true)
-            }
-            CharacterState.Init -> {
-            }
-            CharacterState.Loading -> {
-            }
-        }
     }
 
     private fun initNavigationController() {

@@ -17,6 +17,9 @@ android {
         versionName appVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Configs
+        buildConfigField "String", "BASE_URL", '"https://rickandmortyapi.com/api/"'
     }
 
     buildTypes {
