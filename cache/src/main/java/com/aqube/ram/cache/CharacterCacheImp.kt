@@ -5,7 +5,6 @@ import com.aqube.ram.cache.mapper.CharacterCacheMapper
 import com.aqube.ram.cache.utils.PreferencesHelper
 import com.aqube.ram.data.models.CharacterEntity
 import com.aqube.ram.data.repository.CharacterCache
-import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 class CharacterCacheImp @Inject constructor(
@@ -14,18 +13,14 @@ class CharacterCacheImp @Inject constructor(
     private val preferencesHelper: PreferencesHelper
 ) : CharacterCache {
 
-    override suspend fun getCharacters(): Flow<List<CharacterEntity>> = flow {
-        characterDao.getCharacters().collect { cacheList ->
-            emit(cacheList.map { cacheCharacter ->
-                characterCacheMapper.mapFromCached(cacheCharacter)
-            })
+    override suspend fun getCharacters(): List<CharacterEntity> {
+        return characterDao.getCharacters().map { cacheCharacter ->
+            characterCacheMapper.mapFromCached(cacheCharacter)
         }
     }
 
-    override suspend fun getCharacter(characterId: Long): Flow<CharacterEntity> = flow {
-        characterDao.getCharacter(characterId).collect { cacheCharacter ->
-            emit(characterCacheMapper.mapFromCached(cacheCharacter))
-        }
+    override suspend fun getCharacter(characterId: Long): CharacterEntity {
+        return characterCacheMapper.mapFromCached(characterDao.getCharacter(characterId))
     }
 
     override suspend fun saveCharacters(listCharacters: List<CharacterEntity>) {
@@ -36,25 +31,22 @@ class CharacterCacheImp @Inject constructor(
         )
     }
 
-    override suspend fun getBookMarkedCharacters(): Flow<List<CharacterEntity>> = flow {
-        characterDao.getBookMarkedCharacters().collect { cacheList ->
-            cacheList.map { cacheCharacter ->
-                characterCacheMapper.mapFromCached(cacheCharacter)
-            }.asFlow()
+    override suspend fun getBookMarkedCharacters(): List<CharacterEntity> {
+        return characterDao.getBookMarkedCharacters().map { cacheCharacter ->
+            characterCacheMapper.mapFromCached(cacheCharacter)
         }
     }
 
-    override suspend fun setCharacterBookmarked(characterId: Long): Flow<Int> = flow {
-        emit(characterDao.bookmarkCharacter(characterId))
+    override suspend fun setCharacterBookmarked(characterId: Long): Int {
+        return characterDao.bookmarkCharacter(characterId)
     }
 
-    override suspend fun setCharacterUnBookMarked(characterId: Long): Flow<Int> = flow {
-        emit(characterDao.unBookmarkCharacter(characterId))
+    override suspend fun setCharacterUnBookMarked(characterId: Long): Int {
+        return characterDao.unBookmarkCharacter(characterId)
     }
 
     override suspend fun isCached(): Boolean {
-        val characterList = characterDao.getCharacters().first()
-        return characterList.isNotEmpty()
+        return characterDao.getCharacters().isNotEmpty()
     }
 
     override suspend fun setLastCacheTime(lastCache: Long) {

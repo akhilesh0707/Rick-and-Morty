@@ -5,19 +5,18 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.aqube.ram.cache.models.CharacterCacheEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CharacterDao {
 
     @Query("SELECT * FROM characters")
-    fun getCharacters(): Flow<List<CharacterCacheEntity>>
+    fun getCharacters(): List<CharacterCacheEntity>
 
     @Query("SELECT * FROM characters WHERE  id = :id")
-    fun getCharacter(id: Long): Flow<CharacterCacheEntity>
+    fun getCharacter(id: Long): CharacterCacheEntity
 
     @Query("SELECT * FROM characters WHERE is_bookmarked = 1")
-    fun getBookMarkedCharacters(): Flow<List<CharacterCacheEntity>>
+    fun getBookMarkedCharacters(): List<CharacterCacheEntity>
 
     @Query("DELETE FROM characters")
     fun clearCharacters(): Int
