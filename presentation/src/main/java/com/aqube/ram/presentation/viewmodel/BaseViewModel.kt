@@ -10,14 +10,9 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 
-abstract class BaseViewModel<T> : ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
-    abstract val stateObservable: MutableLiveData<T>
     private val job: Job = Job()
-
-    protected open fun publishState(state: T) {
-        stateObservable.postValue(state)
-    }
 
     abstract val coroutineExceptionHandler: CoroutineExceptionHandler
 

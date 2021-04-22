@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.aqube.ram.databinding.FragmentCharacterDetailBinding
+import com.aqube.ram.domain.models.Character
 import com.aqube.ram.extension.observe
 import com.aqube.ram.extension.showSnackBar
+import com.aqube.ram.presentation.utils.Resource
+import com.aqube.ram.presentation.utils.Resource.Status.*
 import com.aqube.ram.presentation.viewmodel.CharacterDetailViewModel
-import com.aqube.ram.presentation.viewmodel.CharacterState
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class CharacterDetailFragment : Fragment() {
@@ -34,20 +37,24 @@ class CharacterDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showSnackBar(binding.rootView, args.characterId.toString())
-        observe(viewModel.stateObservable, ::onViewStateChange)
+        observe(viewModel.character, ::onViewStateChange)
         viewModel.getCharacterDetail(args.characterId)
     }
 
-    private fun onViewStateChange(characterState: CharacterState) {
-        when (characterState) {
-            is CharacterState.Success -> {
+    private fun onViewStateChange(result: Resource<Character>) {
+        when (result.status) {
+            SUCCESS -> {
+                result.data?.let {
+                    binding.textViewCharacterName.text = it.name
+                }
             }
-            is CharacterState.Error -> {
-                showSnackBar(binding.rootView, getString(characterState.message), true)
+            ERROR -> {
+                val error = result.message ?: "Error"
+                Timber.e(error)
+                showSnackBar(binding.rootView, error, true)
             }
-            CharacterState.Init -> {
-            }
-            CharacterState.Loading -> {
+            LOADING -> {
+
             }
         }
     }
