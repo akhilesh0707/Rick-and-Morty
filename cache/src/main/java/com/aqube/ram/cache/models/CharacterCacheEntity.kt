@@ -1,7 +1,6 @@
 package com.aqube.ram.cache.models
 
 import androidx.room.ColumnInfo
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.aqube.ram.cache.utils.CacheConstants
