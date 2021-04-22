@@ -48,7 +48,7 @@ class CharacterListFragment : Fragment() {
         characterAdapter.setItemClickListener { character ->
             findNavController().navigate(
                 CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
-                    character.id
+                    character.id.toLong()
                 )
             )
         }

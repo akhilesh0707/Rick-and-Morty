@@ -19,7 +19,7 @@
         android:label="Character Detail">
         <argument
             android:name="character_id"
-            app:argType="integer" />
+            app:argType="long" />
     </fragment>
 
 </navigation>
