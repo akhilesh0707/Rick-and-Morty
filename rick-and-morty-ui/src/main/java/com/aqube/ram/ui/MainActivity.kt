@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     private var backPressedOnce = false
     private val activityScope = CoroutineScope(Dispatchers.Main)
 
