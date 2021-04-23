@@ -4,4 +4,5 @@
     <string name="menu_favorites">Favorites</string>
     <string name="menu_settings">Settings</string>
     <string name="app_exit_label">Press BACK again to exit</string>
+    <string name="character_list_label_last_known_location">"Last known location: "</string>
 </resources>

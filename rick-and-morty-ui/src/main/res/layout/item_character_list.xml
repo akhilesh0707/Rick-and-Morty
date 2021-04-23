@@ -1,32 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:background="#E9EDEC"
+    app:cardCornerRadius="10dp">
 
-    <ImageView
-        android:id="@+id/imageViewCharacter"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textViewCharacterName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="16dp"
-        android:ellipsize="end"
-        android:gravity="center|start"
-        android:maxLines="1"
-        android:scrollHorizontally="true"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageViewCharacter"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Name" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCharacter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewCharacterName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="10dp"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCharacter"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCharacter"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCharacterName"
+            tools:text="Alive - Human" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewKnownLocationLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/character_list_label_last_known_location"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCharacter"
+            app:layout_constraintTop_toBottomOf="@+id/textViewStatus"
+            tools:text="Last known location" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewKnownLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCharacter"
+            app:layout_constraintTop_toBottomOf="@+id/textViewKnownLocationLabel"
+            tools:text="Planet Earth" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

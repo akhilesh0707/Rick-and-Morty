@@ -36,7 +36,7 @@ class CharacterListViewModel @ViewModelInject constructor(
 
     private suspend fun loadCharacters() {
         getCharacterListUseCase(Unit).collect {
-            Log.d(TAG, it.toString())
+            Log.d(TAG, "called again: $it")
             _characterList.postValue(Resource.success(it))
         }
     }

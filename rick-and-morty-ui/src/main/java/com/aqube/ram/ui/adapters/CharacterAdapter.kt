@@ -44,6 +44,8 @@ class CharacterAdapter @Inject constructor(
                         itemClick(item)
                     }
                 }
+                textViewStatus.text = "${item.status} - ${item.species}"
+                textViewKnownLocation.text = item.characterLocation.name
             }
         }
     }
