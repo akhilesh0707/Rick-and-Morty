@@ -12,6 +12,7 @@
     <color name="colorSecondary">#ffd600</color>
     <color name="colorBackground">#E8ECEB</color>
     <color name="colorBackgroundDark">#24292E</color>
+    <color name="colorCardDark">#3B3E43</color>
 
 
 </resources>
