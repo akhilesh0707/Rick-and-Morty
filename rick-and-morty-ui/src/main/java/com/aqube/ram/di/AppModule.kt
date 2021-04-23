@@ -2,6 +2,8 @@ package com.aqube.ram.di
 
 import android.content.Context
 import com.aqube.ram.R
+import com.aqube.ram.core.theme.ThemeUtils
+import com.aqube.ram.core.theme.ThemeUtilsImp
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -27,4 +29,7 @@ object AppModule {
             .diskCacheStrategy(DiskCacheStrategy.DATA)
     )
 
+    @Singleton
+    @Provides
+    fun bindThemeUtils(themeUtilsImp: ThemeUtilsImp): ThemeUtils = themeUtilsImp
 }

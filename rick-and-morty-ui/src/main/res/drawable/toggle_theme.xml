@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/night"
+        android:state_checked="true"
+        android:drawable="@drawable/ic_dark_mode_24" />
+
+    <item
+        android:id="@+id/day"
+        android:drawable="@drawable/ic_light_mode_24" />
+
+</animated-selector>
