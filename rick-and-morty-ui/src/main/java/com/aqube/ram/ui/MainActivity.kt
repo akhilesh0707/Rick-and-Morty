@@ -44,10 +44,13 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         menu.findItem(R.id.menu_toggle_theme).apply {
             val actionView = this.actionView
-            if (actionView is ToggleThemeCheckBox){
+            if (actionView is ToggleThemeCheckBox) {
                 actionView.isChecked = themeUtils.isDarkTheme(this@MainActivity)
                 actionView.setOnCheckedChangeListener { _, isChecked ->
-                    themeUtils.setNightMode(isChecked, DELAY_TO_APPLY_THEME)
+                    activityScope.launch {
+                        themeUtils.setNightMode(isChecked)
+                        delay(DELAY_TO_APPLY_THEME)
+                    }
                 }
             }
         }
@@ -78,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             backPressedOnce = true
-            showSnackBar(binding.rootView, getString(R.string.app_exit_label), false)
+            showSnackBar(binding.rootView, getString(R.string.app_exit_label))
 
             activityScope.launch {
                 delay(2000)

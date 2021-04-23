@@ -73,7 +73,7 @@ class CharacterListFragment : Fragment() {
             ERROR -> {
                 val error = result.message ?: "Error"
                 Timber.e(error)
-                showSnackBar(binding.rootView, error, true)
+                showSnackBar(binding.rootView, error)
             }
             LOADING -> {
             }

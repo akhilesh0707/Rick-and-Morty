@@ -3,11 +3,11 @@
 
     <item
         android:id="@+id/night"
-        android:state_checked="true"
-        android:drawable="@drawable/ic_dark_mode_24" />
+        android:drawable="@drawable/ic_dark_mode"
+        android:state_checked="true" />
 
     <item
         android:id="@+id/day"
-        android:drawable="@drawable/ic_light_mode_24" />
+        android:drawable="@drawable/ic_light_mode" />
 
 </animated-selector>

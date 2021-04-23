@@ -9,22 +9,17 @@ import javax.inject.Inject
 class ThemeUtilsImp @Inject constructor() : ThemeUtils {
 
     override fun isDarkTheme(context: Context) = context.resources.configuration.uiMode and
-        Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+            Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 
     override fun isLightTheme(context: Context) = !isDarkTheme(context)
 
-    override fun setNightMode(forceNight: Boolean, delay: Long) {
-        Handler().postDelayed(
-            {
-                AppCompatDelegate.setDefaultNightMode(
-                    if (forceNight) {
-                        AppCompatDelegate.MODE_NIGHT_YES
-                    } else {
-                        AppCompatDelegate.MODE_NIGHT_NO
-                    }
-                )
-            },
-            delay
+    override fun setNightMode(nightMode: Boolean) {
+        AppCompatDelegate.setDefaultNightMode(
+            if (nightMode) {
+                AppCompatDelegate.MODE_NIGHT_YES
+            } else {
+                AppCompatDelegate.MODE_NIGHT_NO
+            }
         )
     }
 }

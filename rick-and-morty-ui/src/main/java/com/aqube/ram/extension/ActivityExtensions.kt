@@ -3,12 +3,17 @@ package com.aqube.ram.extension
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.view.View
 import android.widget.Toast
-import androidx.annotation.ColorRes
-import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 
-internal fun Context.loadColor(@ColorRes colorRes: Int): Int {
-    return ContextCompat.getColor(this, colorRes)
+internal fun Activity.showSnackBar(view: View, message: String) {
+    Snackbar.make(view, message, Snackbar.LENGTH_LONG).show()
+}
+
+internal fun Fragment.showSnackBar(view: View, message: String) {
+    Snackbar.make(view, message, Snackbar.LENGTH_LONG).show()
 }
 
 internal fun Context.showToast(message: String) {
