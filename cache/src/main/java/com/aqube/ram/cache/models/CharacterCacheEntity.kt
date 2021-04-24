@@ -1,6 +1,7 @@
 package com.aqube.ram.cache.models
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.aqube.ram.cache.utils.CacheConstants
@@ -12,7 +13,7 @@ data class CharacterCacheEntity(
     @PrimaryKey
     val id: Int,
     val image: String,
-    @ColumnInfo(name = "character_location")
+    @Embedded
     val characterLocation: CharacterLocationCacheEntity,
     val name: String,
     val species: String,

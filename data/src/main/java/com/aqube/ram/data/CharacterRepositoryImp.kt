@@ -52,7 +52,7 @@ class CharacterRepositoryImp @Inject constructor(
         emit(dataSourceFactory.getCacheDataSource().setCharacterBookmarked(characterId))
     }
 
-    override suspend fun setCharacterUnBookMarked(characterId: Long): Flow<Int> =flow{
+    override suspend fun setCharacterUnBookMarked(characterId: Long): Flow<Int> = flow {
         emit(dataSourceFactory.getCacheDataSource().setCharacterUnBookMarked(characterId))
     }
 }

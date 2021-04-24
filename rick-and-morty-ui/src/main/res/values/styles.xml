@@ -22,6 +22,20 @@
         <item name="android:textSize">21sp</item>
     </style>
 
+    <style name="TextAppearance.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/quicksand</item>
+        <item name="android:fontFamily">@font/quicksand</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/quicksand</item>
+        <item name="android:fontFamily">@font/quicksand</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="TextAppearance.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="fontFamily">@font/quicksand</item>
         <item name="android:textStyle">bold</item>

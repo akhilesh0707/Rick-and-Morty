@@ -33,7 +33,7 @@
             android:gravity="center|start"
             android:maxLines="1"
             android:scrollHorizontally="true"
-            android:textAppearance="?attr/textAppearanceHeadline3"
+            android:textAppearance="?attr/textAppearanceHeadline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewCharacter"
             app:layout_constraintTop_toTopOf="parent"

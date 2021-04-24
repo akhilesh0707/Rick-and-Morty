@@ -13,9 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="android:textColor">@color/colorTextLight</item>
         <item name="textAppearanceHeadline1">@style/TextAppearance.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.Headline2</item>
         <item name="textAppearanceHeadline3">@style/TextAppearance.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Headline5</item>
         <item name="textAppearanceSubtitle1">@style/TextAppearance.Subtitle1</item>
         <item name="textAppearanceSubtitle2">@style/TextAppearance.Subtitle2</item>
         <item name="textAppearanceBody1">@style/TextAppearance.Body1</item>

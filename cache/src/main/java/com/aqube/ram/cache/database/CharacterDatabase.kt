@@ -4,12 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
 import com.aqube.ram.cache.dao.CharacterDao
 import com.aqube.ram.cache.models.CharacterCacheEntity
 import com.aqube.ram.cache.models.CharacterLocationCacheEntity
 import com.aqube.ram.cache.utils.CacheConstants
-import com.aqube.ram.cache.utils.Converters
 import com.aqube.ram.cache.utils.Migrations
 import javax.inject.Inject
 
@@ -18,7 +16,6 @@ import javax.inject.Inject
     version = Migrations.DB_VERSION,
     exportSchema = false
 )
-@TypeConverters(Converters::class)
 abstract class CharacterDatabase @Inject constructor() : RoomDatabase() {
 
     abstract fun cachedCharacterDao(): CharacterDao

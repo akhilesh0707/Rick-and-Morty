@@ -14,8 +14,10 @@ import com.aqube.ram.extension.showSnackBar
 import com.aqube.ram.presentation.utils.Resource
 import com.aqube.ram.presentation.utils.Resource.Status.*
 import com.aqube.ram.presentation.viewmodel.CharacterDetailViewModel
+import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CharacterDetailFragment : Fragment() {
@@ -24,6 +26,9 @@ class CharacterDetailFragment : Fragment() {
     private var _binding: FragmentCharacterDetailBinding? = null
     private val binding get() = _binding!!
     private val args: CharacterDetailFragmentArgs by navArgs()
+
+    @Inject
+    lateinit var glide: RequestManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +41,6 @@ class CharacterDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showSnackBar(binding.rootView, args.characterId.toString())
         observe(viewModel.character, ::onViewStateChange)
         viewModel.getCharacterDetail(args.characterId)
     }
@@ -45,7 +49,10 @@ class CharacterDetailFragment : Fragment() {
         when (result.status) {
             SUCCESS -> {
                 result.data?.let {
-                    binding.textViewCharacterName.text = it.name
+                    binding.apply {
+                        binding.textViewCharacterName.text = it.name
+                        glide.load(it.image).into(imageViewCharacter)
+                    }
                 }
             }
             ERROR -> {
