@@ -19,6 +19,7 @@
         android:label="Character Detail">
         <argument
             android:name="character_id"
+            android:defaultValue="0L"
             app:argType="long" />
     </fragment>
 

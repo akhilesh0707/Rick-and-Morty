@@ -81,5 +81,4 @@
     <style name="CardView.Dark" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/colorCardDark</item>
     </style>
-
 </resources>

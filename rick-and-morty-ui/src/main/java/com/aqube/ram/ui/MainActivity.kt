@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.characterListFragment,
-                R.id.characterListFragment,
+                R.id.characterDetailFragment,
                 R.id.characterListFragment
             )
         )
@@ -90,5 +90,9 @@ class MainActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }
