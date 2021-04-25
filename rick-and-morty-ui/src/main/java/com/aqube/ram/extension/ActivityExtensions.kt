@@ -11,14 +11,14 @@ import com.google.android.material.snackbar.Snackbar
 
 internal fun Activity.showSnackBar(view: View, message: String) {
     Snackbar.make(view, message, Snackbar.LENGTH_LONG).apply {
-        anchorView = view.rootView.findViewById(R.id.bottomNavigation)
+        anchorView = view.rootView.findViewById(R.id.bottomNavigationView)
         show()
     }
 }
 
 internal fun Fragment.showSnackBar(view: View, message: String) {
     Snackbar.make(view, message, Snackbar.LENGTH_LONG).apply {
-        anchorView = view.rootView.findViewById(R.id.bottomNavigation)
+        anchorView = view.rootView.findViewById(R.id.bottomNavigationView)
         show()
     }
 }

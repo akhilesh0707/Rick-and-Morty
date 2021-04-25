@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.aqube.ram.databinding.FragmentSettingsBinding
 import com.aqube.ram.domain.models.Character
-import com.aqube.ram.extension.observe
 import com.aqube.ram.extension.showSnackBar
 import com.aqube.ram.presentation.utils.Resource
 import com.aqube.ram.presentation.utils.Resource.Status.*
@@ -39,8 +38,7 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observe(viewModel.character, ::onViewStateChange)
-
+       // observe(viewModel.character, ::onViewStateChange)
     }
 
     private fun onViewStateChange(result: Resource<Character>) {

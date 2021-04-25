@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigationGraphFavorite"
+    app:startDestination="@id/favCharacterListFragment">
+
+    <fragment
+        android:id="@+id/favCharacterListFragment"
+        android:name="com.aqube.ram.ui.characterlist.CharacterListFragment"
+        android:label="@string/fragment_characters_title_label"
+        tools:layout="@layout/fragment_character_list">
+        <action
+            android:id="@+id/action_characterListFragment_to_characterDetailFragment"
+            app:destination="@id/favCharacterDetailFragment"
+            app:popUpTo="@+id/favCharacterListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favCharacterDetailFragment"
+        android:name="com.aqube.ram.ui.characterdetail.CharacterDetailFragment"
+        android:label="@string/fragment_character_detail_title_label"
+        tools:layout="@layout/fragment_character_detail">
+        <argument
+            android:name="character_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+    </fragment>
+
+</navigation>
