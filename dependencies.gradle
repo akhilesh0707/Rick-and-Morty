@@ -52,6 +52,8 @@ ext {
     // Room
     roomVersion = '2.2.5'
 
+    // Lottie animation
+    lottieVersion = '3.7.0'
     // Common dependencies
     kotlinDependencies = [
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -127,7 +129,9 @@ ext {
                                     coroutinesDependencies.coroutineAndroid],
             glide                : glideDependencies.glide,
             glideKapt            : glideDependencies.glideKapt,
-            timber               : timberDependencies.timber
+            timber               : timberDependencies.timber,
+            lottie               : "com.airbnb.android:lottie:$lottieVersion"
+
 
     ]
 

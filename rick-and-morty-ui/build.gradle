@@ -71,5 +71,7 @@ dependencies {
     kapt uiModuleDependencies.glideKapt
     // Timber
     implementation uiModuleDependencies.timber
+    // Lottie animation
+    implementation uiModuleDependencies.lottie
 
 }
