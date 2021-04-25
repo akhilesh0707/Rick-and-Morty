@@ -1,6 +1,7 @@
 package com.aqube.ram.ui
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -9,6 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.aqube.ram.R
 import com.aqube.ram.databinding.ActivityMainBinding
 import com.aqube.ram.core.theme.ThemeUtils
+import com.aqube.ram.core.theme.ToggleThemeCheckBox
 import com.aqube.ram.extension.setupWithNavController
 import com.aqube.ram.extension.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*
+
     //TODO move this logic to settings screen
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
          menuInflater.inflate(R.menu.toolbar_menu, menu)
@@ -57,7 +59,7 @@ class MainActivity : AppCompatActivity() {
              }
          }
          return true
-     }*/
+     }
 
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {

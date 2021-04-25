@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#222222</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="sun_flower_200">#ddd10f</color>
+    <color name="sun_flower_500">#DBA900</color>
+    <color name="sun_flower_700">#D99100</color>
+    <color name="star_ship_200">#DBA800</color>
+    <color name="star_ship_700">#D56800</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
-    <color name="colorError">#d32f2f</color>
-    <color name="colorSecondary">#ffd600</color>
-    <color name="colorBackground">#E8ECEB</color>
-    <color name="colorBackgroundDark">#24292E</color>
-    <color name="colorCardDark">#3B3E43</color>
-    <color name="colorTextLight">#30353A</color>
-
+    <color name="color_background">#E8ECEB</color>
+    <color name="color_background_dark">#24292E</color>
+    <color name="color_card_view_dark">#3B3E43</color>
+    <color name="color_text">#30353A</color>
 </resources>
