@@ -25,7 +25,8 @@ private const val DELAY_TO_APPLY_THEME = 1000L
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
     private var currentNavController: LiveData<NavController>? = null
     private var backPressedOnce = false
     private val activityScope = CoroutineScope(Dispatchers.Main)
@@ -35,31 +36,30 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
     }
 
-
     //TODO move this logic to settings screen
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-         menuInflater.inflate(R.menu.toolbar_menu, menu)
-         menu.findItem(R.id.menu_toggle_theme).apply {
-             val actionView = this.actionView
-             if (actionView is ToggleThemeCheckBox) {
-                 actionView.isChecked = themeUtils.isDarkTheme(this@MainActivity)
-                 actionView.setOnCheckedChangeListener { _, isChecked ->
-                     activityScope.launch {
-                         themeUtils.setNightMode(isChecked)
-                         delay(DELAY_TO_APPLY_THEME)
-                     }
-                 }
-             }
-         }
-         return true
-     }
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        menu.findItem(R.id.menu_toggle_theme).apply {
+            val actionView = this.actionView
+            if (actionView is ToggleThemeCheckBox) {
+                actionView.isChecked = themeUtils.isDarkTheme(this@MainActivity)
+                actionView.setOnCheckedChangeListener { _, isChecked ->
+                    activityScope.launch {
+                        themeUtils.setNightMode(isChecked)
+                        delay(DELAY_TO_APPLY_THEME)
+                    }
+                }
+            }
+        }
+        return true
+    }
 
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -117,4 +117,10 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
 }
