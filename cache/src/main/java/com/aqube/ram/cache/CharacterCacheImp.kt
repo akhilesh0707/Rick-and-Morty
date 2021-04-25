@@ -2,7 +2,7 @@ package com.aqube.ram.cache
 
 import com.aqube.ram.cache.dao.CharacterDao
 import com.aqube.ram.cache.mapper.CharacterCacheMapper
-import com.aqube.ram.cache.utils.PreferencesHelper
+import com.aqube.ram.cache.utils.CachePreferencesHelper
 import com.aqube.ram.data.models.CharacterEntity
 import com.aqube.ram.data.repository.CharacterCache
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Inject
 class CharacterCacheImp @Inject constructor(
     private val characterDao: CharacterDao,
     private val characterCacheMapper: CharacterCacheMapper,
-    private val preferencesHelper: PreferencesHelper
+    private val preferencesHelper: CachePreferencesHelper
 ) : CharacterCache {
 
     override suspend fun getCharacters(): List<CharacterEntity> {

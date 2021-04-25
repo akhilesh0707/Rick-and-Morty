@@ -15,7 +15,6 @@ import com.aqube.ram.extension.showSnackBar
 import com.aqube.ram.presentation.utils.Resource
 import com.aqube.ram.presentation.utils.Resource.Status.*
 import com.aqube.ram.presentation.viewmodel.CharacterListViewModel
-import com.aqube.ram.ui.adapters.CharacterAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject

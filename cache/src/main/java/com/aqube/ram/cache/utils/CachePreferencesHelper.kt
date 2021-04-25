@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 
 import javax.inject.Inject
 
-open class PreferencesHelper @Inject constructor(context: Context) {
+open class CachePreferencesHelper @Inject constructor(context: Context) {
 
     companion object {
         private const val PREF_BUFFER_PACKAGE_NAME = "com.aqube.ram.cache.preferences"

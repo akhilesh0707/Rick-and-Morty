@@ -4,7 +4,7 @@ import android.content.Context
 import com.aqube.ram.cache.CharacterCacheImp
 import com.aqube.ram.cache.dao.CharacterDao
 import com.aqube.ram.cache.database.CharacterDatabase
-import com.aqube.ram.cache.utils.PreferencesHelper
+import com.aqube.ram.cache.utils.CachePreferencesHelper
 import com.aqube.ram.data.repository.CharacterCache
 import dagger.Module
 import dagger.Provides
@@ -37,7 +37,7 @@ object CacheModule {
 
     @Provides
     @Singleton
-    fun providePreferenceHelper(@ApplicationContext context: Context): PreferencesHelper {
-        return PreferencesHelper(context)
+    fun providePreferenceHelper(@ApplicationContext context: Context): CachePreferencesHelper {
+        return CachePreferencesHelper(context)
     }
 }

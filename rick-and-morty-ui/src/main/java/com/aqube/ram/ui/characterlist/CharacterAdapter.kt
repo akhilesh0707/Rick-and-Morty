@@ -1,4 +1,4 @@
-package com.aqube.ram.ui.adapters
+package com.aqube.ram.ui.characterlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
