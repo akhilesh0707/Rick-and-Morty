@@ -17,14 +17,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textViewAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:gravity="center|start"
+        android:maxLines="1"
+        android:text="@string/app_name"
+        android:textAppearance="?attr/textAppearanceHeadline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSettings"
         android:layout_width="match_parent"
-        android:layout_marginTop="30dp"
         android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAppName" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieLoading"
@@ -36,5 +50,4 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/rick_morty_loading" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

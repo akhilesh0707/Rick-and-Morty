@@ -6,17 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aqube.ram.databinding.FragmentSettingsBinding
-import com.aqube.ram.domain.models.Character
+import com.aqube.ram.domain.models.Settings
+import com.aqube.ram.extension.observe
 import com.aqube.ram.extension.showSnackBar
 import com.aqube.ram.presentation.utils.Resource
 import com.aqube.ram.presentation.utils.Resource.Status.*
-import com.aqube.ram.presentation.viewmodel.CharacterDetailViewModel
-import com.aqube.ram.ui.characterlist.CharacterAdapter
-import com.aqube.ram.ui.characterlist.CharacterListFragmentDirections
-import com.bumptech.glide.RequestManager
+import com.aqube.ram.presentation.viewmodel.SettingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
@@ -24,12 +21,9 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SettingsFragment : Fragment() {
 
-    private val viewModel: CharacterDetailViewModel by viewModels()
+    private val viewModel: SettingsViewModel by viewModels()
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
-
-    @Inject
-    lateinit var glide: RequestManager
 
     @Inject
     lateinit var settingsAdapter: SettingsAdapter
@@ -45,14 +39,17 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // observe(viewModel.character, ::onViewStateChange)
+        observe(viewModel.settings, ::onViewStateChange)
         setupRecyclerView()
+        viewModel.getSettings()
     }
 
-    private fun onViewStateChange(result: Resource<Character>) {
+    private fun onViewStateChange(result: Resource<List<Settings>>) {
         when (result.status) {
             SUCCESS -> {
-
+                result.data?.let {
+                    settingsAdapter.list = it
+                }
             }
             ERROR -> {
                 val error = result.message ?: "Error"
@@ -66,14 +63,13 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        settingsAdapter.list = listOf("Theme mode", "Clear cache", "App version")
         binding.recyclerViewSettings.apply {
             adapter = settingsAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        settingsAdapter.setItemClickListener { settingId ->
-            setupRecyclerView()
+        settingsAdapter.setItemClickListener { selectedSetting ->
+            viewModel.setSettings(selectedSetting)
         }
     }
 

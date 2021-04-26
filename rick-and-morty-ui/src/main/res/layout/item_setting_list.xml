@@ -6,13 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp">
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="3dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:padding="8dp">
+        android:layout_height="50dp"
+        android:padding="12dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewSettingName"
@@ -26,5 +28,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Name" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:maxLines="1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Value" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
