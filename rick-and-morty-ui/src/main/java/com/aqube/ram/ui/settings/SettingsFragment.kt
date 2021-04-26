@@ -6,12 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.aqube.ram.databinding.FragmentSettingsBinding
 import com.aqube.ram.domain.models.Character
 import com.aqube.ram.extension.showSnackBar
 import com.aqube.ram.presentation.utils.Resource
 import com.aqube.ram.presentation.utils.Resource.Status.*
 import com.aqube.ram.presentation.viewmodel.CharacterDetailViewModel
+import com.aqube.ram.ui.characterlist.CharacterAdapter
+import com.aqube.ram.ui.characterlist.CharacterListFragmentDirections
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -27,6 +31,9 @@ class SettingsFragment : Fragment() {
     @Inject
     lateinit var glide: RequestManager
 
+    @Inject
+    lateinit var settingsAdapter: SettingsAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,7 +45,8 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       // observe(viewModel.character, ::onViewStateChange)
+        // observe(viewModel.character, ::onViewStateChange)
+        setupRecyclerView()
     }
 
     private fun onViewStateChange(result: Resource<Character>) {
@@ -54,6 +62,18 @@ class SettingsFragment : Fragment() {
             LOADING -> {
 
             }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        settingsAdapter.list = listOf("Theme mode", "Clear cache", "App version")
+        binding.recyclerViewSettings.apply {
+            adapter = settingsAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+
+        settingsAdapter.setItemClickListener { settingId ->
+            setupRecyclerView()
         }
     }
 
