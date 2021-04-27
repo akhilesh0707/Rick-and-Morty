@@ -1,52 +1,41 @@
 package com.aqube.ram.ui.characterlist
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aqube.ram.R
+import com.aqube.ram.base.BaseFragment
 import com.aqube.ram.databinding.FragmentCharacterListBinding
 import com.aqube.ram.domain.models.Character
 import com.aqube.ram.extension.observe
-import com.aqube.ram.extension.showSnackBar
 import com.aqube.ram.presentation.utils.Resource
 import com.aqube.ram.presentation.utils.Resource.Status.*
+import com.aqube.ram.presentation.viewmodel.BaseViewModel
 import com.aqube.ram.presentation.viewmodel.CharacterListViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CharacterListFragment : Fragment() {
+class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, BaseViewModel>() {
 
-    private val viewModel: CharacterListViewModel by viewModels()
-    private var _binding: FragmentCharacterListBinding? = null
-    private val binding get() = _binding!!
+    override val layoutId: Int = R.layout.fragment_character_list
+
+    override val viewModel: CharacterListViewModel by viewModels()
 
     @Inject
     lateinit var characterAdapter: CharacterAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentCharacterListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observe(viewModel.characterList, ::onViewStateChange)
         viewModel.getCharacters()
-        setupRecyclerView()
+        initRecyclerView()
     }
 
-    private fun setupRecyclerView() {
-        binding.recyclerViewCharacters.apply {
+    private fun initRecyclerView() {
+        viewBinding.recyclerViewCharacters.apply {
             adapter = characterAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
@@ -63,22 +52,18 @@ class CharacterListFragment : Fragment() {
     private fun onViewStateChange(result: Resource<List<Character>>) {
         when (result.status) {
             SUCCESS -> {
+                handleLoading(false)
                 result.data?.let {
                     characterAdapter.list = it
                 }
             }
             ERROR -> {
                 val error = result.message ?: "Error"
-                Timber.e(error)
-                showSnackBar(binding.rootView, error)
+                handleErrorMessage(error)
             }
             LOADING -> {
+                handleLoading(true)
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
