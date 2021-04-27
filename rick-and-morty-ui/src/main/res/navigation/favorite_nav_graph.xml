@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/favCharacterListFragment"
         android:name="com.aqube.ram.ui.characterlist.CharacterListFragment"
-        android:label="@string/fragment_characters_title_label"
+        android:label="@string/menu_favorites"
         tools:layout="@layout/fragment_character_list">
         <action
             android:id="@+id/action_characterListFragment_to_characterDetailFragment"
