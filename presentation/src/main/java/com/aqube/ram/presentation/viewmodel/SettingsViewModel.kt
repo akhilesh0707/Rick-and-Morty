@@ -1,6 +1,5 @@
 package com.aqube.ram.presentation.viewmodel
 
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -36,8 +35,7 @@ class SettingsViewModel @ViewModelInject constructor(
     }
 
     private suspend fun loadCharacters() {
-        getSettingsUseCase(Unit).collect {
-            Log.d("Updated list", it.toString())
+        getSettingsUseCase(preferencesHelper.isNightMode).collect {
             _settings.postValue(Resource.success(it))
         }
     }
@@ -47,7 +45,5 @@ class SettingsViewModel @ViewModelInject constructor(
             preferencesHelper.isNightMode = selectedValue
             _nightMode.postValue(Resource.success(selectedValue))
         }
-        Log.d("SettingsViewModel", selectedSetting.toString())
-        Log.d("Is night mode", preferencesHelper.isNightMode.toString())
     }
 }

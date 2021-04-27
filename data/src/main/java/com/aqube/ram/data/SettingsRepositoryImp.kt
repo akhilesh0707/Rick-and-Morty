@@ -9,14 +9,13 @@ import javax.inject.Inject
 
 class SettingsRepositoryImp @Inject constructor(
     private val appVersion: String,
-    private val isNightMode:Boolean
 ) : SettingsRepository {
-    override suspend fun getSettings(): Flow<List<Settings>> = flow {
-        emit(getData())
+    override suspend fun getSettings(nightMode: Boolean): Flow<List<Settings>> = flow {
+        emit(getData(nightMode))
     }
 
     //This should be came from api but we don't have api so we are crating locally
-    private fun getData(): List<Settings> {
+    private fun getData(isNightMode: Boolean): List<Settings> {
         val settingList = mutableListOf<Settings>()
         settingList.add(Settings(1, SettingType.SWITCH, "Theme mode", "", isNightMode))
         settingList.add(Settings(2, SettingType.EMPTY, "Clear cache", ""))
