@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aqube.ram.core.theme.ThemeUtils
 import com.aqube.ram.databinding.FragmentSettingsBinding
 import com.aqube.ram.domain.models.Settings
 import com.aqube.ram.extension.observe
@@ -28,6 +29,9 @@ class SettingsFragment : Fragment() {
     @Inject
     lateinit var settingsAdapter: SettingsAdapter
 
+    @Inject
+    lateinit var themeUtils: ThemeUtils
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,6 +44,7 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observe(viewModel.settings, ::onViewStateChange)
+        observe(viewModel.nightMode, ::onViewStateChangeNightMode)
         setupRecyclerView()
         viewModel.getSettings()
     }
@@ -58,6 +63,18 @@ class SettingsFragment : Fragment() {
             }
             LOADING -> {
 
+            }
+        }
+    }
+
+    private fun onViewStateChangeNightMode(result: Resource<Boolean>) {
+        when (result.status) {
+            SUCCESS -> {
+                result.data?.let {
+                    themeUtils.setNightMode(it)
+                }
+            }
+            else -> {
             }
         }
     }

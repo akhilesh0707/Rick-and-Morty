@@ -5,7 +5,7 @@ data class Settings(
     val type: SettingType,
     val settingLabel: String,
     val settingValue: String,
-    var defaultValue: Boolean = false
+    var selectedValue: Boolean = false
 )
 
 enum class SettingType {

@@ -58,9 +58,9 @@ class SettingsAdapter @Inject constructor() : BaseAdapter<Settings>() {
                     SettingType.SWITCH -> {
                         switchValue.apply {
                             makeVisible()
-                            isChecked = item.defaultValue
+                            isChecked = item.selectedValue
                             setOnCheckedChangeListener { _, isChecked ->
-                                item.defaultValue = isChecked
+                                item.selectedValue = isChecked
                                 setClickListener(item)
                             }
                         }
