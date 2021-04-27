@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/night"
+        android:drawable="@drawable/ic_moon"
+        android:state_checked="true" />
+
+    <item
+        android:id="@+id/day"
+        android:drawable="@drawable/ic_sun" />
+
+</animated-selector>
