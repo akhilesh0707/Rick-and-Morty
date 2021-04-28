@@ -19,7 +19,7 @@ class CharacterEntityMapper @Inject constructor(
             status = model.status,
             type = model.type,
             url = model.url,
-            isBookMarked = false
+            isBookMarked = model.isBookMarked
         )
     }
 }

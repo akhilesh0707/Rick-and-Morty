@@ -9,4 +9,7 @@
     <string name="fragment_characters_title_label">Characters</string>
     <string name="fragment_character_detail_title_label">Character Detail</string>
     <string name="fragment_settings_title_label">Settings</string>
+    <string name="bookmark_error">Something went wrong, please try again.</string>
+    <string name="bookmark_success">Character bookmarked successfully</string>
+    <string name="un_bookmark_success">Character bookmarked removed successfully</string>
 </resources>

@@ -24,6 +24,9 @@ class CharacterDetailViewModel @ViewModelInject constructor(
     private val _character = MutableLiveData<Resource<Character>>()
     val character: LiveData<Resource<Character>> = _character
 
+    private val _bookmarkStatus = MutableLiveData<Resource<Pair<Bookmark, Boolean>>>()
+    val bookmarkStatus: LiveData<Resource<Pair<Bookmark, Boolean>>> = _bookmarkStatus
+
     override val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
         Log.d(TAG, exception.message ?: "Error ")
         val message = ExceptionHandler.parse(exception)
@@ -47,7 +50,10 @@ class CharacterDetailViewModel @ViewModelInject constructor(
     fun setBookmarkCharacter(characterId: Long) {
         launchCoroutineIO {
             bookmarkUserCase(characterId).collect {
-                Log.d(TAG, "Character[$characterId] bookmark status $it")
+                if (it == 1)
+                    _bookmarkStatus.postValue(Resource.success(Pair(Bookmark.BOOKMARK, true)))
+                else
+                    _bookmarkStatus.postValue(Resource.success(Pair(Bookmark.BOOKMARK, false)))
             }
         }
     }
@@ -55,10 +61,16 @@ class CharacterDetailViewModel @ViewModelInject constructor(
     fun setUnBookmarkCharacter(characterId: Long) {
         launchCoroutineIO {
             unBookmarkUserCase(characterId).collect {
-                Log.d(TAG, "Character[$characterId] unBookmark status $it")
+                if (it == 1)
+                    _bookmarkStatus.postValue(Resource.success(Pair(Bookmark.UN_BOOKMARK, true)))
+                else
+                    _bookmarkStatus.postValue(Resource.success(Pair(Bookmark.UN_BOOKMARK, false)))
             }
         }
     }
 
-
+    enum class Bookmark {
+        BOOKMARK,
+        UN_BOOKMARK
+    }
 }
