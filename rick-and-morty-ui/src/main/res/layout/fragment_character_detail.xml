@@ -42,6 +42,7 @@
             tools:text="Character name" />
 
         <com.aqube.ram.core.components.RMCheckBox
+            android:id="@+id/checkBoxBookmark"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_marginEnd="10dp"

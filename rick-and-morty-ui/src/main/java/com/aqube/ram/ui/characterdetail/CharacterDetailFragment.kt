@@ -34,6 +34,16 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Bas
         super.onViewCreated(view, savedInstanceState)
         observe(viewModel.character, ::onViewStateChange)
         viewModel.getCharacterDetail(args.characterId)
+        setUiChangeListeners()
+    }
+
+    private fun setUiChangeListeners() {
+        viewBinding.checkBoxBookmark.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked)
+                viewModel.setUnBookmarkCharacter()
+            else
+                viewModel.setBookmarkCharacter()
+        }
     }
 
     private fun onViewStateChange(result: Resource<Character>) {
