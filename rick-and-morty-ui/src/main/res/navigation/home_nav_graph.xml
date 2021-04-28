@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigationGraphHome"
-    app:startDestination="@id/favCharacterListFragment">
+    app:startDestination="@id/characterListFragment">
 
     <fragment
-        android:id="@+id/favCharacterListFragment"
+        android:id="@+id/characterListFragment"
         android:name="com.aqube.ram.ui.characterlist.CharacterListFragment"
         android:label="@string/fragment_characters_title_label"
         tools:layout="@layout/fragment_character_list">
         <action
             android:id="@+id/action_characterListFragment_to_characterDetailFragment"
-            app:destination="@id/favCharacterDetailFragment" />
+            app:destination="@id/characterDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/favCharacterDetailFragment"
+        android:id="@+id/characterDetailFragment"
         android:name="com.aqube.ram.ui.characterdetail.CharacterDetailFragment"
         android:label="@string/fragment_character_detail_title_label"
         tools:layout="@layout/fragment_character_detail">

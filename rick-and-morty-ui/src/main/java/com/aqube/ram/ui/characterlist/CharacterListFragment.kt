@@ -30,7 +30,9 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, BaseVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observe(viewModel.characterList, ::onViewStateChange)
-        viewModel.getCharacters()
+        val isFavorite =
+            (findNavController().currentDestination?.label == getString(R.string.menu_favorites))
+        viewModel.getCharacters(isFavorite)
         initRecyclerView()
     }
 

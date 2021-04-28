@@ -14,9 +14,8 @@ import kotlinx.coroutines.flow.collect
 private const val TAG = "CharacterListViewModel"
 
 class CharacterListViewModel @ViewModelInject constructor(
-    private val getCharacterListUseCase: GetCharacterListUseCase,
+    private val characterListUseCase: GetCharacterListUseCase,
 ) : BaseViewModel() {
-
 
     private val _characterList = MutableLiveData<Resource<List<Character>>>()
     val characterList: LiveData<Resource<List<Character>>> = _characterList
@@ -27,17 +26,27 @@ class CharacterListViewModel @ViewModelInject constructor(
         _characterList.postValue(Resource.error(exception.message ?: "Error"))
     }
 
-    fun getCharacters() {
+    fun getCharacters(isFavorite: Boolean) {
         _characterList.postValue(Resource.loading(null))
         launchCoroutineIO {
-            loadCharacters()
+            if (isFavorite)
+                loadFavoriteCharacters()
+            else
+                loadCharacters()
         }
     }
 
     private suspend fun loadCharacters() {
-        getCharacterListUseCase(Unit).collect {
+        characterListUseCase(Unit).collect {
             Log.d(TAG, "called again: $it")
             _characterList.postValue(Resource.success(it))
         }
+    }
+
+    private suspend fun loadFavoriteCharacters() {
+        /*favoriteCharacterListUseCase(Unit).collect {
+            Log.d(TAG, "called again: $it")
+            _characterList.postValue(Resource.success(it))
+        }*/
     }
 }
