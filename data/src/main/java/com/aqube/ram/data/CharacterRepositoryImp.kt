@@ -19,17 +19,18 @@ class CharacterRepositoryImp @Inject constructor(
             dataSourceFactory.getDataStore(isCached).getCharacters().map { characterEntity ->
                 characterMapper.mapFromEntity(characterEntity)
             }
-
         saveCharacters(characterList)
         emit(characterList)
 
     }
 
     override suspend fun getCharacter(characterId: Long): Flow<Character> = flow {
+        var character = dataSourceFactory.getCacheDataSource().getCharacter(characterId)
+        if (character.image.isEmpty()) {
+            character = dataSourceFactory.getRemoteDataSource().getCharacter(characterId)
+        }
         emit(
-            characterMapper.mapFromEntity(
-                dataSourceFactory.getRemoteDataSource().getCharacter(characterId)
-            )
+            characterMapper.mapFromEntity(character)
         )
     }
 

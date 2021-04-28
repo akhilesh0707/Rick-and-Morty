@@ -44,20 +44,21 @@ class CharacterDetailViewModel @ViewModelInject constructor(
         }
     }
 
-    fun setBookmarkCharacter() {
+    fun setBookmarkCharacter(characterId: Long) {
         launchCoroutineIO {
-            bookmarkUserCase(1).collect {
-                Log.d(TAG, "Character bookmark status $it")
+            bookmarkUserCase(characterId).collect {
+                Log.d(TAG, "Character[$characterId] bookmark status $it")
             }
         }
     }
 
-    fun setUnBookmarkCharacter() {
+    fun setUnBookmarkCharacter(characterId: Long) {
         launchCoroutineIO {
-            unBookmarkUserCase(1).collect {
-                Log.d(TAG, "Character unBookmark status $it")
+            unBookmarkUserCase(characterId).collect {
+                Log.d(TAG, "Character[$characterId] unBookmark status $it")
             }
         }
     }
+
 
 }

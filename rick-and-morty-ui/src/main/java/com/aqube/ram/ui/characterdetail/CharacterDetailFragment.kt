@@ -38,11 +38,11 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Bas
     }
 
     private fun setUiChangeListeners() {
-        viewBinding.checkBoxBookmark.setOnCheckedChangeListener { _, isChecked ->
+        viewBinding.checkBoxBookmark.setOnCheckedChangeListener { view, isChecked ->
             if (isChecked)
-                viewModel.setUnBookmarkCharacter()
+                viewModel.setUnBookmarkCharacter(view.tag.toString().toLong())
             else
-                viewModel.setBookmarkCharacter()
+                viewModel.setBookmarkCharacter(view.tag.toString().toLong())
         }
     }
 
@@ -50,10 +50,12 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Bas
         when (result.status) {
             SUCCESS -> {
                 handleLoading(false)
-                result.data?.let {
+                result.data?.let { character ->
                     viewBinding.apply {
-                        viewBinding.textViewCharacterName.text = it.name
-                        glide.load(it.image).into(imageViewCharacter)
+                        viewBinding.textViewCharacterName.text = character.name
+                        glide.load(character.image).into(imageViewCharacter)
+                        viewBinding.checkBoxBookmark.isChecked = character.isBookMarked
+                        viewBinding.checkBoxBookmark.tag = character.id
                     }
                 }
             }
