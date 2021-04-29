@@ -8,12 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aqube.ram.R
 import com.aqube.ram.base.BaseFragment
 import com.aqube.ram.databinding.FragmentCharacterListBinding
-import com.aqube.ram.domain.models.Character
 import com.aqube.ram.extension.observe
-import com.aqube.ram.presentation.utils.Resource
-import com.aqube.ram.presentation.utils.Resource.Status.*
 import com.aqube.ram.presentation.viewmodel.BaseViewModel
 import com.aqube.ram.presentation.viewmodel.CharacterListViewModel
+import com.aqube.ram.presentation.viewmodel.CharacterUIModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -27,12 +25,16 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, BaseVie
     @Inject
     lateinit var characterAdapter: CharacterAdapter
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        observe(viewModel.characterList, ::onViewStateChange)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         val isFavorite =
             (findNavController().currentDestination?.label == getString(R.string.menu_favorites))
         viewModel.getCharacters(isFavorite)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observe(viewModel.getCharacters(), ::onViewStateChange)
         initRecyclerView()
     }
 
@@ -51,20 +53,16 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, BaseVie
         }
     }
 
-    private fun onViewStateChange(result: Resource<List<Character>>) {
-        when (result.status) {
-            SUCCESS -> {
+    private fun onViewStateChange(event: CharacterUIModel) {
+        if (event.isRedelivered) return
+        when (event) {
+            is CharacterUIModel.Error -> handleErrorMessage(event.error)
+            CharacterUIModel.Loading -> handleLoading(true)
+            is CharacterUIModel.Success -> {
                 handleLoading(false)
-                result.data?.let {
+                event.data.let {
                     characterAdapter.list = it
                 }
-            }
-            ERROR -> {
-                val error = result.message ?: "Error"
-                handleErrorMessage(error)
-            }
-            LOADING -> {
-                handleLoading(true)
             }
         }
     }

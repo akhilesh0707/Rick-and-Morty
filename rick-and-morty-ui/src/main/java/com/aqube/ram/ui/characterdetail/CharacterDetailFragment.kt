@@ -7,12 +7,11 @@ import androidx.navigation.fragment.navArgs
 import com.aqube.ram.R
 import com.aqube.ram.base.BaseFragment
 import com.aqube.ram.databinding.FragmentCharacterDetailBinding
-import com.aqube.ram.domain.models.Character
 import com.aqube.ram.extension.observe
 import com.aqube.ram.extension.showSnackBar
-import com.aqube.ram.presentation.utils.Resource
-import com.aqube.ram.presentation.utils.Resource.Status.*
 import com.aqube.ram.presentation.viewmodel.BaseViewModel
+import com.aqube.ram.presentation.viewmodel.Bookmark
+import com.aqube.ram.presentation.viewmodel.CharacterDetailUIModel
 import com.aqube.ram.presentation.viewmodel.CharacterDetailViewModel
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,14 +31,16 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Bas
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observe(viewModel.character, ::onViewStateChange)
-        observe(viewModel.bookmarkStatus, ::onBookmarkStateChange)
+        observe(viewModel.getCharacter(), ::onViewStateChange)
         viewModel.getCharacterDetail(args.characterId)
         setUiChangeListeners()
     }
 
     private fun setUiChangeListeners() {
         viewBinding.checkBoxBookmark.setOnCheckedChangeListener { view, isChecked ->
+            if (!viewBinding.checkBoxBookmark.isPressed) {
+                return@setOnCheckedChangeListener
+            }
             if (isChecked)
                 viewModel.setBookmarkCharacter(view.tag.toString().toLong())
             else
@@ -47,11 +48,33 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Bas
         }
     }
 
-    private fun onViewStateChange(result: Resource<Character>) {
-        when (result.status) {
-            SUCCESS -> {
+    private fun onViewStateChange(result: CharacterDetailUIModel) {
+        if (result.isRedelivered) return
+        when (result) {
+            is CharacterDetailUIModel.BookMarkStatus -> {
+                when (result.bookmark) {
+                    Bookmark.BOOKMARK ->
+                        if (result.status) {
+                            showSnackBar(viewBinding.rootView, getString(R.string.bookmark_success))
+                        } else {
+                            handleErrorMessage(getString(R.string.bookmark_error))
+                        }
+                    Bookmark.UN_BOOKMARK ->
+                        if (result.status) {
+                            showSnackBar(
+                                viewBinding.rootView,
+                                getString(R.string.un_bookmark_success)
+                            )
+                        } else {
+                            handleErrorMessage(getString(R.string.bookmark_error))
+                        }
+                }
+            }
+            is CharacterDetailUIModel.Error -> handleErrorMessage(result.error)
+            CharacterDetailUIModel.Loading -> handleLoading(true)
+            is CharacterDetailUIModel.Success -> {
                 handleLoading(false)
-                result.data?.let { character ->
+                result.data.let { character ->
                     viewBinding.apply {
                         viewBinding.textViewCharacterName.text = character.name
                         glide.load(character.image).into(imageViewCharacter)
@@ -59,35 +82,6 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Bas
                         viewBinding.checkBoxBookmark.isChecked = character.isBookMarked
                     }
                 }
-            }
-            ERROR -> {
-                val error = result.message ?: "Error"
-                handleErrorMessage(error)
-            }
-            LOADING -> {
-                handleLoading(true)
-            }
-        }
-    }
-
-    private fun onBookmarkStateChange(result: Resource<Pair<CharacterDetailViewModel.Bookmark, Boolean>>) {
-        when (result.status) {
-            SUCCESS -> {
-                result.data?.let {
-                    when (it.first) {
-                        CharacterDetailViewModel.Bookmark.BOOKMARK -> showSnackBar(
-                            viewBinding.rootView,
-                            getString(R.string.bookmark_success)
-                        )
-                        CharacterDetailViewModel.Bookmark.UN_BOOKMARK -> showSnackBar(
-                            viewBinding.rootView,
-                            getString(R.string.un_bookmark_success)
-                        )
-                    }
-                }
-            }
-            else -> {
-                handleErrorMessage(getString(R.string.bookmark_error))
             }
         }
     }
