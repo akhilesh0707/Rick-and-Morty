@@ -3,17 +3,30 @@ package com.aqube.ram.presentation.viewmodel
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.aqube.ram.domain.interactor.CharacterBookmarkUseCase
 import com.aqube.ram.domain.interactor.CharacterUnBookmarkUseCase
 import com.aqube.ram.domain.interactor.GetCharacterByIdUseCase
 import com.aqube.ram.domain.models.Character
 import com.aqube.ram.presentation.utils.ExceptionHandler
-import com.aqube.ram.presentation.utils.Resource
+import com.aqube.ram.presentation.utils.UiAwareLiveData
+import com.aqube.ram.presentation.utils.UiAwareModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.collect
 
 private const val TAG = "CharacterDetailVM"
+
+sealed class CharacterDetailUIModel : UiAwareModel() {
+    object Loading : CharacterDetailUIModel()
+    data class Error(var error: String = "") : CharacterDetailUIModel()
+    data class Success(val data: Character) : CharacterDetailUIModel()
+    data class BookMarkStatus(val bookmark: Bookmark, val status: Boolean) :
+        CharacterDetailUIModel()
+}
+
+enum class Bookmark {
+    BOOKMARK,
+    UN_BOOKMARK
+}
 
 class CharacterDetailViewModel @ViewModelInject constructor(
     private val characterByIdUseCase: GetCharacterByIdUseCase,
@@ -21,20 +34,21 @@ class CharacterDetailViewModel @ViewModelInject constructor(
     private val unBookmarkUserCase: CharacterUnBookmarkUseCase
 ) : BaseViewModel() {
 
-    private val _character = MutableLiveData<Resource<Character>>()
-    val character: LiveData<Resource<Character>> = _character
+    private val _character = UiAwareLiveData<CharacterDetailUIModel>()
+    private var character: LiveData<CharacterDetailUIModel> = _character
 
-    private val _bookmarkStatus = MutableLiveData<Resource<Pair<Bookmark, Boolean>>>()
-    val bookmarkStatus: LiveData<Resource<Pair<Bookmark, Boolean>>> = _bookmarkStatus
+    fun getCharacter(): LiveData<CharacterDetailUIModel> {
+        return character
+    }
 
     override val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
         Log.d(TAG, exception.message ?: "Error ")
         val message = ExceptionHandler.parse(exception)
-        _character.postValue(Resource.error(exception.message ?: "Error"))
+        _character.postValue(CharacterDetailUIModel.Error(exception.message ?: "Error"))
     }
 
     fun getCharacterDetail(characterId: Long) {
-        _character.postValue(Resource.loading(null))
+        _character.postValue(CharacterDetailUIModel.Loading)
         launchCoroutineIO {
             loadCharacter(characterId)
         }
@@ -43,7 +57,7 @@ class CharacterDetailViewModel @ViewModelInject constructor(
     private suspend fun loadCharacter(characterId: Long) {
         characterByIdUseCase(characterId).collect {
             Log.d(TAG, it.toString())
-            _character.postValue(Resource.success(it))
+            _character.postValue(CharacterDetailUIModel.Success(it))
         }
     }
 
@@ -51,9 +65,19 @@ class CharacterDetailViewModel @ViewModelInject constructor(
         launchCoroutineIO {
             bookmarkUserCase(characterId).collect {
                 if (it == 1)
-                    _bookmarkStatus.postValue(Resource.success(Pair(Bookmark.BOOKMARK, true)))
+                    _character.postValue(
+                        CharacterDetailUIModel.BookMarkStatus(
+                            Bookmark.BOOKMARK,
+                            true
+                        )
+                    )
                 else
-                    _bookmarkStatus.postValue(Resource.success(Pair(Bookmark.BOOKMARK, false)))
+                    _character.postValue(
+                        CharacterDetailUIModel.BookMarkStatus(
+                            Bookmark.BOOKMARK,
+                            false
+                        )
+                    )
             }
         }
     }
@@ -62,15 +86,21 @@ class CharacterDetailViewModel @ViewModelInject constructor(
         launchCoroutineIO {
             unBookmarkUserCase(characterId).collect {
                 if (it == 1)
-                    _bookmarkStatus.postValue(Resource.success(Pair(Bookmark.UN_BOOKMARK, true)))
+                    _character.postValue(
+                        CharacterDetailUIModel.BookMarkStatus(
+                            Bookmark.UN_BOOKMARK,
+                            true
+                        )
+                    )
                 else
-                    _bookmarkStatus.postValue(Resource.success(Pair(Bookmark.UN_BOOKMARK, false)))
+                    _character.postValue(
+                        CharacterDetailUIModel.BookMarkStatus(
+                            Bookmark.UN_BOOKMARK,
+                            false
+                        )
+                    )
             }
         }
     }
 
-    enum class Bookmark {
-        BOOKMARK,
-        UN_BOOKMARK
-    }
 }

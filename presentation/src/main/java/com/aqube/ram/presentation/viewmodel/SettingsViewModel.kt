@@ -7,28 +7,32 @@ import com.aqube.ram.domain.interactor.GetSettingsUseCase
 import com.aqube.ram.domain.models.Settings
 import com.aqube.ram.presentation.utils.ExceptionHandler
 import com.aqube.ram.presentation.utils.PresentationPreferencesHelper
-import com.aqube.ram.presentation.utils.Resource
+import com.aqube.ram.presentation.utils.UiAwareModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.collect
+
+sealed class SettingUIModel : UiAwareModel() {
+    object Loading : SettingUIModel()
+    data class Error(var error: String = "") : SettingUIModel()
+    data class Success(val data: List<Settings>) : SettingUIModel()
+    data class NightMode(val nightMode: Boolean) : SettingUIModel()
+}
 
 class SettingsViewModel @ViewModelInject constructor(
     private val getSettingsUseCase: GetSettingsUseCase,
     private val preferencesHelper: PresentationPreferencesHelper
 ) : BaseViewModel() {
 
-    private val _settings = MutableLiveData<Resource<List<Settings>>>()
-    val settings: LiveData<Resource<List<Settings>>> = _settings
-
-    private val _nightMode = MutableLiveData<Resource<Boolean>>()
-    val nightMode: LiveData<Resource<Boolean>> = _nightMode
+    private val _settings = MutableLiveData<SettingUIModel>()
+    val settings: LiveData<SettingUIModel> = _settings
 
     override val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
         val message = ExceptionHandler.parse(exception)
-        _settings.postValue(Resource.error(exception.message ?: "Error"))
+        _settings.postValue(SettingUIModel.Error(exception.message ?: "Error"))
     }
 
     fun getSettings() {
-        _settings.postValue(Resource.loading(null))
+        _settings.postValue(SettingUIModel.Loading)
         launchCoroutineIO {
             loadCharacters()
         }
@@ -36,14 +40,14 @@ class SettingsViewModel @ViewModelInject constructor(
 
     private suspend fun loadCharacters() {
         getSettingsUseCase(preferencesHelper.isNightMode).collect {
-            _settings.postValue(Resource.success(it))
+            _settings.postValue(SettingUIModel.Success(it))
         }
     }
 
     fun setSettings(selectedSetting: Settings) {
         selectedSetting.run {
             preferencesHelper.isNightMode = selectedValue
-            _nightMode.postValue(Resource.success(selectedValue))
+            _settings.postValue(SettingUIModel.NightMode(selectedValue))
         }
     }
 }
