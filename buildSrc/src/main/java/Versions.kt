@@ -1,15 +1,13 @@
 object Versions {
 
     const val gradleVersion = "4.1.3"
-    const val navigationArgVersion = "2.3.5"
+    const val gradleNavigationArgVersion = "2.3.5"
 
     // Android sdk and version
     const val androidMinSdkVersion = 21
     const val androidTargetSdkVersion = 29
     const val androidCompileSdkVersion = 30
     const val androidBuildToolsVersion = "30.0.2"
-    const val appVersionCode = 1
-    const val appVersionName = "1.0"
 
     // Core dependencies
     const val kotlinVersion = "1.4.32"

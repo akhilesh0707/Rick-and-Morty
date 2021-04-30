@@ -1,4 +1,8 @@
-object Dependencies {
+package modules
+
+import Versions
+
+object Libraries {
 
     object KotlinDep {
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}"

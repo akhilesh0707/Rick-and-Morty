@@ -10,8 +10,8 @@ import javax.inject.Inject
 class SettingsRepositoryImp @Inject constructor(
     private val appVersion: String,
 ) : SettingsRepository {
-    override suspend fun getSettings(nightMode: Boolean): Flow<List<Settings>> = flow {
-        emit(getData(nightMode))
+    override suspend fun getSettings(isNightMode: Boolean): Flow<List<Settings>> = flow {
+        emit(getData(isNightMode))
     }
 
     //This should be came from api but we don't have api so we are crating locally
