@@ -9,4 +9,4 @@ The Rick And Morty - MVVM with a clean architecture approach using some of the b
 | <img alt="List" src="art/dark_list.png">| <img alt="Detail" src="art/dark_detail.png">| <img alt="Settings" src="art/dark_settings.png">| 
 
 ## MAD Scorecard
-[<img src="art/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/3908694994/)
+[<img src="art/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/1519405986/)
