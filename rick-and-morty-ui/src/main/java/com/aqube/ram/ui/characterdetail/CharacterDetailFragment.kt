@@ -78,8 +78,12 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Bas
                     viewBinding.apply {
                         viewBinding.textViewCharacterName.text = character.name
                         glide.load(character.image).into(imageViewCharacter)
-                        viewBinding.checkBoxBookmark.tag = character.id
-                        viewBinding.checkBoxBookmark.isChecked = character.isBookMarked
+                        checkBoxBookmark.tag = character.id
+                        checkBoxBookmark.isChecked = character.isBookMarked
+                        textViewSpecies.text = character.species
+                        textViewGender.text = character.gender
+                        textViewGenderLocation.text = character.characterLocation.name
+                        textViewStatus.text = character.status
                     }
                 }
             }

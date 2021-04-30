@@ -12,4 +12,8 @@
     <string name="bookmark_error">Something went wrong, please try again.</string>
     <string name="bookmark_success">Character bookmarked successfully</string>
     <string name="un_bookmark_success">Character bookmarked removed successfully</string>
+    <string name="character_gender_label">Gender:</string>
+    <string name="character_species_label">Species:</string>
+    <string name="character_location_label">Location:</string>
+    <string name="character_status_label">Status:</string>
 </resources>

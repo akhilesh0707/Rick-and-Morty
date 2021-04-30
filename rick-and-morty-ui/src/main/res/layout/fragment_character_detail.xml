@@ -9,6 +9,26 @@
         android:layout_height="match_parent"
         tools:context=".ui.characterdetail.CharacterDetailFragment">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCharacter"
+            android:layout_width="200sp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            app:cornerFamily="rounded"
+            app:cornerSize="10%"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.aqube.ram.core.components.RMCheckBox
+            android:id="@+id/checkBoxBookmark"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardViewImage"
             android:layout_width="match_parent"
@@ -19,36 +39,110 @@
             android:layout_marginEnd="16dp"
             android:elevation="3dp"
             app:cardCornerRadius="@dimen/card_view_radius"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/imageViewCharacter">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageViewCharacter"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                app:cornerFamily="rounded"
-                app:cornerSize="10%" />
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewCharacterName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="25dp"
+                    android:textAppearance="?attr/textAppearanceHeadline3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Character name" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewGenderLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/character_gender_label"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCharacterName"
+                    app:layout_constraintWidth_percent=".5" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewSpeciesLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/character_species_label"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCharacterName"
+                    app:layout_constraintWidth_percent=".5" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewGender"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGenderLabel"
+                    app:layout_constraintWidth_percent=".5"
+                    tools:text="Male" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewSpecies"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewSpeciesLabel"
+                    app:layout_constraintWidth_percent=".5"
+                    tools:text="Human" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewGenderLocationLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/character_location_label"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGender"
+                    app:layout_constraintWidth_percent=".5" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewStatusLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/character_status_label"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewSpecies"
+                    app:layout_constraintWidth_percent=".5" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewGenderLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGenderLocationLabel"
+                    app:layout_constraintWidth_percent=".5"
+                    tools:text="Earth" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewStatusLabel"
+                    app:layout_constraintWidth_percent=".5"
+                    tools:text="Alive" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewCharacterName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="16dp"
-            android:textAppearance="?attr/textAppearanceHeadline3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewImage"
-            tools:text="Character name" />
-
-        <com.aqube.ram.core.components.RMCheckBox
-            android:id="@+id/checkBoxBookmark"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCharacterName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewImage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
