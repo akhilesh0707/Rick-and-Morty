@@ -9,11 +9,11 @@ java {
 
 dependencies {
     //Modules
-    implementation project(":domain")
+    implementation project(Modules.domain)
 
-    implementation dataModuleDependencies.kotlin
-    implementation dataModuleDependencies.coroutine
+    implementation DataDependencies.kotlin
+    implementation DataDependencies.coroutineCore
 
     // JavaX
-    implementation dataModuleDependencies.javax
+    implementation DataDependencies.javax
 }

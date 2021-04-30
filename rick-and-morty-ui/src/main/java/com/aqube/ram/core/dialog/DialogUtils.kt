@@ -93,10 +93,10 @@ fun Fragment.showDialog(
     return MaterialAlertDialogBuilder(context ?: return null).apply {
         setTitle(title)
         setMessage(message)
-        setPositiveButton(textPositive) { dialog, which ->
+        setPositiveButton(textPositive) { _, _ ->
             positiveListener?.invoke()
         }
-        setNegativeButton(textNegative) { dialog, which ->
+        setNegativeButton(textNegative) { _, _ ->
             negativeListener?.invoke()
         }
         setCancelable(cancelable)
@@ -132,10 +132,10 @@ fun AppCompatActivity.showDialog(
     return MaterialAlertDialogBuilder(this).apply {
         setTitle(title)
         setMessage(message)
-        setPositiveButton(textPositive) { dialog, which ->
+        setPositiveButton(textPositive) { _, _ ->
             positiveListener?.invoke()
         }
-        setNegativeButton(textNegative) { dialog, which ->
+        setNegativeButton(textNegative) { _, _ ->
             negativeListener?.invoke()
         }
         setCancelable(cancelable)

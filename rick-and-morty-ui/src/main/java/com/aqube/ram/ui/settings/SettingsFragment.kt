@@ -58,7 +58,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, BaseViewModel>() 
             }
             is SettingUIModel.Success -> {
                 handleLoading(false)
-                result.data?.let {
+                result.data.let {
                     settingsAdapter.list = it
                 }
             }

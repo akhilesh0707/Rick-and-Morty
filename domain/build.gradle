@@ -8,9 +8,9 @@ java {
 }
 
 dependencies {
-    implementation domainModuleDependencies.kotlin
-    implementation domainModuleDependencies.coroutine
+    implementation DomainDependencies.kotlin
+    implementation DomainDependencies.coroutineCore
 
     // JavaX
-    implementation domainModuleDependencies.javax
+    implementation DomainDependencies.javax
 }

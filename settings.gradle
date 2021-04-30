@@ -1,3 +1,2 @@
-include ':domain', ':data', ':remote', ':cache', ':presentation', ':rick-and-morty-ui'
-
 rootProject.name = "Rick-and-Morty"
+include ':domain', ':data', ':remote', ':cache', ':presentation', ':rick-and-morty-ui'

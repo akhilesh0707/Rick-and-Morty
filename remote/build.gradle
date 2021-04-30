@@ -4,18 +4,17 @@ plugins {
 }
 
 dependencies {
-
     //Modules
-    implementation project(":data")
+    implementation project(Modules.data)
 
-    implementation remoteModuleDependencies.kotlin
+    implementation RemoteDependencies.kotlin
 
     // Network (Retrofit, OkHttp, Interceptor, Moshi)
-    implementation remoteModuleDependencies.network
+    implementation RemoteDependencies.network
 
     // Coroutines
-    implementation remoteModuleDependencies.coroutine
+    implementation RemoteDependencies.coroutineCore
 
     // JavaX
-    implementation remoteModuleDependencies.javax
+    implementation RemoteDependencies.javax
 }

@@ -29,16 +29,16 @@ android {
 }
 
 dependencies {
-    implementation project(':domain')
-    implementation presentationModuleDependencies.kotlin
-    implementation presentationModuleDependencies.coroutine
+    implementation project(Modules.domain)
+    implementation PresentationDependencies.kotlin
+    implementation PresentationDependencies.coroutineCore
 
     // Dagger-Hilt
-    implementation presentationModuleDependencies.daggerHilt
-    kapt presentationModuleDependencies.daggerHiltKapt
+    implementation PresentationDependencies.daggerHilt
+    kapt PresentationDependencies.daggerHiltKapt
     // JavaX
-    implementation presentationModuleDependencies.javax
+    implementation PresentationDependencies.javax
 
     // LifeCycle
-    implementation presentationModuleDependencies.lifeCycle
+    implementation PresentationDependencies.lifeCycle
 }

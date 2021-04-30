@@ -44,35 +44,35 @@ android {
 }
 
 dependencies {
-    implementation project(':domain')
-    implementation project(':data')
-    implementation project(':remote')
-    implementation project(':cache')
-    implementation project(':presentation')
+    implementation project(Modules.domain)
+    implementation project(Modules.data)
+    implementation project(Modules.remote)
+    implementation project(Modules.cache)
+    implementation project(Modules.presentation)
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    implementation uiModuleDependencies.kotlin
-    implementation uiModuleDependencies.coreKtx
-    implementation uiModuleDependencies.appCompat
-    implementation uiModuleDependencies.material
-    implementation uiModuleDependencies.constraint
-    implementation uiModuleDependencies.navigationFragmentKtx
-    implementation uiModuleDependencies.navigationUiKtx
-    implementation uiModuleDependencies.activityKtx
+    implementation UiDependencies.kotlin
+    implementation UiDependencies.coreKtx
+    implementation UiDependencies.appCompat
+    implementation UiDependencies.material
+    implementation UiDependencies.constraint
+    implementation UiDependencies.navigationFragmentKtx
+    implementation UiDependencies.navigationUiKtx
+    implementation UiDependencies.activityKtx
     // LifeCycle
-    implementation uiModuleDependencies.lifeCycle
+    implementation UiDependencies.LifeCycle
     // Dagger-Hilt
-    implementation uiModuleDependencies.daggerHilt
-    kapt uiModuleDependencies.daggerHiltKapt
+    implementation UiDependencies.DaggerHilt
+    kapt UiDependencies.DaggerHiltKapt
     // Coroutines
-    implementation uiModuleDependencies.coroutines
+    implementation UiDependencies.Coroutines
     // Glide
-    implementation uiModuleDependencies.glide
-    kapt uiModuleDependencies.glideKapt
+    implementation UiDependencies.glide
+    kapt UiDependencies.glideKapt
     // Timber
-    implementation uiModuleDependencies.timber
+    implementation UiDependencies.timber
     // Lottie animation
-    implementation uiModuleDependencies.lottie
+    implementation UiDependencies.lottie
 
 }

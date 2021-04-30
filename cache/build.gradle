@@ -32,12 +32,12 @@ android {
 
 dependencies {
     //Modules
-    implementation project(":data")
+    implementation project(Modules.data)
 
-    implementation cacheModuleDependencies.kotlin
+    implementation CacheDependencies.kotlin
     // JavaX
-    implementation cacheModuleDependencies.javax
+    implementation CacheDependencies.javax
     // Room
-    api cacheModuleDependencies.room
-    kapt cacheModuleDependencies.roomKapt
+    api CacheDependencies.room
+    kapt CacheDependencies.roomKapt
 }
