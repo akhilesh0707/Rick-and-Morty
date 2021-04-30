@@ -3,6 +3,7 @@
 
 # Rick-and-Morty
 The Rick And Morty - MVVM with a clean architecture approach using some of the best practices in Android Development.
+An Android app consuming a [Rick and Morty API](https://rickandmortyapi.com/) to display Characters it has been built with clean architecture principles, Repository Pattern, and MVVM pattern as well as Architecture Components.
 
 ## Architecture
 Uses concepts of the notorious Uncle Bob's architecture called [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).</br>
