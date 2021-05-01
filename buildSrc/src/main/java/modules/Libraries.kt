@@ -79,4 +79,14 @@ object Libraries {
     object LottieDep {
         const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
     }
+
+    object TestDep {
+        const val junit = "junit:junit:4.12"
+        const val androidxArchCore = "androidx.arch.core:core-testing:2.1.0"
+        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.5"
+        const val mockitoInline = "org.mockito:mockito-inline:2.13.0"
+        const val androidxExtJunitAndImp = "androidx.test.ext:junit:1.1.1"
+        const val espressoCoreAndImp = "androidx.test.espresso:espresso-core:3.2.0"
+    }
+
 }

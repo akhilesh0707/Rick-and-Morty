@@ -2,11 +2,18 @@
 [![Akhilesh LinkedIn](https://img.shields.io/badge/Akhilesh-LinkedIn-blue.svg?style=for-the-badge)](https://www.linkedin.com/in/akhilesh0707/)
 
 # Rick-and-Morty
-The Rick And Morty - An app consuming a [Rick and Morty API](https://rickandmortyapi.com/) to display Characters it has been built with clean architecture principles, Repository Pattern, and MVVM pattern as well as Architecture Components.
-
-This Rick and Morty app provides an approach to separate back stack history for each tab in Bottom Navigation View using Android Navigation Architecture Component
+The Rick And Morty - App consuming a [Rick and Morty API](https://rickandmortyapi.com/) to display Characters it has been built with clean architecture principles, Repository Pattern, and MVVM pattern as well as Architecture Components.
 
 This app shows the usage of the new Navigation Architecture Component in collaboration with the Bottom Navigation view with separate back stack history for each tab.
+
+**App features:**
+- List of Rick and Morty characters
+- Detail of characters
+- Bookmark character
+- Light/ Dark theme.
+
+## Screenshots
+<img alt="List" src="art/screenshot.png">
 
 ## Architecture
 Uses concepts of the notorious Uncle Bob's architecture called [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).</br>
@@ -25,16 +32,30 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 * **domain** - The domain layer contains the UseCases that encapsulate a single and very specific task that can be performed. This task is part of the business logic of the application. (Kotlin module that **cannot access any other module**)
 * **presentation** - MVVM with ViewModels exposing LiveData that the UI consume. The ViewModel does not know anything about it's consumers. (Android module that **can only access domain module**)
 
-## Screenshots
-<img alt="List" src="art/screenshot.png">
-
 ## MAD Scorecard
 [<img src="art/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/1519405986/)
 
+## Tech stack - Library:
+
+- [Kotlin](https://kotlinlang.org/)
+- [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) A coroutine is a concurrency design pattern that you can use on Android to simplify code that executes asynchronously
+- [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/)
+- [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+- [Kotlin-DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html)
+- JetPack
+  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) 
+  - [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle) 
+  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) 
+  - [Room](https://developer.android.com/topic/libraries/architecture/room)
+  - [Navigation](https://developer.android.com/guide/navigation/navigation-getting-started)
+  - [Data Binding](https://developer.android.com/topic/libraries/data-binding)
+  - [MVVM Architecture]() (View - DataBinding - ViewModel - Model)
+  - Repository pattern
+
+
+
 ## TODO
-### Tech Stack:
 ### CI/CD (Github actions/Bitrise
 ### Jococo for test coverage
 ### Ktlint 
 ### Credit
-### Detail about multi-stack and botton navigation

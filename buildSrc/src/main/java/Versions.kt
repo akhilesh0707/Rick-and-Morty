@@ -56,4 +56,13 @@ object Versions {
 
     // Lottie animation
     const val lottieVersion = "3.7.0"
+
+    // Testing
+    const val junitVersion = "4.12"
+    const val androidxArchCoreTestVersion = "2.1.0"
+    const val coroutinesTestVersion = "1.3.5"
+    const val mockitoInlineVersion = "2.13.0"
+    const val androidxExtJunitAndImpVersion = "1.1.1"
+    const val espressoCoreAndImpVersion = "3.2.0"
+
 }
