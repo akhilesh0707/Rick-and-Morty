@@ -15,6 +15,7 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 * Features can be developed in parallel eg. by different teams
 * Each feature can be developed in isolation, independently from other features
 * faster compile time
+<img src="art/app_architecture.png">
 
 ## Modules:
 * **rick-and-morty-ui** - It uses all the components and classes releated to Android Framework. It gets the data from presentation layer and shows on UI. (**access all the modules**)
