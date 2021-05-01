@@ -28,5 +28,8 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 
 ## TODO
 ### Tech Stack:
+### CI/CD (Github actions/Bitrise
+### Jococo for test coverage
+### Ktlint 
 ### Credit
 ### Detail about multi-stack and botton navigation
