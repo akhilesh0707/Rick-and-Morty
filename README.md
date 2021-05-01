@@ -64,4 +64,6 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 - [ ] ktlint or detekt
 - [ ] Credit
 
+## Contributions
 
+Please feel free to file an issue for errors, suggestions or feature requests. Pull requests are also encouraged.
