@@ -4,6 +4,10 @@
 # Rick-and-Morty
 The Rick And Morty - An app consuming a [Rick and Morty API](https://rickandmortyapi.com/) to display Characters it has been built with clean architecture principles, Repository Pattern, and MVVM pattern as well as Architecture Components.
 
+This Rick and Morty app provides an approach to separate back stack history for each tab in Bottom Navigation View using Android Navigation Architecture Component
+
+This app shows the usage of the new Navigation Architecture Component in collaboration with the Bottom Navigation view with separate back stack history for each tab.
+
 ## Architecture
 Uses concepts of the notorious Uncle Bob's architecture called [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).</br>
 
