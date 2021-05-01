@@ -21,13 +21,12 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 * **presentation** - MVVM with ViewModels exposing LiveData that the UI consume. The ViewModel does not know anything about it's consumers. (Android module that **can only access domain module**)
 
 ## Screenshots
-| | | |
-|--|--|--|
-| <img alt="List" src="art/light_list.png">| <img alt="Detail" src="art/light_detail.png">| <img alt="Settings" src="art/light_settings.png">| 
-|Dark mode| | |
-| <img alt="List" src="art/dark_list.png">| <img alt="Detail" src="art/dark_detail.png">| <img alt="Settings" src="art/dark_settings.png">| 
+<img alt="List" src="art/screenshot.png">
 
 ## MAD Scorecard
 [<img src="art/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/1519405986/)
 
-## Tech Stack:
+## TODO
+### Tech Stack:
+### Credit
+### Detail about multi-stack and botton navigation
