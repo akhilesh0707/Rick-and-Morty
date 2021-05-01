@@ -39,19 +39,21 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 
 - [Kotlin](https://kotlinlang.org/)
 - [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) A coroutine is a concurrency design pattern that you can use on Android to simplify code that executes asynchronously
-- [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/)
-- [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
-- [Kotlin-DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html)
+- [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) Flow is used to pass (send) a stream of data that can be computed asynchronously
+- [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android) for dependency injection.
+- [Kotlin-DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) Used to handle gradle dependencies properly
 - JetPack
-  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) 
-  - [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle) 
-  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) 
-  - [Room](https://developer.android.com/topic/libraries/architecture/room)
-  - [Navigation](https://developer.android.com/guide/navigation/navigation-getting-started)
-  - [Data Binding](https://developer.android.com/topic/libraries/data-binding)
-  - [MVVM Architecture]() (View - DataBinding - ViewModel - Model)
-  - Repository pattern
-
+  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) For reactive style programming (from VM to UI). 
+  - [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle) Used get lifecyle event of an activity or fragment and performs some action in response to change
+  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) Stores UI-related data that isn't destroyed on UI changes. 
+  - [Room](https://developer.android.com/topic/libraries/architecture/room) Used to create room db and store the data.
+  - [Navigation](https://developer.android.com/guide/navigation/navigation-getting-started) Used to navigate between fragments
+  - [Data Binding](https://developer.android.com/topic/libraries/data-binding) Used to bind UI components in your XML layouts.
+- [Retrofit](https://github.com/square/retrofit) Used for REST api communication.
+- [OkHttp](http://square.github.io/okhttp/) HTTP client that's efficient by default: HTTP/2 support allows all requests to the same host to share a socket
+- [Moshi](https://github.com/square/moshi) Used to convert Java Objects into their JSON representation and vice versa.
+- [Timber](https://github.com/JakeWharton/timber) - Used for logging.
+- [Glide](https://bumptech.github.io/glide/) - Glide is a fast and efficient image loading library for Android 
 
 
 ## TODO
