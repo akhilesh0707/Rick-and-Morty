@@ -2,15 +2,9 @@ object Versions {
 
     const val gradleVersion = "4.1.3"
     const val gradleNavigationArgVersion = "2.3.5"
-
-    // Android sdk and version
-    const val androidMinSdkVersion = 21
-    const val androidTargetSdkVersion = 29
-    const val androidCompileSdkVersion = 30
-    const val androidBuildToolsVersion = "30.0.2"
+    const val kotlinVersion = "1.4.32"
 
     // Core dependencies
-    const val kotlinVersion = "1.4.32"
     const val javaxInjectVersion = "1"
     const val coreKtxVersion = "1.3.2"
     const val appCompatVersion = "1.2.0"
@@ -34,7 +28,6 @@ object Versions {
     // Coroutines dependencies
     const val coroutineCoreVersion = "1.3.9"
     const val coroutineAndroidVersion = "1.3.9"
-    const val coroutinePlayServiceVersion = "1.1.1"
 
     //Glide dependencies
     const val glideVersion = "4.11.0"
@@ -58,11 +51,15 @@ object Versions {
     const val lottieVersion = "3.7.0"
 
     // Testing
-    const val junitVersion = "4.12"
-    const val androidxArchCoreTestVersion = "2.1.0"
-    const val coroutinesTestVersion = "1.3.5"
+    const val junitVersion = "4.13"
+    const val androidxArchCoreVersion = "2.1.0"
+    const val coroutinesTestVersion = "1.5.0"
+    const val mockitoCoreVersion = "2.19.0"
     const val mockitoInlineVersion = "2.13.0"
-    const val androidxExtJunitAndImpVersion = "1.1.1"
-    const val espressoCoreAndImpVersion = "3.2.0"
+    const val extJunitVersion = "1.1.1"
+    const val androidTestRuleVersion = "1.1.0"
+    const val androidTestRunnerVersion = "1.1.0"
+    const val espressoVersion = "3.2.0"
+    const val robolectricVersion = "4.3"
 
 }

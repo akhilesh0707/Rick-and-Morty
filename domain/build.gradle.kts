@@ -1,4 +1,4 @@
-import modules.DomainLibraries
+import dependencies.DomainDep
 
 plugins {
     id(Config.Plugins.kotlin)
@@ -10,8 +10,8 @@ java {
 }
 
 dependencies {
-    implementation(DomainLibraries.kotlin)
-    implementation(DomainLibraries.coroutineCore)
+    implementation(DomainDep.kotlin)
+    implementation(DomainDep.coroutineCore)
     // JavaX
-    implementation(DomainLibraries.javax)
+    implementation(DomainDep.javax)
 }

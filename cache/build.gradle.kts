@@ -1,4 +1,4 @@
-import modules.CacheLibraries
+import dependencies.CacheDep
 
 plugins {
     id(Config.Plugins.androidLibrary)
@@ -7,12 +7,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.androidCompileSdkVersion)
-    buildToolsVersion(Versions.androidBuildToolsVersion)
+    compileSdkVersion(Config.Android.androidCompileSdkVersion)
+    buildToolsVersion(Config.Android.androidBuildToolsVersion)
 
     defaultConfig {
-        minSdkVersion(Versions.androidMinSdkVersion)
-        targetSdkVersion(Versions.androidTargetSdkVersion)
+        minSdkVersion(Config.Android.androidMinSdkVersion)
+        targetSdkVersion(Config.Android.androidTargetSdkVersion)
         versionCode(Environments.Release.appVersionCode)
         versionName(Environments.Release.appVersionName)
 
@@ -37,12 +37,12 @@ dependencies {
     //Modules
     implementation(project(Modules.data))
     // Kotlin
-    implementation(CacheLibraries.kotlin)
+    implementation(CacheDep.kotlin)
     // JavaX
-    implementation(CacheLibraries.javax)
+    implementation(CacheDep.javax)
     // Room
-    CacheLibraries.room.forEach {
+    CacheDep.room.forEach {
         api(it)
     }
-    kapt(CacheLibraries.roomKapt)
+    kapt(CacheDep.roomKapt)
 }

@@ -1,4 +1,4 @@
-import modules.PresentationLibraries
+import dependencies.PresentationDep
 
 plugins {
     id(Config.Plugins.androidLibrary)
@@ -7,10 +7,10 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.androidCompileSdkVersion)
+    compileSdkVersion(Config.Android.androidCompileSdkVersion)
     defaultConfig {
-        minSdkVersion(Versions.androidMinSdkVersion)
-        targetSdkVersion(Versions.androidTargetSdkVersion)
+        minSdkVersion(Config.Android.androidMinSdkVersion)
+        targetSdkVersion(Config.Android.androidTargetSdkVersion)
         versionCode(Environments.Release.appVersionCode)
         versionName(Environments.Release.appVersionName)
 
@@ -33,19 +33,19 @@ android {
 
 dependencies {
     implementation(project(Modules.domain))
-    implementation(PresentationLibraries.kotlin)
-    implementation(PresentationLibraries.coroutineCore)
+    implementation(PresentationDep.kotlin)
+    implementation(PresentationDep.coroutineCore)
     // Dagger-Hilt (used for @InjectViewModel)
-    PresentationLibraries.daggerHilt.forEach {
+    PresentationDep.daggerHilt.forEach {
         implementation(it)
     }
-    PresentationLibraries.daggerHiltKapt.forEach {
+    PresentationDep.daggerHiltKapt.forEach {
         kapt(it)
     }
     // JavaX
-    implementation(PresentationLibraries.javax)
+    implementation(PresentationDep.javax)
     // LifeCycle
-    PresentationLibraries.lifeCycle.forEach {
+    PresentationDep.lifeCycle.forEach {
         implementation(it)
     }
 }

@@ -1,4 +1,4 @@
-import modules.RemoteLibraries
+import dependencies.RemoteDep
 
 plugins {
     id(Config.Plugins.kotlin)
@@ -9,14 +9,14 @@ dependencies {
     //Modules
     implementation(project(Modules.data))
 
-    implementation(RemoteLibraries.kotlin)
+    implementation(RemoteDep.kotlin)
 
     // Network (Retrofit, OkHttp, Interceptor, Moshi)
-    RemoteLibraries.retrofit.forEach { implementation(it) }
+    RemoteDep.retrofit.forEach { implementation(it) }
 
     // Coroutines
-    implementation(RemoteLibraries.coroutineCore)
+    implementation(RemoteDep.coroutineCore)
 
     // JavaX
-    implementation(RemoteLibraries.javax)
+    implementation(RemoteDep.javax)
 }

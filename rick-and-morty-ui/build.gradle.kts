@@ -1,4 +1,4 @@
-import modules.UiLibraries
+import dependencies.UiDep
 
 plugins {
     id(Config.Plugins.android)
@@ -9,13 +9,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.androidCompileSdkVersion)
-    buildToolsVersion(Versions.androidBuildToolsVersion)
+    compileSdkVersion(Config.Android.androidCompileSdkVersion)
+    buildToolsVersion(Config.Android.androidBuildToolsVersion)
 
     defaultConfig {
         applicationId(Environments.Release.appId)
-        minSdkVersion(Versions.androidMinSdkVersion)
-        targetSdkVersion(Versions.androidTargetSdkVersion)
+        minSdkVersion(Config.Android.androidMinSdkVersion)
+        targetSdkVersion(Config.Android.androidTargetSdkVersion)
         versionCode(Environments.Release.appVersionCode)
         versionName(Environments.Release.appVersionName)
 
@@ -59,35 +59,36 @@ dependencies {
     implementation(project(Modules.remote))
     implementation(project(Modules.cache))
     implementation(project(Modules.presentation))
+
     // Core Dependencies
-    implementation(UiLibraries.kotlin)
-    implementation(UiLibraries.coreKtx)
-    implementation(UiLibraries.appCompat)
-    implementation(UiLibraries.material)
-    implementation(UiLibraries.constraint)
-    implementation(UiLibraries.navigationFragmentKtx)
-    implementation(UiLibraries.navigationUiKtx)
-    implementation(UiLibraries.activityKtx)
+    implementation(UiDep.kotlin)
+    implementation(UiDep.coreKtx)
+    implementation(UiDep.appCompat)
+    implementation(UiDep.material)
+    implementation(UiDep.constraint)
+    implementation(UiDep.navigationFragmentKtx)
+    implementation(UiDep.navigationUiKtx)
+    implementation(UiDep.activityKtx)
     // LifeCycle
-    UiLibraries.LifeCycle.forEach {
+    UiDep.LifeCycle.forEach {
         implementation(it)
     }
     // Dagger-Hilt
-    UiLibraries.DaggerHilt.forEach {
+    UiDep.DaggerHilt.forEach {
         implementation(it)
     }
-    UiLibraries.DaggerHiltKapt.forEach {
+    UiDep.DaggerHiltKapt.forEach {
         kapt(it)
     }
     // Coroutines
-    UiLibraries.Coroutines.forEach {
+    UiDep.Coroutines.forEach {
         implementation(it)
     }
     // Glide
-    implementation(UiLibraries.glide)
-    kapt(UiLibraries.glideKapt)
+    implementation(UiDep.glide)
+    kapt(UiDep.glideKapt)
     // Timber
-    implementation(UiLibraries.timber)
+    implementation(UiDep.timber)
     // Lottie animation
-    implementation(UiLibraries.lottie)
+    implementation(UiDep.lottie)
 }

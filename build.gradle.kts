@@ -8,10 +8,10 @@ buildscript {
     }
 
     dependencies {
-        classpath(Config.Dependencies.androidGradle)
-        classpath(Config.Dependencies.kotlinGradle)
-        classpath(Config.Dependencies.daggerHiltGradle)
-        classpath(Config.Dependencies.navigationSafArgsGradle)
+        classpath(Config.ClassPaths.androidGradle)
+        classpath(Config.ClassPaths.kotlinGradle)
+        classpath(Config.ClassPaths.daggerHiltGradle)
+        classpath(Config.ClassPaths.navigationSafArgsGradle)
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle.kts files
     }

@@ -1,8 +1,8 @@
-package modules
+package dependencies
 
 import Versions
 
-object Libraries {
+object Dependencies {
 
     object KotlinDep {
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}"
@@ -81,12 +81,19 @@ object Libraries {
     }
 
     object TestDep {
-        const val junit = "junit:junit:4.12"
-        const val androidxArchCore = "androidx.arch.core:core-testing:2.1.0"
-        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.5"
-        const val mockitoInline = "org.mockito:mockito-inline:2.13.0"
-        const val androidxExtJunitAndImp = "androidx.test.ext:junit:1.1.1"
-        const val espressoCoreAndImp = "androidx.test.espresso:espresso-core:3.2.0"
+        const val junit = "junit:junit:${Versions.junitVersion}"
+        const val androidxArchCore =
+            "androidx.arch.core:core-testing:${Versions.androidxArchCoreVersion}"
+        const val coroutinesTest =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTestVersion}"
+        const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInlineVersion}"
+        const val mockitoCore = "org.mockito:mockito-core:${Versions.mockitoCoreVersion}"
+        const val androidxTestExtJunit = "androidx.test.ext:${Versions.extJunitVersion}"
+        const val androidTestRules = "androidx.test:rules:${Versions.androidTestRuleVersion}"
+        const val androidTestRunner = "androidx.test:runner:${Versions.androidTestRunnerVersion}"
+        const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoVersion}"
+        const val robolectric = "org.robolectric:robolectric:${Versions.robolectricVersion}"
     }
+
 
 }

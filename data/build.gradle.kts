@@ -1,4 +1,4 @@
-import modules.DataLibraries
+import dependencies.DataDep
 
 plugins {
     id(Config.Plugins.kotlin)
@@ -13,8 +13,8 @@ dependencies {
     //Modules
     implementation(project(Modules.domain))
     // Kotlin and Coroutines
-    implementation(DataLibraries.kotlin)
-    implementation(DataLibraries.coroutineCore)
+    implementation(DataDep.kotlin)
+    implementation(DataDep.coroutineCore)
     // JavaX
-    implementation(DataLibraries.javax)
+    implementation(DataDep.javax)
 }

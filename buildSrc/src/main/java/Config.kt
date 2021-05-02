@@ -1,6 +1,14 @@
 object Config {
 
-    object Dependencies {
+    object Android {
+        // Android sdk and version
+        const val androidMinSdkVersion = 21
+        const val androidTargetSdkVersion = 29
+        const val androidCompileSdkVersion = 30
+        const val androidBuildToolsVersion = "30.0.2"
+    }
+
+    object ClassPaths {
         const val androidGradle = "com.android.tools.build:gradle:${Versions.gradleVersion}"
         const val kotlinGradle =
             "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
