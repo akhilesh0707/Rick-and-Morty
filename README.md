@@ -41,7 +41,7 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 - [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) - A coroutine is a concurrency design pattern that you can use on Android to simplify code that executes asynchronously
 - [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) - Flow is used to pass (send) a stream of data that can be computed asynchronously
 - [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - for dependency injection.
-- [Kotlin-DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - Used to handle gradle dependencies properly
+- [Kotlin-DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - Used to handle gradle dependencies and config versions
 - JetPack
   - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - For reactive style programming (from VM to UI). 
   - [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle) - Used get lifecyle event of an activity or fragment and performs some action in response to change
@@ -58,10 +58,10 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 
 
 ## TODO
-- [ ] CI/CD (Github actions/Bitrise
-- [ ]  Unit test
+- [ ] CI/CD (Github Actions, Bitrise, CircleCI)
+- [ ] Unit test
 - [ ] Jococo for test coverage
-- [ ] ktlint or detekt
+- [ ] Ktlint or Detekt
 - [ ] Credit
 
 ## Contributions

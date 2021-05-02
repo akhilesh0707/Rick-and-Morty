@@ -81,19 +81,29 @@ object Dependencies {
     }
 
     object TestDep {
-        const val junit = "junit:junit:${Versions.junitVersion}"
-        const val androidxArchCore =
-            "androidx.arch.core:core-testing:${Versions.androidxArchCoreVersion}"
         const val coroutinesTest =
             "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTestVersion}"
-        const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInlineVersion}"
+        const val junit = "junit:junit:${Versions.junitVersion}"
+        const val assertJ = "org.assertj:assertj-core:${Versions.assertJVersion}"
+        const val kotlinJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlinVersion}"
+        const val mockitoKotlin =
+            "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}"
         const val mockitoCore = "org.mockito:mockito-core:${Versions.mockitoCoreVersion}"
-        const val androidxTestExtJunit = "androidx.test.ext:${Versions.extJunitVersion}"
-        const val androidTestRules = "androidx.test:rules:${Versions.androidTestRuleVersion}"
-        const val androidTestRunner = "androidx.test:runner:${Versions.androidTestRunnerVersion}"
+        const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInlineVersion}"
+        const val mockitoAndroid = "org.mockito:mockito-android:${Versions.mockitoAndroidVersion}"
+        const val testRunner = "androidx.test:runner:${Versions.androidTestRunnerVersion}"
+        const val testRules = "androidx.test:rules:${Versions.androidTestRuleVersion}"
+        const val testCore = "androidx.test:core:${Versions.axTestCore}"
+        const val testExtJunit = "androidx.test.ext:junit:${Versions.axTestJunit}"
         const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoVersion}"
+        const val espressoIntents =
+            "androidx.test.espresso:espresso-intents:${Versions.espressoVersion}"
+        const val espressoContrib =
+            "androidx.test.espresso:espresso-contrib:${Versions.espressoVersion}"
+        const val androidxArchCore =
+            "androidx.arch.core:core-testing:${Versions.androidxArchCoreVersion}"
+        const val androidxTestExtJunit = "androidx.test.ext:${Versions.extJunitVersion}"
         const val robolectric = "org.robolectric:robolectric:${Versions.robolectricVersion}"
     }
-
 
 }

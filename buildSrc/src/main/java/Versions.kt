@@ -53,12 +53,17 @@ object Versions {
     // Testing
     const val junitVersion = "4.13"
     const val androidxArchCoreVersion = "2.1.0"
-    const val coroutinesTestVersion = "1.5.0"
+    const val coroutinesTestVersion = "1.4.3"
     const val mockitoCoreVersion = "2.19.0"
     const val mockitoInlineVersion = "2.13.0"
+    const val mockitoAndroidVersion = "2.23.4"
+    const val mockitoKotlinVersion = "2.1.0"
+    const val assertJVersion = "3.11.1"
     const val extJunitVersion = "1.1.1"
     const val androidTestRuleVersion = "1.1.0"
     const val androidTestRunnerVersion = "1.1.0"
+    const val axTestCore = "1.1.0"
+    const val axTestJunit = "1.1.0"
     const val espressoVersion = "3.2.0"
     const val robolectricVersion = "4.3"
 
