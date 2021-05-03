@@ -11,6 +11,5 @@ object DomainDep {
         const val mockitoKotlin = Dependencies.TestDep.mockitoKotlin
         const val mockitoInline = Dependencies.TestDep.mockitoInline
         const val assertJ = Dependencies.TestDep.assertJ
-
     }
 }

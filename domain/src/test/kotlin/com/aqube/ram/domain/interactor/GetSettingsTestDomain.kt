@@ -2,7 +2,7 @@ package com.aqube.ram.domain.interactor
 
 import com.aqube.ram.domain.fakes.FakeData
 import com.aqube.ram.domain.repository.SettingsRepository
-import com.aqube.ram.domain.utils.BaseUseCaseTest
+import com.aqube.ram.domain.utils.DomainBaseTest
 import com.nhaarman.mockitokotlin2.*
 import junit.framework.TestCase.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,7 +20,7 @@ import java.io.IOException
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class GetSettingsUseCaseTest : BaseUseCaseTest() {
+class GetSettingsTestDomain : DomainBaseTest() {
 
     @Mock
     lateinit var settingRepository: SettingsRepository

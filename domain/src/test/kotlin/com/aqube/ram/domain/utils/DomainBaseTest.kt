@@ -6,7 +6,7 @@ import kotlinx.coroutines.test.TestCoroutineExceptionHandler
 import org.junit.Rule
 
 @ExperimentalCoroutinesApi
-abstract class BaseUseCaseTest {
+abstract class DomainBaseTest {
     /**
      * A test rule to allow testing coroutines that use the main dispatcher
      */

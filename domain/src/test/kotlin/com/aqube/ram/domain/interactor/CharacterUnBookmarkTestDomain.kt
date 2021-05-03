@@ -1,7 +1,7 @@
 package com.aqube.ram.domain.interactor
 
 import com.aqube.ram.domain.repository.CharacterRepository
-import com.aqube.ram.domain.utils.BaseUseCaseTest
+import com.aqube.ram.domain.utils.DomainBaseTest
 import com.nhaarman.mockitokotlin2.*
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,54 +20,61 @@ import java.io.IOException
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class CharacterBookmarkUseCaseTest : BaseUseCaseTest() {
-
+class CharacterUnBookmarkTestDomain : DomainBaseTest() {
     @Mock
     lateinit var characterRepository: CharacterRepository
 
-    lateinit var sut: CharacterBookmarkUseCase
+    lateinit var sut: CharacterUnBookmarkUseCase
 
     @Before
     fun setUp() {
-        sut = CharacterBookmarkUseCase(characterRepository)
+        sut = CharacterUnBookmarkUseCase(characterRepository)
     }
 
     @Test
-    fun `set bookmark character with id should return success with response code`() =
+    fun `set unbookmark character with id should return success with response code`() =
         dispatcher.runBlockingTest {
             // Arrange (Given)
             val characterId = 1L
-            whenever(characterRepository.setCharacterBookmarked(characterId)) doReturn flow { emit(1) }
+            whenever(characterRepository.setCharacterUnBookMarked(characterId)) doReturn flow {
+                emit(
+                    1
+                )
+            }
 
             // Act (When)
             val status = sut(characterId).single()
 
             // Assert (Then)
             assertEquals(status, 1)
-            verify(characterRepository, times(1)).setCharacterBookmarked(characterId)
+            verify(characterRepository, times(1)).setCharacterUnBookMarked(characterId)
         }
 
     @Test
-    fun `set bookmark character with id should return fail with response code`() =
+    fun `set unbookmark character with id should return fail with response code`() =
         dispatcher.runBlockingTest {
             // Arrange (Given)
             val characterId = 1L
-            whenever(characterRepository.setCharacterBookmarked(characterId)) doReturn flow { emit(0) }
+            whenever(characterRepository.setCharacterUnBookMarked(characterId)) doReturn flow {
+                emit(
+                    0
+                )
+            }
 
             // Act (When)
             val status = sut(characterId).single()
 
             // Assert (Then)
             assertEquals(status, 0)
-            verify(characterRepository, times(1)).setCharacterBookmarked(characterId)
+            verify(characterRepository, times(1)).setCharacterUnBookMarked(characterId)
         }
 
     @Test
-    fun `set bookmark character with id should return error result with exception`() =
+    fun `set unbookmark character with id should return error result with exception`() =
         dispatcher.runBlockingTest {
             // Arrange (Given)
             val characterId = 1L
-            whenever(characterRepository.setCharacterBookmarked(characterId)) doAnswer { throw IOException() }
+            whenever(characterRepository.setCharacterUnBookMarked(characterId)) doAnswer { throw IOException() }
 
             // Act (When)
             launch(exceptionHandler) { sut(characterId).single() }
@@ -77,6 +84,6 @@ class CharacterBookmarkUseCaseTest : BaseUseCaseTest() {
                 exceptionHandler.uncaughtExceptions.first(),
                 instanceOf(IOException::class.java)
             )
-            verify(characterRepository, times(1)).setCharacterBookmarked(characterId)
+            verify(characterRepository, times(1)).setCharacterUnBookMarked(characterId)
         }
 }

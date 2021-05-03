@@ -2,7 +2,7 @@ package com.aqube.ram.domain.interactor
 
 import com.aqube.ram.domain.fakes.FakeData
 import com.aqube.ram.domain.repository.CharacterRepository
-import com.aqube.ram.domain.utils.BaseUseCaseTest
+import com.aqube.ram.domain.utils.DomainBaseTest
 import com.nhaarman.mockitokotlin2.*
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,7 +22,7 @@ import java.io.IOException
 @ExperimentalCoroutinesApi
 @InternalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class GetCharacterListUseCaseTest : BaseUseCaseTest() {
+class GetCharacterListTestDomain : DomainBaseTest() {
 
     @Mock
     lateinit var characterRepository: CharacterRepository
