@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import com.aqube.ram.domain.interactor.GetCharacterListUseCase
-import com.aqube.ram.domain.interactor.GetFavoriteCharacterListUseCase
+import com.aqube.ram.domain.interactor.GetBookmarkCharacterListUseCase
 import com.aqube.ram.domain.models.Character
 import com.aqube.ram.presentation.utils.ExceptionHandler
 import com.aqube.ram.presentation.utils.UiAwareLiveData
@@ -22,7 +22,7 @@ sealed class CharacterUIModel : UiAwareModel() {
 
 class CharacterListViewModel @ViewModelInject constructor(
     private val characterListUseCase: GetCharacterListUseCase,
-    private val favoriteCharacterListUseCase: GetFavoriteCharacterListUseCase
+    private val bookmarkCharacterListUseCase: GetBookmarkCharacterListUseCase
 ) : BaseViewModel() {
 
     private val _characterList = UiAwareLiveData<CharacterUIModel>()
@@ -56,7 +56,7 @@ class CharacterListViewModel @ViewModelInject constructor(
     }
 
     private suspend fun loadFavoriteCharacters() {
-        favoriteCharacterListUseCase(Unit).collect {
+        bookmarkCharacterListUseCase(Unit).collect {
             Log.d(TAG, "called again: $it")
             _characterList.postValue(CharacterUIModel.Success(it))
         }

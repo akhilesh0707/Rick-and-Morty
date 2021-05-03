@@ -6,10 +6,10 @@ import com.aqube.ram.domain.utils.BaseUseCaseTest
 import com.nhaarman.mockitokotlin2.*
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runBlockingTest
+import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
@@ -20,44 +20,48 @@ import org.mockito.junit.MockitoJUnitRunner
 import java.io.IOException
 
 @ExperimentalCoroutinesApi
-@InternalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class GetCharacterListUseCaseTest : BaseUseCaseTest() {
+class GetBookmarkCharacterListUseCaseTest : BaseUseCaseTest() {
 
     @Mock
     lateinit var characterRepository: CharacterRepository
 
-    lateinit var sut: GetCharacterListUseCase
+    lateinit var sut: GetBookmarkCharacterListUseCase
 
     @Before
     fun setUp() {
-        sut = GetCharacterListUseCase(characterRepository)
+        sut = GetBookmarkCharacterListUseCase(characterRepository)
     }
 
     @Test
-    fun `get character should return success result with character list`() =
+    fun `get bookmark character should return success result with bookmark character list`() =
         dispatcher.runBlockingTest {
             // Arrange (Given)
-            whenever(characterRepository.getCharacters()) doReturn FakeData.getCharacters()
+            whenever(characterRepository.getBookMarkedCharacters()) doReturn FakeData.getCharacters()
 
             // Act (When)
             val characters = sut(Unit).single()
 
             // Assert (Then)
             assertEquals(characters.size, 2)
-            verify(characterRepository, times(1)).getCharacters()
+            verify(characterRepository, times(1)).getBookMarkedCharacters()
         }
 
     @Test
-    fun `get characters should return error result with exception`() = dispatcher.runBlockingTest {
-        // Arrange (Given)
-        whenever(characterRepository.getCharacters()) doAnswer { throw IOException() }
+    fun `get bookmark characters should return error result with exception`() =
+        dispatcher.runBlockingTest {
+            // Arrange (Given)
+            whenever(characterRepository.getBookMarkedCharacters()) doAnswer { throw IOException() }
 
-        // Act (When)
-        launch(exceptionHandler) { sut(Unit).single() }
+            // Act (When)
+            launch(exceptionHandler) { sut(Unit).single() }
 
-        // Assert (Then)
-        assertThat(exceptionHandler.uncaughtExceptions.first(), instanceOf(IOException::class.java))
-        verify(characterRepository, times(1)).getCharacters()
-    }
+            // Assert (Then)
+            assertThat(
+                exceptionHandler.uncaughtExceptions.first(),
+                instanceOf(IOException::class.java)
+            )
+            verify(characterRepository, times(1)).getBookMarkedCharacters()
+        }
+
 }
