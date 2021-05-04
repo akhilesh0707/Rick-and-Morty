@@ -1,9 +1,13 @@
 package com.aqube.ram.data
 
 import com.aqube.ram.data.utils.DataBaseTest
+import junit.framework.TestCase.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -20,5 +24,32 @@ class SettingsRepositoryImpTest : DataBaseTest() {
         sut = SettingsRepositoryImp(appVersion)
     }
 
+    @Test
+    fun `get settings with night mode on should return success result settings list`() =
+        dispatcher.runBlockingTest {
+            // Arrange (Given)
+            val isNightMode = true
+
+            // Act (When)
+            val settings = sut.getSettings(isNightMode).single()
+
+            // Assert (Then)
+            assertEquals(settings.size, 3)
+            assertTrue(settings[0].selectedValue)
+        }
+
+    @Test
+    fun `get settings with night mode off should return success result settings list`() =
+        dispatcher.runBlockingTest {
+            // Arrange (Given)
+            val isNightMode = false
+
+            // Act (When)
+            val settings = sut.getSettings(isNightMode).single()
+
+            // Assert (Then)
+            assertEquals(settings.size, 3)
+            assertFalse(settings[0].selectedValue)
+        }
 
 }

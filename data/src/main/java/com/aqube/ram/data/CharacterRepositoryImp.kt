@@ -21,7 +21,6 @@ class CharacterRepositoryImp @Inject constructor(
             }
         saveCharacters(characterList)
         emit(characterList)
-
     }
 
     override suspend fun getCharacter(characterId: Long): Flow<Character> = flow {

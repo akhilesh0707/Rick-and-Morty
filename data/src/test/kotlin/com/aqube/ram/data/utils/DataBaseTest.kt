@@ -1,6 +1,5 @@
 package com.aqube.ram.data.utils
 
-import com.aqube.ram.domain.interactor.CoroutineTestRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineExceptionHandler
 import org.junit.Rule
