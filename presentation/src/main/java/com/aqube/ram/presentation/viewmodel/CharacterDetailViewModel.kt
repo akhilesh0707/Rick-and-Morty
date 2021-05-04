@@ -1,7 +1,6 @@
 package com.aqube.ram.presentation.viewmodel
 
 import android.util.Log
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import com.aqube.ram.domain.interactor.CharacterBookmarkUseCase
 import com.aqube.ram.domain.interactor.CharacterUnBookmarkUseCase
@@ -10,8 +9,10 @@ import com.aqube.ram.domain.models.Character
 import com.aqube.ram.presentation.utils.ExceptionHandler
 import com.aqube.ram.presentation.utils.UiAwareLiveData
 import com.aqube.ram.presentation.utils.UiAwareModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 private const val TAG = "CharacterDetailVM"
 
@@ -28,7 +29,8 @@ enum class Bookmark {
     UN_BOOKMARK
 }
 
-class CharacterDetailViewModel @ViewModelInject constructor(
+@HiltViewModel
+class CharacterDetailViewModel @Inject constructor(
     private val characterByIdUseCase: GetCharacterByIdUseCase,
     private val bookmarkUserCase: CharacterBookmarkUseCase,
     private val unBookmarkUserCase: CharacterUnBookmarkUseCase

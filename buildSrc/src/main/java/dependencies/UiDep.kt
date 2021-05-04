@@ -24,8 +24,7 @@ object UiDep {
 
     // Hilt
     val DaggerHilt = listOf(
-        Dependencies.DaggerHiltDep.hiltAndroid,
-        Dependencies.DaggerHiltDep.hiltViewModel
+        Dependencies.DaggerHiltDep.hiltAndroid
     )
 
     val DaggerHiltKapt = listOf(

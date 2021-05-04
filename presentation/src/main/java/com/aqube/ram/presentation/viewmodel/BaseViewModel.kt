@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 
-
 abstract class BaseViewModel : ViewModel() {
 
     private val job: Job = Job()

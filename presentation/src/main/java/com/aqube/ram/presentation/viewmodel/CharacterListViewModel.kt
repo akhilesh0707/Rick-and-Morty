@@ -1,7 +1,6 @@
 package com.aqube.ram.presentation.viewmodel
 
 import android.util.Log
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import com.aqube.ram.domain.interactor.GetCharacterListUseCase
 import com.aqube.ram.domain.interactor.GetBookmarkCharacterListUseCase
@@ -9,8 +8,10 @@ import com.aqube.ram.domain.models.Character
 import com.aqube.ram.presentation.utils.ExceptionHandler
 import com.aqube.ram.presentation.utils.UiAwareLiveData
 import com.aqube.ram.presentation.utils.UiAwareModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 private const val TAG = "CharacterListViewModel"
 
@@ -20,7 +21,8 @@ sealed class CharacterUIModel : UiAwareModel() {
     data class Success(val data: List<Character>) : CharacterUIModel()
 }
 
-class CharacterListViewModel @ViewModelInject constructor(
+@HiltViewModel
+class CharacterListViewModel @Inject constructor(
     private val characterListUseCase: GetCharacterListUseCase,
     private val bookmarkCharacterListUseCase: GetBookmarkCharacterListUseCase
 ) : BaseViewModel() {

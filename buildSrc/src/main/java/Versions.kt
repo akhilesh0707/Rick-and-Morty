@@ -33,7 +33,7 @@ object Versions {
     const val glideVersion = "4.11.0"
 
     // Dagger - Hilt dependencies
-    const val hiltAndroidVersion = "2.28-alpha"
+    const val hiltAndroidVersion = "2.35"
     const val hiltVersion = "1.0.0-alpha02"
 
     // Timber logging dependencies

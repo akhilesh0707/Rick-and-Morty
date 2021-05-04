@@ -7,8 +7,7 @@ object PresentationDep {
 
     // Dagger-Hilt
     val daggerHilt = listOf(
-        Dependencies.DaggerHiltDep.hiltAndroid,
-        Dependencies.DaggerHiltDep.hiltViewModel
+        Dependencies.DaggerHiltDep.hiltAndroid
     )
     val daggerHiltKapt = listOf(
         Dependencies.DaggerHiltDep.hiltAndroidKapt,

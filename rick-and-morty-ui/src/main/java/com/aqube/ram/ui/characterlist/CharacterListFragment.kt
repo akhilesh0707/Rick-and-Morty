@@ -25,15 +25,11 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, BaseVie
     @Inject
     lateinit var characterAdapter: CharacterAdapter
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val isFavorite =
             (findNavController().currentDestination?.label == getString(R.string.menu_favorites))
         viewModel.getCharacters(isFavorite)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         observe(viewModel.getCharacters(), ::onViewStateChange)
         initRecyclerView()
     }

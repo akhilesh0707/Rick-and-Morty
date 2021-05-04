@@ -1,6 +1,5 @@
 package com.aqube.ram.presentation.viewmodel
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aqube.ram.domain.interactor.GetSettingsUseCase
@@ -8,8 +7,10 @@ import com.aqube.ram.domain.models.Settings
 import com.aqube.ram.presentation.utils.ExceptionHandler
 import com.aqube.ram.presentation.utils.PresentationPreferencesHelper
 import com.aqube.ram.presentation.utils.UiAwareModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 sealed class SettingUIModel : UiAwareModel() {
     object Loading : SettingUIModel()
@@ -18,7 +19,8 @@ sealed class SettingUIModel : UiAwareModel() {
     data class NightMode(val nightMode: Boolean) : SettingUIModel()
 }
 
-class SettingsViewModel @ViewModelInject constructor(
+@HiltViewModel
+class SettingsViewModel @Inject constructor(
     private val getSettingsUseCase: GetSettingsUseCase,
     private val preferencesHelper: PresentationPreferencesHelper
 ) : BaseViewModel() {
