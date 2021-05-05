@@ -37,5 +37,19 @@ object FakeCharacters {
         )
     )
 
+    fun getCharacter(): Character =
+        Character(
+            "01/02/2021",
+            "Male",
+            1,
+            "https://dummyurl.png",
+            CharacterLocation("Earth", "https://dummy.url"),
+            "Rick",
+            "Human",
+            "Alive",
+            "",
+            "",
+            false
+        )
 
 }
