@@ -22,5 +22,4 @@ class SettingsRepositoryImp @Inject constructor(
         settingList.add(Settings(2, SettingType.TEXT, "App version", appVersion))
         return settingList
     }
-
 }

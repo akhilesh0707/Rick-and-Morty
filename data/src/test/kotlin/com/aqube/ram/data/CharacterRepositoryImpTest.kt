@@ -11,13 +11,17 @@ import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runBlockingTest
+import org.hamcrest.CoreMatchers.instanceOf
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
+import java.io.IOException
 
 @ExperimentalCoroutinesApi
 @InternalCoroutinesApi
@@ -154,5 +158,152 @@ class CharacterRepositoryImpTest : DataBaseTest() {
             verify(dataSourceFactory, times(1)).getRemoteDataSource()
             verify(dataSourceFactory.getRemoteDataSource(), times(2)).getCharacter(characterId)
             verify(characterMapper, times(1)).mapFromEntity(any())
+        }
+
+    @Test
+    fun `get bookmark characters should return character from local cache`() =
+        dispatcher.runBlockingTest {
+            // Arrange (Given)
+            `when`(dataSourceFactory.getCacheDataSource()) doReturn dataSource
+            `when`(dataSource.getBookMarkedCharacters()) doReturn FakeCharacters.getCharacters()
+
+            // Act (When)
+            val characters = sut.getBookMarkedCharacters().single()
+
+            // Assert (Then)
+            assertEquals(characters.size, 2)
+            verify(dataSourceFactory, times(1)).getCacheDataSource()
+            verify(dataSource, times(1)).getBookMarkedCharacters()
+            verify(characterMapper, times(2)).mapFromEntity(any())
+        }
+
+    @Test
+    fun `get bookmark characters should return error`() =
+        dispatcher.runBlockingTest {
+            // Arrange (Given)
+            `when`(dataSourceFactory.getCacheDataSource()) doReturn dataSource
+            whenever(dataSource.getBookMarkedCharacters()) doAnswer { throw IOException() }
+
+            // Act (When)
+            launch(exceptionHandler) { sut.getBookMarkedCharacters().single() }
+
+            // Assert (Then)
+            assertThat(
+                exceptionHandler.uncaughtExceptions.first(), instanceOf(IOException::class.java)
+            )
+            verify(dataSourceFactory, times(1)).getCacheDataSource()
+            verify(dataSource, times(1)).getBookMarkedCharacters()
+        }
+
+    @Test
+    fun `set bookmark character should return bookmark status fail`() =
+        dispatcher.runBlockingTest {
+            // Arrange (Given)
+            val characterId = 1L
+            val mockResult = 0  // Fail result
+            `when`(dataSourceFactory.getCacheDataSource()) doReturn dataSource
+            `when`(dataSource.setCharacterBookmarked(characterId)) doReturn mockResult
+
+            // Act (When)
+            val bookmarkStatus = sut.setCharacterBookmarked(characterId).single()
+
+            // Assert (Then)
+            assertEquals(bookmarkStatus, mockResult)
+            verify(dataSourceFactory, times(1)).getCacheDataSource()
+            verify(dataSource, times(1)).setCharacterBookmarked(characterId)
+        }
+
+    @Test
+    fun `set bookmark character should return bookmark status success`() =
+        dispatcher.runBlockingTest {
+            // Arrange (Given)
+            val characterId = 1L
+            val mockResult = 1
+            `when`(dataSourceFactory.getCacheDataSource()) doReturn dataSource
+            `when`(dataSource.setCharacterBookmarked(characterId)) doReturn mockResult
+
+            // Act (When)
+            val bookmarkStatus = sut.setCharacterBookmarked(characterId).single()
+
+            // Assert (Then)
+            assertEquals(bookmarkStatus, mockResult)
+            verify(dataSourceFactory, times(1)).getCacheDataSource()
+            verify(dataSource, times(1)).setCharacterBookmarked(characterId)
+        }
+
+    @Test
+    fun `set bookmark character should return error`() =
+        dispatcher.runBlockingTest {
+            // Arrange (Given)
+            val characterId = 1L
+            val mockResult = 1
+            `when`(dataSourceFactory.getCacheDataSource()) doReturn dataSource
+            whenever(dataSource.setCharacterBookmarked(characterId)) doAnswer { throw IOException() }
+
+            // Act (When)
+            launch(exceptionHandler) { sut.setCharacterBookmarked(characterId).single() }
+
+            // Assert (Then)
+            assertThat(
+                exceptionHandler.uncaughtExceptions.first(), instanceOf(IOException::class.java)
+            )
+            verify(dataSourceFactory, times(1)).getCacheDataSource()
+            verify(dataSource, times(1)).setCharacterBookmarked(characterId)
+        }
+
+    @Test
+    fun `set un-bookmark character should return bookmark status fail`() =
+        dispatcher.runBlockingTest {
+            // Arrange (Given)
+            val characterId = 1L
+            val mockResult = 0  // Fail result
+            `when`(dataSourceFactory.getCacheDataSource()) doReturn dataSource
+            `when`(dataSource.setCharacterUnBookMarked(characterId)) doReturn mockResult
+
+            // Act (When)
+            val bookmarkStatus = sut.setCharacterUnBookMarked(characterId).single()
+
+            // Assert (Then)
+            assertEquals(bookmarkStatus, mockResult)
+            verify(dataSourceFactory, times(1)).getCacheDataSource()
+            verify(dataSource, times(1)).setCharacterUnBookMarked(characterId)
+        }
+
+    @Test
+    fun `set un-bookmark character should return bookmark status success`() =
+        dispatcher.runBlockingTest {
+            // Arrange (Given)
+            val characterId = 1L
+            val mockResult = 1
+            `when`(dataSourceFactory.getCacheDataSource()) doReturn dataSource
+            `when`(dataSource.setCharacterUnBookMarked(characterId)) doReturn mockResult
+
+            // Act (When)
+            val bookmarkStatus = sut.setCharacterUnBookMarked(characterId).single()
+
+            // Assert (Then)
+            assertEquals(bookmarkStatus, mockResult)
+            verify(dataSourceFactory, times(1)).getCacheDataSource()
+            verify(dataSource, times(1)).setCharacterUnBookMarked(characterId)
+        }
+
+    @Test
+    fun `set un-bookmark character should return error`() =
+        dispatcher.runBlockingTest {
+            // Arrange (Given)
+            val characterId = 1L
+            val mockResult = 1
+            `when`(dataSourceFactory.getCacheDataSource()) doReturn dataSource
+            whenever(dataSource.setCharacterUnBookMarked(characterId)) doAnswer { throw IOException() }
+
+            // Act (When)
+            launch(exceptionHandler) { sut.setCharacterUnBookMarked(characterId).single() }
+
+            // Assert (Then)
+            assertThat(
+                exceptionHandler.uncaughtExceptions.first(), instanceOf(IOException::class.java)
+            )
+            verify(dataSourceFactory, times(1)).getCacheDataSource()
+            verify(dataSource, times(1)).setCharacterUnBookMarked(characterId)
         }
 }
