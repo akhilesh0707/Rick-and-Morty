@@ -4,6 +4,7 @@ plugins {
     id(Config.Plugins.androidLibrary)
     id(Config.Plugins.kotlinAndroid)
     id(Config.Plugins.kotlinKapt)
+    id(Config.Plugins.kotlinAndroidExtensions)
 }
 
 android {
@@ -45,4 +46,12 @@ dependencies {
         api(it)
     }
     kapt(CacheDep.roomKapt)
+    // Test Dependencies
+    testImplementation(CacheDep.Test.junit)
+    testImplementation(CacheDep.Test.assertJ)
+    testImplementation(CacheDep.Test.mockitoKotlin)
+    testImplementation(CacheDep.Test.mockitoInline)
+    testImplementation(CacheDep.Test.coroutines)
+    testImplementation(CacheDep.Test.testCore)
+    testImplementation(CacheDep.Test.testExtJunit)
 }

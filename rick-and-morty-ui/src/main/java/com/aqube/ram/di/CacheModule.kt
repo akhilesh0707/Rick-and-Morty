@@ -3,7 +3,7 @@ package com.aqube.ram.di
 import android.content.Context
 import com.aqube.ram.cache.CharacterCacheImp
 import com.aqube.ram.cache.dao.CharacterDao
-import com.aqube.ram.cache.database.CharacterDatabase
+import com.aqube.ram.cache.database.CharactersDatabase
 import com.aqube.ram.cache.utils.CachePreferencesHelper
 import com.aqube.ram.data.repository.CharacterCache
 import dagger.Module
@@ -19,14 +19,14 @@ object CacheModule {
 
     @Provides
     @Singleton
-    fun provideRoomDatabase(@ApplicationContext context: Context): CharacterDatabase {
-        return CharacterDatabase.getInstance(context)
+    fun provideRoomDatabase(@ApplicationContext context: Context): CharactersDatabase {
+        return CharactersDatabase.getInstance(context)
     }
 
     @Provides
     @Singleton
-    fun provideCharacterDao(characterDatabase: CharacterDatabase): CharacterDao {
-        return characterDatabase.cachedCharacterDao()
+    fun provideCharacterDao(charactersDatabase: CharactersDatabase): CharacterDao {
+        return charactersDatabase.cachedCharacterDao()
     }
 
     @Provides
