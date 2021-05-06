@@ -49,9 +49,9 @@ dependencies {
     // Test Dependencies
     testImplementation(CacheDep.Test.junit)
     testImplementation(CacheDep.Test.assertJ)
-    testImplementation(CacheDep.Test.mockitoKotlin)
-    testImplementation(CacheDep.Test.mockitoInline)
     testImplementation(CacheDep.Test.coroutines)
     testImplementation(CacheDep.Test.testCore)
     testImplementation(CacheDep.Test.testExtJunit)
+    testImplementation(CacheDep.Test.robolectric)
+    testImplementation(CacheDep.Test.roomTest)
 }

@@ -65,6 +65,6 @@ object Versions {
     const val axTestCore = "1.1.0"
     const val axTestJunit = "1.1.0"
     const val espressoVersion = "3.2.0"
-    const val robolectricVersion = "4.3"
+    const val robolectricVersion = "4.4"
 
 }

@@ -5,7 +5,6 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.aqube.ram.cache.dao.CharacterDao
 import com.aqube.ram.cache.database.CharactersDatabase
-import com.aqube.ram.data.utils.CoroutineTestRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineExceptionHandler
 import kotlinx.coroutines.test.runBlockingTest
@@ -25,22 +24,24 @@ abstract class CacheBaseTest {
 
     val dispatcher = testRule.dispatcher
     val exceptionHandler = TestCoroutineExceptionHandler()
-    private lateinit var db: CharactersDatabase
+    private lateinit var database: CharactersDatabase
     protected lateinit var charaterDao: CharacterDao
+    protected lateinit var context: Context
 
     @Before
     open fun setup() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        db = Room.inMemoryDatabaseBuilder(context, CharactersDatabase::class.java).build()
-        charaterDao = db.cachedCharacterDao()
+        context = ApplicationProvider.getApplicationContext<Context>()
+        database = Room.inMemoryDatabaseBuilder(context, CharactersDatabase::class.java)
+            .allowMainThreadQueries().build()
+        charaterDao = database.cachedCharacterDao()
     }
 
     @After
     @Throws(IOException::class)
     fun tearDown() {
         dispatcher.runBlockingTest {
-            db.clearAllTables()
+            database.clearAllTables()
         }
-        db.close()
+        database.close()
     }
 }

@@ -9,10 +9,10 @@ object CacheDep {
     object Test {
         const val junit = Dependencies.TestDep.junit
         const val coroutines = Dependencies.TestDep.coroutinesTest
-        const val mockitoKotlin = Dependencies.TestDep.mockitoKotlin
-        const val mockitoInline = Dependencies.TestDep.mockitoInline
         const val assertJ = Dependencies.TestDep.assertJ
         const val testCore = Dependencies.TestDep.testCore
         const val testExtJunit = Dependencies.TestDep.testExtJunit
+        const val robolectric = Dependencies.TestDep.robolectric
+        const val roomTest = Dependencies.TestDep.roomTest
     }
 }

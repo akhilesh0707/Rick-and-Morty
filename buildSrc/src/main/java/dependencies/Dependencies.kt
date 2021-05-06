@@ -103,6 +103,7 @@ object Dependencies {
             "androidx.arch.core:core-testing:${Versions.androidxArchCoreVersion}"
         const val androidxTestExtJunit = "androidx.test.ext:${Versions.extJunitVersion}"
         const val robolectric = "org.robolectric:robolectric:${Versions.robolectricVersion}"
+        const val roomTest = "androidx.room:room-testing:${Versions.roomVersion}"
     }
 
 }
