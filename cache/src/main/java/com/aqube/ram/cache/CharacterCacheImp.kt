@@ -55,7 +55,7 @@ class CharacterCacheImp @Inject constructor(
 
     override suspend fun isExpired(): Boolean {
         val currentTime = System.currentTimeMillis()
-        val lastUpdateTime = this.getLastCacheUpdateTimeMillis()
+        val lastUpdateTime = getLastCacheUpdateTimeMillis()
         return currentTime - lastUpdateTime > EXPIRATION_TIME
     }
 
