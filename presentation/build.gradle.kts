@@ -49,4 +49,14 @@ dependencies {
     PresentationDep.lifeCycle.forEach {
         implementation(it)
     }
+
+    // Test Dependencies
+    testImplementation(PresentationDep.Test.junit)
+    testImplementation(PresentationDep.Test.assertJ)
+    testImplementation(PresentationDep.Test.mockitoKotlin)
+    testImplementation(PresentationDep.Test.mockitoInline)
+    testImplementation(PresentationDep.Test.coroutines)
+    testImplementation(PresentationDep.Test.androidxArchCore)
+    testImplementation(PresentationDep.Test.robolectric)
+    testImplementation(PresentationDep.Test.testExtJunit)
 }

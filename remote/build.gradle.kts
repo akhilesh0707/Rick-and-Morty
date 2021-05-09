@@ -16,7 +16,7 @@ dependencies {
     RemoteDep.retrofit.forEach { implementation(it) }
     // Coroutines
     implementation(RemoteDep.coroutineCore)
-    // Test
+
     // Test Dependencies
     testImplementation(RemoteDep.Test.junit)
     testImplementation(RemoteDep.Test.assertJ)
