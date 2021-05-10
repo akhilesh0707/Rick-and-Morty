@@ -16,11 +16,11 @@ object FakeRemoteData {
     }
 
     private fun getFakeCharacterModel(size: Int, isRandomId: Boolean): List<CharacterModel> {
-        val listOfMovieEntities = mutableListOf<CharacterModel>()
+        val characters = mutableListOf<CharacterModel>()
         repeat(size) {
-            listOfMovieEntities.add(getCharacterModel(isRandomId))
+            characters.add(getCharacterModel(isRandomId))
         }
-        return listOfMovieEntities
+        return characters
     }
 
     fun getCharacterModel(isRandomId: Boolean): CharacterModel {

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aqube.ram.domain.interactor.GetSettingsUseCase
 import com.aqube.ram.domain.models.Settings
+import com.aqube.ram.presentation.utils.CoroutineContextProvider
 import com.aqube.ram.presentation.utils.ExceptionHandler
 import com.aqube.ram.presentation.utils.PresentationPreferencesHelper
 import com.aqube.ram.presentation.utils.UiAwareModel
@@ -21,9 +22,10 @@ sealed class SettingUIModel : UiAwareModel() {
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
+    contextProvider: CoroutineContextProvider,
     private val getSettingsUseCase: GetSettingsUseCase,
     private val preferencesHelper: PresentationPreferencesHelper
-) : BaseViewModel() {
+) : BaseViewModel(contextProvider) {
 
     private val _settings = MutableLiveData<SettingUIModel>()
     val settings: LiveData<SettingUIModel> = _settings

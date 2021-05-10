@@ -2,9 +2,10 @@ package com.aqube.ram.presentation.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.aqube.ram.domain.interactor.GetCharacterListUseCase
 import com.aqube.ram.domain.interactor.GetBookmarkCharacterListUseCase
+import com.aqube.ram.domain.interactor.GetCharacterListUseCase
 import com.aqube.ram.domain.models.Character
+import com.aqube.ram.presentation.utils.CoroutineContextProvider
 import com.aqube.ram.presentation.utils.ExceptionHandler
 import com.aqube.ram.presentation.utils.UiAwareLiveData
 import com.aqube.ram.presentation.utils.UiAwareModel
@@ -23,9 +24,10 @@ sealed class CharacterUIModel : UiAwareModel() {
 
 @HiltViewModel
 class CharacterListViewModel @Inject constructor(
+    contextProvider: CoroutineContextProvider,
     private val characterListUseCase: GetCharacterListUseCase,
     private val bookmarkCharacterListUseCase: GetBookmarkCharacterListUseCase
-) : BaseViewModel() {
+) : BaseViewModel(contextProvider) {
 
     private val _characterList = UiAwareLiveData<CharacterUIModel>()
     private var characterList: LiveData<CharacterUIModel> = _characterList
@@ -52,14 +54,12 @@ class CharacterListViewModel @Inject constructor(
 
     private suspend fun loadCharacters() {
         characterListUseCase(Unit).collect {
-            Log.d(TAG, "called again: $it")
             _characterList.postValue(CharacterUIModel.Success(it))
         }
     }
 
     private suspend fun loadFavoriteCharacters() {
         bookmarkCharacterListUseCase(Unit).collect {
-            Log.d(TAG, "called again: $it")
             _characterList.postValue(CharacterUIModel.Success(it))
         }
     }

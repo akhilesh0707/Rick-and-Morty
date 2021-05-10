@@ -1,6 +1,8 @@
 package com.aqube.ram.di
 
 import android.content.Context
+import com.aqube.ram.presentation.utils.CoroutineContextProvider
+import com.aqube.ram.presentation.utils.CoroutineContextProviderImp
 import com.aqube.ram.presentation.utils.PresentationPreferencesHelper
 import dagger.Module
 import dagger.Provides
@@ -18,4 +20,9 @@ object PresentationModule {
     fun providePresentationPreferenceHelper(@ApplicationContext context: Context): PresentationPreferencesHelper {
         return PresentationPreferencesHelper(context)
     }
+
+    @Provides
+    @Singleton
+    fun provideCoroutineContextProvider(contextProvider: CoroutineContextProviderImp): CoroutineContextProvider =
+        contextProvider
 }

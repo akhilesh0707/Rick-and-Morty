@@ -6,6 +6,7 @@ import com.aqube.ram.domain.interactor.CharacterBookmarkUseCase
 import com.aqube.ram.domain.interactor.CharacterUnBookmarkUseCase
 import com.aqube.ram.domain.interactor.GetCharacterByIdUseCase
 import com.aqube.ram.domain.models.Character
+import com.aqube.ram.presentation.utils.CoroutineContextProvider
 import com.aqube.ram.presentation.utils.ExceptionHandler
 import com.aqube.ram.presentation.utils.UiAwareLiveData
 import com.aqube.ram.presentation.utils.UiAwareModel
@@ -31,10 +32,11 @@ enum class Bookmark {
 
 @HiltViewModel
 class CharacterDetailViewModel @Inject constructor(
+    contextProvider: CoroutineContextProvider,
     private val characterByIdUseCase: GetCharacterByIdUseCase,
     private val bookmarkUserCase: CharacterBookmarkUseCase,
     private val unBookmarkUserCase: CharacterUnBookmarkUseCase
-) : BaseViewModel() {
+) : BaseViewModel(contextProvider) {
 
     private val _character = UiAwareLiveData<CharacterDetailUIModel>()
     private var character: LiveData<CharacterDetailUIModel> = _character
