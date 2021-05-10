@@ -37,7 +37,6 @@ class CharacterListViewModel @Inject constructor(
     }
 
     override val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-        Log.d(TAG, exception.message ?: "Error ")
         val message = ExceptionHandler.parse(exception)
         _characterList.postValue(CharacterUIModel.Error(exception.message ?: "Error"))
     }
