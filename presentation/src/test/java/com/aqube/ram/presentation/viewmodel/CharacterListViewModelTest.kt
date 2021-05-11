@@ -33,7 +33,7 @@ class CharacterListViewModelTest : PresentationBaseTest() {
     @Mock
     private lateinit var observer: Observer<CharacterUIModel>
 
-    lateinit var sut: CharacterListViewModel
+    private lateinit var sut: CharacterListViewModel
 
     @Before
     fun setup() {
