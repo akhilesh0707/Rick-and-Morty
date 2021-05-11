@@ -1,0 +1,59 @@
+package com.aqube.ram.presentation.viewmodel
+
+import androidx.lifecycle.Observer
+import com.aqube.ram.domain.interactor.GetSettingsUseCase
+import com.aqube.ram.presentation.fakes.FakePresentationData
+import com.aqube.ram.presentation.utils.PresentationBaseTest
+import com.aqube.ram.presentation.utils.PresentationPreferencesHelper
+import com.nhaarman.mockitokotlin2.verify
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runBlockingTest
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.MockitoAnnotations
+import org.mockito.junit.MockitoJUnitRunner
+
+@ExperimentalCoroutinesApi
+@RunWith(MockitoJUnitRunner::class)
+class SettingsViewModelTest : PresentationBaseTest() {
+
+    @Mock
+    lateinit var settingsUseCase: GetSettingsUseCase
+
+    @Mock
+    lateinit var preferencesHelper: PresentationPreferencesHelper
+
+    @Mock
+    private lateinit var observer: Observer<SettingUIModel>
+
+    lateinit var sut: SettingsViewModel
+
+    @Before
+    fun setup() {
+        MockitoAnnotations.initMocks(this)
+        sut = SettingsViewModel(dispatcher, settingsUseCase, preferencesHelper)
+        sut.settings.observeForever(observer)
+    }
+
+    @Test
+    fun `get settings with night mode on should return settings list from use-case`() =
+        dispatcher.test.runBlockingTest {
+            // Arrange (Given)
+            val isNightMode = true
+            `when`(preferencesHelper.isNightMode).thenReturn(isNightMode)
+            val settings = FakePresentationData.getSettings(7)
+            `when`(settingsUseCase(isNightMode)).thenReturn(flowOf(settings))
+
+            // Act (When)
+            sut.getSettings()
+
+            // Assert (Then)
+            verify(observer).onChanged(SettingUIModel.Loading)
+            verify(observer).onChanged(SettingUIModel.Success(settings))
+        }
+
+}
