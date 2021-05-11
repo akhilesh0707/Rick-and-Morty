@@ -11,6 +11,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runBlockingTest
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -137,5 +138,10 @@ class CharacterListViewModelTest : PresentationBaseTest() {
             verify(observer).onChanged(CharacterUIModel.Loading)
             verify(observer).onChanged(CharacterUIModel.Error(errorMessage))
         }
+
+    @After
+    fun tearDown() {
+        sut.onCleared()
+    }
 }
 

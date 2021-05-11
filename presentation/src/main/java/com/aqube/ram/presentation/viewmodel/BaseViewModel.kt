@@ -26,7 +26,7 @@ abstract class BaseViewModel(val contextProvider: CoroutineContextProvider) : Vi
         }
     }
 
-    override fun onCleared() {
+    public override fun onCleared() {
         super.onCleared()
         job.cancel()
     }

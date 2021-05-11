@@ -11,6 +11,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runBlockingTest
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -142,4 +143,9 @@ class SettingsViewModelTest : PresentationBaseTest() {
             verify(preferencesHelper).isNightMode = nightMode
             verify(observer).onChanged(SettingUIModel.NightMode(nightMode))
         }
+
+    @After
+    fun tearDown() {
+        sut.onCleared()
+    }
 }
