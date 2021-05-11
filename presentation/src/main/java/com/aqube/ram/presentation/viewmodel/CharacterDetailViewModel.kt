@@ -1,6 +1,5 @@
 package com.aqube.ram.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.aqube.ram.domain.interactor.CharacterBookmarkUseCase
 import com.aqube.ram.domain.interactor.CharacterUnBookmarkUseCase
@@ -46,7 +45,6 @@ class CharacterDetailViewModel @Inject constructor(
     }
 
     override val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-        Log.d(TAG, exception.message ?: "Error ")
         val message = ExceptionHandler.parse(exception)
         _character.postValue(CharacterDetailUIModel.Error(exception.message ?: "Error"))
     }
@@ -60,7 +58,6 @@ class CharacterDetailViewModel @Inject constructor(
 
     private suspend fun loadCharacter(characterId: Long) {
         characterByIdUseCase(characterId).collect {
-            Log.d(TAG, it.toString())
             _character.postValue(CharacterDetailUIModel.Success(it))
         }
     }

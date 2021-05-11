@@ -49,6 +49,7 @@ class CharacterListViewModelTest : PresentationBaseTest() {
             val isBookmarked = false
             val characters = FakePresentationData.getCharacters(7)
             `when`(charactersUseCase(Unit)).thenReturn(flowOf(characters))
+
             // Act (When)
             sut.getCharacters(isBookmarked)
 
@@ -64,6 +65,7 @@ class CharacterListViewModelTest : PresentationBaseTest() {
             val isBookmarked = false
             val characters = FakePresentationData.getCharacters(0)
             `when`(charactersUseCase(Unit)).thenReturn(flowOf(characters))
+
             // Act (When)
             sut.getCharacters(isBookmarked)
 
@@ -95,6 +97,7 @@ class CharacterListViewModelTest : PresentationBaseTest() {
             val isBookmarked = true
             val characters = FakePresentationData.getCharacters(3)
             `when`(bookmarkUseCase(Unit)).thenReturn(flowOf(characters))
+
             // Act (When)
             sut.getCharacters(isBookmarked)
 
@@ -110,6 +113,7 @@ class CharacterListViewModelTest : PresentationBaseTest() {
             val isBookmarked = true
             val characters = FakePresentationData.getCharacters(0)
             `when`(bookmarkUseCase(Unit)).thenReturn(flowOf(characters))
+
             // Act (When)
             sut.getCharacters(isBookmarked)
 
