@@ -16,6 +16,7 @@ object Config {
             "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltAndroidVersion}"
         const val navigationSafArgsGradle =
             "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.gradleNavigationArgVersion}"
+        const val jitPackUrl = "https://jitpack.io"
     }
 
     object Plugins {
@@ -26,7 +27,6 @@ object Config {
         const val kotlinKapt = "kotlin-kapt"
         const val dagger = "dagger.hilt.android.plugin"
         const val androidLibrary = "com.android.library"
-        const val kotlinAndroidExtensions = "kotlin-android-extensions"
     }
 
     const val testRunner = "androidx.test.runner.AndroidJUnitRunner"

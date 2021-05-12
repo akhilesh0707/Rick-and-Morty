@@ -91,4 +91,14 @@ dependencies {
     implementation(UiDep.timber)
     // Lottie animation
     implementation(UiDep.lottie)
+
+    // Test Dependencies
+    testImplementation(UiDep.Test.junit)
+    testImplementation(UiDep.Test.assertJ)
+    testImplementation(UiDep.Test.mockitoKotlin)
+    testImplementation(UiDep.Test.mockitoInline)
+    testImplementation(UiDep.Test.coroutines)
+    testImplementation(UiDep.Test.androidxArchCore)
+    testImplementation(UiDep.Test.robolectric)
+    testImplementation(UiDep.Test.testExtJunit)
 }
