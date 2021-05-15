@@ -59,7 +59,7 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 ## TODO
 - [ ] CI/CD (Github Actions, Bitrise, CircleCI)
 - [X] Unit test
-- [ ] Jacoco for test coverage
+- [X] Jacoco for test coverage
 - [ ] Ktlint or Detekt
 
 ## Reference repository
