@@ -18,7 +18,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, BaseViewModel>() {
 
-    override val layoutId: Int = R.layout.fragment_character_list
+    override fun getViewBinding(): FragmentCharacterListBinding =
+        FragmentCharacterListBinding.inflate(layoutInflater)
 
     override val viewModel: CharacterListViewModel by viewModels()
 
@@ -35,7 +36,7 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, BaseVie
     }
 
     private fun initRecyclerView() {
-        viewBinding.recyclerViewCharacters.apply {
+        binding.recyclerViewCharacters.apply {
             adapter = characterAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }

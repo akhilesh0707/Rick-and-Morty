@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aqube.ram.R
 import com.aqube.ram.base.BaseFragment
 import com.aqube.ram.core.theme.ThemeUtils
 import com.aqube.ram.databinding.FragmentSettingsBinding
@@ -18,7 +17,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SettingsFragment : BaseFragment<FragmentSettingsBinding, BaseViewModel>() {
 
-    override val layoutId: Int = R.layout.fragment_settings
+    override fun getViewBinding(): FragmentSettingsBinding =
+        FragmentSettingsBinding.inflate(layoutInflater)
 
     override val viewModel: SettingsViewModel by viewModels()
 
@@ -36,7 +36,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, BaseViewModel>() 
     }
 
     private fun setupRecyclerView() {
-        viewBinding.recyclerViewSettings.apply {
+        binding.recyclerViewSettings.apply {
             adapter = settingsAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }

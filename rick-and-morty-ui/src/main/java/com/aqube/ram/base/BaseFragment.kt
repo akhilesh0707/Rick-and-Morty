@@ -4,31 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
-import androidx.databinding.DataBindingUtil
-import com.aqube.ram.presentation.viewmodel.BaseViewModel
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 import com.aqube.ram.core.dialog.dismissLoadingDialog
 import com.aqube.ram.core.dialog.showLoadingDialog
 import com.aqube.ram.extension.showSnackBar
+import com.aqube.ram.presentation.viewmodel.BaseViewModel
 import timber.log.Timber
 
-abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewModel> : Fragment() {
+abstract class BaseFragment<VB : ViewBinding, ViewModel : BaseViewModel> : Fragment() {
 
-    protected lateinit var viewBinding: ViewBinding
+    protected lateinit var binding: VB
     protected abstract val viewModel: ViewModel
 
-    @get:LayoutRes
-    protected abstract val layoutId: Int
+    abstract fun getViewBinding(): VB
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        return viewBinding.root
+        super.onCreateView(inflater, container, savedInstanceState)
+        binding = getViewBinding()
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,7 +69,7 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
         if (message.isNullOrBlank()) return
         dismissLoadingDialog()
         Timber.e(message)
-        showSnackBar(viewBinding.root, message)
+        showSnackBar(binding.root, message)
     }
 
 }

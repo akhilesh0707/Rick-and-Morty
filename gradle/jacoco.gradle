@@ -1,3 +1,6 @@
+// https://nolambda.stream/posts/jacoco-setup-for-multi-module-project/
+// https://www.veskoiliev.com/how-to-setup-jacoco-for-android-project-with-java-kotlin-and-multiple-flavours/
+
 def coveredProject = subprojects
 
 apply plugin: 'jacoco'

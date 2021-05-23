@@ -20,7 +20,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, BaseViewModel>() {
 
-    override val layoutId: Int = R.layout.fragment_character_detail
+    override fun getViewBinding(): FragmentCharacterDetailBinding =
+        FragmentCharacterDetailBinding.inflate(layoutInflater)
 
     override val viewModel: CharacterDetailViewModel by viewModels()
 
@@ -37,8 +38,8 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Bas
     }
 
     private fun setUiChangeListeners() {
-        viewBinding.checkBoxBookmark.setOnCheckedChangeListener { view, isChecked ->
-            if (!viewBinding.checkBoxBookmark.isPressed) {
+        binding.checkBoxBookmark.setOnCheckedChangeListener { view, isChecked ->
+            if (!binding.checkBoxBookmark.isPressed) {
                 return@setOnCheckedChangeListener
             }
             if (isChecked)
@@ -55,14 +56,14 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Bas
                 when (result.bookmark) {
                     Bookmark.BOOKMARK ->
                         if (result.status) {
-                            showSnackBar(viewBinding.rootView, getString(R.string.bookmark_success))
+                            showSnackBar(binding.rootView, getString(R.string.bookmark_success))
                         } else {
                             handleErrorMessage(getString(R.string.bookmark_error))
                         }
                     Bookmark.UN_BOOKMARK ->
                         if (result.status) {
                             showSnackBar(
-                                viewBinding.rootView,
+                                binding.rootView,
                                 getString(R.string.un_bookmark_success)
                             )
                         } else {
@@ -75,8 +76,8 @@ class CharacterDetailFragment : BaseFragment<FragmentCharacterDetailBinding, Bas
             is CharacterDetailUIModel.Success -> {
                 handleLoading(false)
                 result.data.let { character ->
-                    viewBinding.apply {
-                        viewBinding.textViewCharacterName.text = character.name
+                    binding.apply {
+                        binding.textViewCharacterName.text = character.name
                         glide.load(character.image).into(imageViewCharacter)
                         checkBoxBookmark.tag = character.id
                         checkBoxBookmark.isChecked = character.isBookMarked
