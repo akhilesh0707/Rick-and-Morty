@@ -61,6 +61,7 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 - [X] Unit test
 - [X] Jacoco for test coverage
 - [ ] Ktlint or Detekt
+- [ ] Use Jetpack Compose
 
 ## Reference repository
 This repository code is mostly inspired by [Android-Clean-Architecture-Boilerplate](https://github.com/bufferapp/android-clean-architecture-boilerplate).
