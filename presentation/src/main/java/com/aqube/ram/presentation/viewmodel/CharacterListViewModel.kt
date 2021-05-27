@@ -1,6 +1,5 @@
 package com.aqube.ram.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.aqube.ram.domain.interactor.GetBookmarkCharacterListUseCase
 import com.aqube.ram.domain.interactor.GetCharacterListUseCase

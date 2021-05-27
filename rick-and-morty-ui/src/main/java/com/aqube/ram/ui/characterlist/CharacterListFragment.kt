@@ -54,7 +54,7 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, BaseVie
         if (event.isRedelivered) return
         when (event) {
             is CharacterUIModel.Error -> handleErrorMessage(event.error)
-            CharacterUIModel.Loading -> handleLoading(true)
+            is CharacterUIModel.Loading -> handleLoading(true)
             is CharacterUIModel.Success -> {
                 handleLoading(false)
                 event.data.let {
