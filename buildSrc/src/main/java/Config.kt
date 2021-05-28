@@ -17,6 +17,8 @@ object Config {
         const val navigationSafArgsGradle =
             "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.gradleNavigationArgVersion}"
         const val jitPackUrl = "https://jitpack.io"
+        const val googleUrl = "https://maven.google.com/"
+        const val pluginGradle = "https://plugins.gradle.org/m2/"
     }
 
     object Plugins {

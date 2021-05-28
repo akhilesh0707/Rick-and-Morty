@@ -4,7 +4,7 @@ buildscript {
 
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -21,10 +21,10 @@ apply(from = "gradle/jacoco.gradle")
 
 allprojects {
     repositories {
-        google()
-        jcenter()
+        mavenCentral()
+        maven(url = Config.ClassPaths.googleUrl)
+        maven(url = Config.ClassPaths.pluginGradle)
         maven(url = Config.ClassPaths.jitPackUrl)
-       // maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
     }
 }
 
