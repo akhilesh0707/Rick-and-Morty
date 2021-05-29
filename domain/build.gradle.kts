@@ -2,6 +2,7 @@ import dependencies.DomainDep
 
 plugins {
     id(Config.Plugins.kotlin)
+    id(Config.Plugins.javaLibrary)
 }
 
 java {
@@ -12,6 +13,7 @@ java {
 dependencies {
     implementation(DomainDep.kotlin)
     implementation(DomainDep.coroutineCore)
+
     // JavaX
     implementation(DomainDep.javax)
 
