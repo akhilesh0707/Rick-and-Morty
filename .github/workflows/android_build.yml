@@ -19,7 +19,7 @@ jobs:
           java-version: 11
 
       - name: Run Tests
-        run: ./gradlew testDebugUnitTest
+        run: ./gradlew testDebugUnitTest --stacktrace
 
       - name: Build Project
         run: ./gradlew assembleDebug
