@@ -84,12 +84,9 @@ object Dependencies {
             "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTestVersion}"
         const val junit = "junit:junit:${Versions.junitVersion}"
         const val assertJ = "org.assertj:assertj-core:${Versions.assertJVersion}"
-        const val kotlinJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlinVersion}"
         const val mockitoKotlin =
             "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}"
-        const val mockitoCore = "org.mockito:mockito-core:${Versions.mockitoCoreVersion}"
         const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInlineVersion}"
-        const val mockitoAndroid = "org.mockito:mockito-android:${Versions.mockitoAndroidVersion}"
         const val testRunner = "androidx.test:runner:${Versions.androidTestRunnerVersion}"
         const val testRules = "androidx.test:rules:${Versions.androidTestRuleVersion}"
         const val testCore = "androidx.test:core:${Versions.axTestCore}"
