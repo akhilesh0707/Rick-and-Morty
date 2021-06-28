@@ -26,5 +26,4 @@ object RemoteModule {
     fun provideCharacterRemote(characterRemote: CharacterRemoteImp): CharacterRemote {
         return characterRemote
     }
-
 }

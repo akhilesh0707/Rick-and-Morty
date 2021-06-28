@@ -144,4 +144,3 @@ class CharacterListViewModelTest : PresentationBaseTest() {
         sut.onCleared()
     }
 }
-

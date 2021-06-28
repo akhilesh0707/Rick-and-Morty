@@ -4,8 +4,6 @@ import com.aqube.ram.data.models.CharacterEntity
 import com.aqube.ram.data.models.CharacterLocationEntity
 import com.aqube.ram.domain.models.Character
 import com.aqube.ram.domain.models.CharacterLocation
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 
 object FakeCharacters {
     fun getCharacters(): List<CharacterEntity> = listOf(
@@ -51,5 +49,4 @@ object FakeCharacters {
             "",
             false
         )
-
 }

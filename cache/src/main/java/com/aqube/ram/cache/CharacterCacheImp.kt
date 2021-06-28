@@ -72,5 +72,4 @@ class CharacterCacheImp @Inject constructor(
          */
         const val EXPIRATION_TIME = (60 * 5 * 1000).toLong()
     }
-
 }

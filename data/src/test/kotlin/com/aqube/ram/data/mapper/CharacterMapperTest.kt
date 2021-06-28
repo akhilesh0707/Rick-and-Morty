@@ -53,7 +53,6 @@ class CharacterMapperTest : DataBaseTest() {
             verify(locationMapper, times(1)).mapFromEntity(any())
         }
 
-
     @Test
     fun `map character to character entity  should return converted character`() =
         dispatcher.runBlockingTest {

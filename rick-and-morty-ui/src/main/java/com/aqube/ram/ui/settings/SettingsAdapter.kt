@@ -13,16 +13,14 @@ import com.aqube.ram.domain.models.Settings
 import com.aqube.ram.extension.makeGone
 import com.aqube.ram.extension.makeVisible
 import com.google.android.material.card.MaterialCardView
-import com.google.android.material.shape.CornerFamily.*
+import com.google.android.material.shape.CornerFamily.ROUNDED
 import javax.inject.Inject
-
 
 private const val TOP = 0
 private const val MIDDLE = 1
 private const val BOTTOM = 2
 
 class SettingsAdapter @Inject constructor() : BaseAdapter<Settings>() {
-
 
     private val diffCallback = object : DiffUtil.ItemCallback<Settings>() {
         override fun areItemsTheSame(oldItem: Settings, newItem: Settings): Boolean {

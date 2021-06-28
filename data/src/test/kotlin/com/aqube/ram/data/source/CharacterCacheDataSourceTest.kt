@@ -3,8 +3,15 @@ package com.aqube.ram.data.source
 import com.aqube.ram.data.fakes.FakeCharacters
 import com.aqube.ram.data.repository.CharacterCache
 import com.aqube.ram.data.utils.DataBaseTest
-import com.nhaarman.mockitokotlin2.*
-import junit.framework.TestCase.*
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.doAnswer
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertFalse
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.launch

@@ -1,7 +1,6 @@
 package com.aqube.ram.remote.fakes
 
-
-import java.util.*
+import java.util.UUID
 import kotlin.random.Random
 
 object FakeValueFactory {

@@ -1,6 +1,5 @@
 package com.aqube.ram.cache.fakes
 
-
 import java.util.UUID
 import kotlin.random.Random
 

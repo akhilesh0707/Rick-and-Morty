@@ -60,7 +60,6 @@ abstract class BaseFragment<VB : ViewBinding, ViewModel : BaseViewModel> : Fragm
         }
     }
 
-
     protected open fun handleLoading(isLoading: Boolean) {
         if (isLoading) showLoadingDialog() else dismissLoadingDialog()
     }
@@ -71,5 +70,4 @@ abstract class BaseFragment<VB : ViewBinding, ViewModel : BaseViewModel> : Fragm
         Timber.e(message)
         showSnackBar(binding.root, message)
     }
-
 }

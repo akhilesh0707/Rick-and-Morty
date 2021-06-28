@@ -3,8 +3,8 @@ package com.aqube.ram.data
 import com.aqube.ram.domain.models.SettingType
 import com.aqube.ram.domain.models.Settings
 import com.aqube.ram.domain.repository.SettingsRepository
-import kotlinx.coroutines.flow.*
-
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class SettingsRepositoryImp @Inject constructor(
@@ -14,7 +14,7 @@ class SettingsRepositoryImp @Inject constructor(
         emit(getData(isNightMode))
     }
 
-    //This should be came from api but we don't have api so we are crating locally
+    // This should be came from api but we don't have api so we are crating locally
     private fun getData(isNightMode: Boolean): List<Settings> {
         val settingList = mutableListOf<Settings>()
         settingList.add(Settings(1, SettingType.SWITCH, "Theme mode", "", isNightMode))

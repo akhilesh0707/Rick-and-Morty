@@ -2,7 +2,6 @@ package com.aqube.ram.cache.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-
 import javax.inject.Inject
 
 open class CachePreferencesHelper @Inject constructor(context: Context) {
@@ -18,5 +17,4 @@ open class CachePreferencesHelper @Inject constructor(context: Context) {
     var lastCacheTime: Long
         get() = preferences.getLong(PREF_KEY_LAST_CACHE, 0)
         set(lastCache) = preferences.edit().putLong(PREF_KEY_LAST_CACHE, lastCache).apply()
-
 }

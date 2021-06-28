@@ -11,5 +11,4 @@ internal object ExceptionHandler {
             else -> R.string.error_oops_error_occured
         }*/
     }
-
 }

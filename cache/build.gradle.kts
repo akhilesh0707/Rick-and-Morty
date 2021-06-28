@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-    //Modules
+    // Modules
     implementation(project(Modules.data))
     // Kotlin
     implementation(CacheDep.kotlin)

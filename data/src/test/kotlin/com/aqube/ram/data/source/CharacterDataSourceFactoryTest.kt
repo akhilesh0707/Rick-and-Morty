@@ -63,5 +63,4 @@ class CharacterDataSourceFactoryTest : DataBaseTest() {
             assertThat(dataSource, instanceOf(CharacterRemoteDataSource::class.java))
             verify(characterCache, times(1)).isExpired()
         }
-
 }

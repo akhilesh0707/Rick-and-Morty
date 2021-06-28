@@ -3,7 +3,11 @@ package com.aqube.ram.domain.interactor
 import com.aqube.ram.domain.fakes.FakeData
 import com.aqube.ram.domain.repository.CharacterRepository
 import com.aqube.ram.domain.utils.DomainBaseTest
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.doAnswer
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi

@@ -3,8 +3,14 @@ package com.aqube.ram.domain.interactor
 import com.aqube.ram.domain.fakes.FakeData
 import com.aqube.ram.domain.repository.SettingsRepository
 import com.aqube.ram.domain.utils.DomainBaseTest
-import com.nhaarman.mockitokotlin2.*
-import junit.framework.TestCase.*
+import com.nhaarman.mockitokotlin2.doAnswer
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertFalse
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.launch
@@ -85,5 +91,4 @@ class GetSettingsTestDomain : DomainBaseTest() {
             )
             verify(settingRepository, times(1)).getSettings(isNightMode)
         }
-
 }

@@ -4,7 +4,11 @@ import com.aqube.ram.remote.api.CharacterService
 import com.aqube.ram.remote.fakes.FakeRemoteData
 import com.aqube.ram.remote.mappers.CharacterEntityMapper
 import com.aqube.ram.remote.utils.RemoteBaseTest
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.doAnswer
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -39,7 +43,6 @@ class CharacterRemoteImpTest : RemoteBaseTest() {
     fun setUp() {
         sut = CharacterRemoteImp(characterService, mapper)
     }
-
 
     @Test
     fun `get characters should return response with list size 7 from remote server`() =

@@ -85,10 +85,14 @@ fun dismissLoadingDialog() {
 var showingDialog: Dialog? = null
 
 fun Fragment.showDialog(
-    title: String? = null, message: String? = null,
-    textPositive: String? = null, positiveListener: (() -> Unit)? = null,
-    textNegative: String? = null, negativeListener: (() -> Unit)? = null,
-    cancelable: Boolean = false, canceledOnTouchOutside: Boolean = false
+    title: String? = null,
+    message: String? = null,
+    textPositive: String? = null,
+    positiveListener: (() -> Unit)? = null,
+    textNegative: String? = null,
+    negativeListener: (() -> Unit)? = null,
+    cancelable: Boolean = false,
+    canceledOnTouchOutside: Boolean = false
 ): AlertDialog? {
     return MaterialAlertDialogBuilder(context ?: return null).apply {
         setTitle(title)
@@ -124,10 +128,14 @@ fun Fragment.showDialog(
 }
 
 fun AppCompatActivity.showDialog(
-    title: String? = null, message: String? = null,
-    textPositive: String? = null, positiveListener: (() -> Unit)? = null,
-    textNegative: String? = null, negativeListener: (() -> Unit)? = null,
-    cancelable: Boolean = false, canceledOnTouchOutside: Boolean = false
+    title: String? = null,
+    message: String? = null,
+    textPositive: String? = null,
+    positiveListener: (() -> Unit)? = null,
+    textNegative: String? = null,
+    negativeListener: (() -> Unit)? = null,
+    cancelable: Boolean = false,
+    canceledOnTouchOutside: Boolean = false
 ): AlertDialog {
     return MaterialAlertDialogBuilder(this).apply {
         setTitle(title)

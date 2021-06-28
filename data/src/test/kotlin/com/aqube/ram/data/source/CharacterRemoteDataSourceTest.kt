@@ -3,7 +3,11 @@ package com.aqube.ram.data.source
 import com.aqube.ram.data.fakes.FakeCharacters
 import com.aqube.ram.data.repository.CharacterRemote
 import com.aqube.ram.data.utils.DataBaseTest
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.doAnswer
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import junit.framework.TestCase
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi

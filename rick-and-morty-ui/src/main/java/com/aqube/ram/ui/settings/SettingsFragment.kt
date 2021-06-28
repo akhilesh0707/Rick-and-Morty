@@ -64,5 +64,4 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, BaseViewModel>() 
             }
         }
     }
-
 }

@@ -10,7 +10,6 @@ import com.aqube.ram.remote.models.CharacterResponseModel
 
 object FakeRemoteData {
 
-
     fun getResponse(size: Int, isRandomId: Boolean = true): CharacterResponseModel {
         return CharacterResponseModel(getFakeCharacterModel(size, isRandomId))
     }

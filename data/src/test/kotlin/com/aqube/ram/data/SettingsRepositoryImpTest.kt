@@ -1,7 +1,9 @@
 package com.aqube.ram.data
 
 import com.aqube.ram.data.utils.DataBaseTest
-import junit.framework.TestCase.*
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertFalse
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.single
@@ -51,5 +53,4 @@ class SettingsRepositoryImpTest : DataBaseTest() {
             assertEquals(settings.size, 3)
             assertFalse(settings[0].selectedValue)
         }
-
 }

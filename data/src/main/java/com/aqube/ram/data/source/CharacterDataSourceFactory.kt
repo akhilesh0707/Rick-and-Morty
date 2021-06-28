@@ -25,5 +25,4 @@ open class CharacterDataSourceFactory @Inject constructor(
     fun getCacheDataSource(): CharacterDataSource {
         return cacheDataSource
     }
-
 }

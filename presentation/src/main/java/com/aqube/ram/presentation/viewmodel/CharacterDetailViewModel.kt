@@ -103,5 +103,4 @@ class CharacterDetailViewModel @Inject constructor(
             }
         }
     }
-
 }

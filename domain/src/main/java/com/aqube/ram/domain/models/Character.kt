@@ -11,5 +11,5 @@ data class Character(
     val status: String,
     val type: String,
     val url: String,
-    var isBookMarked : Boolean
+    var isBookMarked: Boolean
 )

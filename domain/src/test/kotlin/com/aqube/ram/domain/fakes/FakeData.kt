@@ -66,5 +66,4 @@ object FakeData {
         )
         emit(settings)
     }
-
 }

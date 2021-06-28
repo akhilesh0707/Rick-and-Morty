@@ -6,7 +6,10 @@ import com.aqube.ram.cache.mapper.CharacterCacheMapper
 import com.aqube.ram.cache.mapper.CharacterLocationCacheMapper
 import com.aqube.ram.cache.utils.CacheBaseTest
 import com.aqube.ram.cache.utils.CachePreferencesHelper
-import junit.framework.TestCase.*
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertFalse
+import junit.framework.TestCase.assertNotNull
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before

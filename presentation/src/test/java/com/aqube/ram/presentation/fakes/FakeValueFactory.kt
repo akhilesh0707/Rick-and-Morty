@@ -1,6 +1,5 @@
 package com.aqube.ram.presentation.fakes
 
-
 import java.util.UUID
 import kotlin.random.Random
 

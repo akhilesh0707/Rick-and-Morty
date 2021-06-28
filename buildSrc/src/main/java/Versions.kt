@@ -3,6 +3,7 @@ object Versions {
     const val gradleVersion = "4.1.3"
     const val gradleNavigationArgVersion = "2.3.5"
     const val kotlinVersion = "1.4.32"
+    const val ktLintVersion = "10.1.0"
 
     // Core dependencies
     const val javaxInjectVersion = "1"

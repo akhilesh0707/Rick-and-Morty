@@ -16,9 +16,12 @@ object Config {
             "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltAndroidVersion}"
         const val navigationSafArgsGradle =
             "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.gradleNavigationArgVersion}"
+        const val ktLint ="org.jlleitschuh.gradle:ktlint-gradle:${Versions.ktLintVersion}"
+
         const val jitPackUrl = "https://jitpack.io"
         const val googleUrl = "https://maven.google.com/"
         const val pluginGradle = "https://plugins.gradle.org/m2/"
+        const val pluginKtLint = "org.jlleitschuh.gradle.ktlint"
     }
 
     object Plugins {

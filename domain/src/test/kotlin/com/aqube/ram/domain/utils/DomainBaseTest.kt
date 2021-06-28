@@ -17,5 +17,4 @@ abstract class DomainBaseTest {
     val dispatcher = testRule.dispatcher
 
     val exceptionHandler = TestCoroutineExceptionHandler()
-
 }

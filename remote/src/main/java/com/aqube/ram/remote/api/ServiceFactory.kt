@@ -40,5 +40,4 @@ object ServiceFactory {
     }
 
     private const val OK_HTTP_TIMEOUT = 60L
-
 }

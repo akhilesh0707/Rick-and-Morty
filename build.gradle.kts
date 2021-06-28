@@ -5,6 +5,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven(url = Config.ClassPaths.pluginGradle)
     }
 
     dependencies {
@@ -14,16 +15,18 @@ buildscript {
         // in the individual module build.gradle.kts files
         classpath(Config.ClassPaths.daggerHiltGradle)
         classpath(Config.ClassPaths.navigationSafArgsGradle)
+        // KtLint
+        classpath(Config.ClassPaths.ktLint)
     }
 }
 
 apply(from = "gradle/jacoco.gradle")
 
 allprojects {
+    apply(plugin = Config.ClassPaths.pluginKtLint) // Version should be inherited from parent
     repositories {
         mavenCentral()
         maven(url = Config.ClassPaths.googleUrl)
-        maven(url = Config.ClassPaths.pluginGradle)
         maven(url = Config.ClassPaths.jitPackUrl)
     }
 }

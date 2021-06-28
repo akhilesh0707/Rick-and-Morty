@@ -111,7 +111,6 @@ class SettingsViewModelTest : PresentationBaseTest() {
             verify(observer).onChanged(SettingUIModel.Error(errorMessage))
         }
 
-
     @Test
     fun `set settings with night mode on should return night mode on from use-case`() =
         dispatcher.test.runBlockingTest {

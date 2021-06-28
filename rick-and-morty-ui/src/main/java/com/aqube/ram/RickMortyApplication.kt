@@ -26,5 +26,4 @@ class RickMortyApplication : Application() {
     private fun initNightMode() {
         themeUtils.setNightMode(preferencesHelper.isNightMode)
     }
-
 }

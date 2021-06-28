@@ -24,5 +24,4 @@ object DataModule {
     @Singleton
     fun provideSettingRepository(): SettingsRepository =
         SettingsRepositoryImp(BuildConfig.VERSION_NAME)
-
 }

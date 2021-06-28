@@ -16,5 +16,4 @@ abstract class DataBaseTest {
     val dispatcher = testRule.dispatcher
 
     val exceptionHandler = TestCoroutineExceptionHandler()
-
 }
