@@ -57,10 +57,10 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 - [Glide](https://bumptech.github.io/glide/) - Glide is a fast and efficient image loading library for Android 
 
 ## TODO
-- [ ] CI/CD (Github Actions, Bitrise, CircleCI)
+- [X] CI/CD (Github Actions, Bitrise, CircleCI)
 - [X] Unit test
 - [X] Jacoco for test coverage
-- [ ] Ktlint or Detekt
+- [X] Ktlint or Detekt
 - [ ] Use Jetpack Compose
 
 ## Reference repository
