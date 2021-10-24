@@ -70,6 +70,5 @@ This repository code is mostly inspired by [Android-Clean-Architecture-Boilerpla
 Support it by joining __[stargazers](https://github.com/akhilesh0707/Rick-and-Morty/stargazers)__ for this repository. :star: <br>
 And __[follow](https://github.com/akhilesh0707)__ me for my next creations! 🤩
 
-
 ## Contributions
 Please feel free to file an issue for errors, suggestions or feature requests. Pull requests are also encouraged.
